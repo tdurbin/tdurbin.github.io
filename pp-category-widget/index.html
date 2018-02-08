@@ -5,8 +5,9 @@ body {
     margin : 10px;
     padding: 2px;
     background : #f0f0f0;
-    font-size: 14px;
     font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+    font-size: 11px;
+    color: #515254;
 }
 #title {
 padding: 2px;
@@ -50,8 +51,15 @@ input:focus {
 }
 
 label {
-
-	  font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+    font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+    font-size: 13px;
+    line-height: normal;
+    font-weight: bold;
+    color: #515254;
+    outline: none;
+    border: 0;
+    margin: 0;
+    padding: 0
 }
 
 textarea {
@@ -73,6 +81,7 @@ textarea:focus {
 padding: 2px;
 font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
 }
+
 </style>
 
 <head>
@@ -121,10 +130,10 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
                 </select>
         <br>
         <br>
-        <label for="yesno">Change Y/N: </label>
-        <input type="radio" name="yesno" value="Yes"/> Yes
-        <input type="radio" name="yesno" value="No"/> No
-        <input type="radio" name="yesno" value="N/A" checked="checked"/> N/A
+        <label for="yesno">Change Y/N...</label><br>
+        <input type="radio" name="yesno" value="Yes" style="margin-left: 80px"/> Yes<br>
+        <input type="radio" name="yesno" value="No" style="margin-left: 80px"> No<br>
+        <input type="radio" name="yesno" value="N/A" style="margin-left: 80px" checked="checked"/> N/A
 
         <br>
         <br>
