@@ -88,107 +88,46 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://lpcdn.lpsnmedia.net/webagent/client-SDK.min.js"></script>
-<script>
-
-var categoryInfo = {
-  "Bet Queries (Exchange)": {
-		"Cash Out Availability": ["Football", "Golf", "Other Sports", "Racing", "Rugby", "Cricket", "Tennis"],
-    "Cash Out Settlement Query": ["Football", "Golf", "Other Sports", "Racing", "Rugby", "Cricket", "Tennis"],
-    "Market Request": ["Football", "Golf", "Other Sports", "Racing", "Rugby", "Cricket", "Tennis"],
-    "Market Rules": ["Football", "Golf", "Other Sports", "Racing", "Rugby", "Cricket", "Tennis"],
-    "Market Settlement Delay": ["Football", "Golf", "Other Sports", "Racing", "Rugby", "Cricket", "Tennis"],
-    "Market Settlement Dispute": ["Football", "Golf", "Other Sports", "Racing", "Rugby", "Cricket", "Tennis"],
-    "Market Status": ["Football", "Golf", "Other Sports", "Racing", "Rugby", "Cricket", "Tennis"]
-	},
-  "Bet Queries (Sportsbook)": {
-		"Bet Settlement Delayed": ["Football", "Golf", "Other Sports", "Racing", "Rugby", "Cricket", "Tennis"],
-    "Bet Settlement Dispute": ["Football", "Golf", "Other Sports", "Racing", "Rugby", "Cricket", "Tennis"],
-    "Bet Type": ["How to Use"],
-    "Cash Out Availability": ["Football", "Golf", "Other Sports", "Racing", "Rugby", "Cricket", "Tennis"],
-    "Cash Out Settlement Query": ["Football", "Golf", "Other Sports", "Racing", "Rugby", "Cricket", "Tennis"],
-    "Dial-a-Bet/Telbet": ["Query Answered", "Transfer"],
-    "Market Rules Query": ["Football", "Golf", "Other Sports", "Racing", "Rugby", "Cricket", "Tennis"],
-    "Price/Market Request": ["Football", "Other Sports", "Novelties/Politics", "Racing", "Rugby"],
-    "Void Bet Request": ["Football", "Golf", "Other Sports", "Racing", "Rugby", "Cricket", "Tennis"]
-	},
-  "Bingo Promo": {
-    "Already Received": ["Sign-Up Offer", "Bet X Get Y", "Free Spins Promo", "Win Boost", "Loss Back", "Prize Draw", "Leaderboard", "Bonus/Free Spins Drop", "Other"],
-    "Bonus Request": ["Awarded by Agent", "Awarded by EMT", "Request Declined", "Request Escalated"],
-    "Ineligible Games": ["Sign-Up Offer", "Bet X Get Y", "Free Spins Promo", "Win Boost", "Loss Back", "Prize Draw", "Leaderboard", "Bonus/Free Spins Drop", "Other"],
-    "Loyalty": ["Free Room Query", "Star Rewards - How to Redeem", "Star Rewards - How to Use", "Birthday Bonus"],
-    "No Opt In": ["Sign-Up Offer", "Bet X Get Y", "Free Spins Promo", "Win Boost", "Loss Back", "Prize Draw", "Leaderboard", "Bonus/Free Spins Drop", "Other"],
-    "Remove Bonus": ["Sign-Up Offer", "Bet X Get Y", "Free Spins Promo", "Win Boost", "Loss Back", "Prize Draw", "Leaderboard", "Bonus/Free Spins Drop", "Other"],
-    "Rules/How To": ["Sign-Up Offer", "Bet X Get Y", "Free Spins Promo", "Win Boost", "Loss Back", "Prize Draw", "Leaderboard", "Bonus/Free Spins Drop", "Other"],
-    "Wagering Met - Not Generated": ["Sign-Up Offer", "Bet X Get Y", "Free Spins Promo", "Win Boost", "Loss Back", "Prize Draw", "Leaderboard", "Bonus/Free Spins Drop", "Other"],
-    "Wagering Not Met": ["Sign-Up Offer", "Bet X Get Y", "Free Spins Promo", "Win Boost", "Loss Back", "Prize Draw", "Leaderboard", "Bonus/Free Spins Drop", "Other"]
-  }
-
-}
-
-window.onload = function () {
-
-	//Get html elements
-	var l1Sel = document.getElementById("l1Sel");
-	var l2Sel = document.getElementById("l2Sel");
-	var l3Sel = document.getElementById("l3Sel");
-
-	//Load level
-	for (var lev1 in categoryInfo) {
-		l1Sel.options[l1Sel.options.length] = new Option(lev1, lev1);
-	}
-
-	//Level 1 Changed
-	l1Sel.onchange = function () {
-
-		 l2Sel.length = 1; // remove all options bar first
-		 l3Sel.length = 1; // remove all options bar first
-
-		 if (this.selectedIndex < 1)
-			 return; // done
-
-		 for (var lev2 in categoryInfo[this.value]) {
-			 l2Sel.options[l2Sel.options.length] = new Option(lev2, lev2);
-		 }
-	}
-
-	//Level 2 Changed
-	l2Sel.onchange = function () {
-
-		 l3Sel.length = 1; // remove all options bar first
-
-		 if (this.selectedIndex < 1)
-			 return; // done
-
-     var lev3 = categoryInfo[l1Sel.value][this.value];
- 		 for (var i = 0; i < lev3.length; i++) {
- 		    l3Sel.options[l3Sel.options.length] = new Option(lev3[i], lev3[i]);
- 		 }
-	}
-}
-</script>
 
 </head>
 
 <body>
 
-    <form id="categorisation_form" name="categorisation_form">
+    <form id="foo" name="foo">
         <!-- style="display:block" -->
-        <label for="l1Sel">Level 1: </label>
-        <select id="l1Sel" size="1">
-            <option value="" selected="selected">-- Select Level 1 Category --</option>
-        </select>
+        <label for="Level1">Level 1: </label>
+        <select id="Level1" name="Level1">
+                    <option value="Bet Queries (Exchange)">Bet Queries (Exchange)</option>
+                    <option value="Bet Queries (Sportsbook)">Bet Queries (Sportsbook)</option>
+                    <option value="Bingo Promo">Bingo Promo</option>
+                    <option value="Casino Promo">Casino Promo</option>
+                    <option value="eGaming Query">eGaming Query</option>
+                    <option value="Other">Other</option>
+                </select>
         <br>
         <br>
-        <label for="l2Sel">Level 2: </label>
-        <select id="l2Sel" size="1">
-            <option value="" selected="selected">-- Select Level 2 Category --</option>
-        </select>
+        <label for="Level2">Level 2: </label>
+        <select id="Level2" name="Level2">
+                    <option value="Cash Out Availability">Cash Out Availability</option>
+                    <option value="Cash Out Settlement Query">Cash Out Settlement Query</option>
+                    <option value="Market Rules">Market Rules</option>
+                    <option value="Market Settlement Dispute">Market Settlement Dispute</option>
+                    <option value="Market Settlement Delay">Market Settlement Delay</option>
+                    <option value="Market Status">Market Status</option>
+                    <option value="Other">Other</option>
+                </select>
         <br>
         <br>
-        <label for="l3Sel">Level 3: </label>
-        <select id="l3Sel" size="1">
-            <option value="" selected="selected">-- Select Level 3 Category --</option>
-        </select>
+        <label for="Level3">Level 3: </label>
+        <select id="Level3" name="Level3">
+                    <option value="Football">Football</option>
+                    <option value="Golf">Golf</option>
+                    <option value="Racing">Racing</option>
+                    <option value="Rugby">Rugby</option>
+                    <option value="Cricket">Cricket</option>
+                    <option value="Tennis">Tennis</option>
+                    <option value="Other Sports">Other Sports</option>
+                </select>
         <br>
         <br>
         <label for="yesno">Change Y/N...</label><br>
@@ -209,14 +148,13 @@ window.onload = function () {
         <div id="alert"></div>
 
     </form>
-
     <script>
         function sendData() {
             document.getElementById("alert").innerHTML = "Sending categorisation data...";
             document.getElementById("alert").style = "color : red";
-            var Level1 = $("#l1Sel").val();
-            var Level2 = $("#l2Sel").val();
-            var Level3 = $("#l3Sel").val();
+            var Level1 = $("#Level1").val();
+            var Level2 = $("#Level2").val();
+            var Level3 = $("#Level3").val();
             var yesno = $('input[name=yesno]:checked').val();
             var comments = $("#comments").val();
             console.log("***" + Level1 + "***" + Level2 + "***" + Level3 + "***" + yesno + "***" + comments + "***");
