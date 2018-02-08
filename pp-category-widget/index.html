@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+body {
+    margin : 10px;
+    padding: 2px;
+    background : #f0f0f0;
+    font-size: 14px;
+    font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+}
+#title {
+padding: 2px;
+font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+font-size: 24px;
+}
+button {
+    background-color: #f68a1f;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+	  border-radius: 4px;
+	  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	  font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+}
+button:hover {
+    background-color: #da7009;
+    color: white;
+}
+
+input {
+
+    padding: 12px 20px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+	  font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+}
+input:focus {
+    border: 3px solid #555;
+}
+
+label {
+
+	  font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+}
+
+textarea {
+
+    padding: 10px 10px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    font-size: 12px;
+	  font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+}
+textarea:focus {
+    border: 3px solid #555;
+}
+#text {
+padding: 2px;
+font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+}
+</style>
+
+<head>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://lpcdn.lpsnmedia.net/webagent/client-SDK.min.js"></script>
+
+</head>
+
+<body>
+
+    <form id="foo" name="foo">
+        <!-- style="display:block" -->
+        <label for="Level1">Level 1: </label>
+        <select id="Level1" name="Level1">
+                    <option value="Bet Queries (Exchange)">Bet Queries (Exchange)</option>
+                    <option value="Bet Queries (Sportsbook)">Bet Queries (Sportsbook)</option>
+                    <option value="Bingo Promo">Bingo Promo</option>
+                    <option value="Casino Promo">Casino Promo</option>
+                    <option value="eGaming Query">eGaming Query</option>
+                    <option value="Other">Other</option>
+                </select>
+        <br>
+        <br>
+        <label for="Level2">Level 2: </label>
+        <select id="Level2" name="Level2">
+                    <option value="Cash Out Availability">Cash Out Availability</option>
+                    <option value="Cash Out Settlement Query">Cash Out Settlement Query</option>
+                    <option value="Market Rules">Market Rules</option>
+                    <option value="Market Settlement Dispute">Market Settlement Dispute</option>
+                    <option value="Market Settlement Delay">Market Settlement Delay</option>
+                    <option value="Market Status">Market Status</option>
+                    <option value="Other">Other</option>
+                </select>
+        <br>
+        <br>
+        <label for="Level3">Level 3: </label>
+        <select id="Level3" name="Level3">
+                    <option value="Football">Football</option>
+                    <option value="Golf">Golf</option>
+                    <option value="Racing">Racing</option>
+                    <option value="Rugby">Rugby</option>
+                    <option value="Cricket">Cricket</option>
+                    <option value="Tennis">Tennis</option>
+                    <option value="Other Sports">Other Sports</option>
+                </select>
+        <br>
+        <br>
+        <label for="yesno">Change Y/N: </label>
+        <input type="radio" name="yesno" value="Yes"/> Yes
+        <input type="radio" name="yesno" value="No"/> No
+        <input type="radio" name="yesno" value="N/A" checked="checked"/> N/A
+
+        <br>
+        <br>
+        <label for="comments">Agent Comments: </label><br>
+        <textarea id="comments" name="comments" rows="8" cols="33"></textarea>
+        <br>
+        <br>
+
+        <button id="mybutton" type="button" onclick="sendData()">Categorise Conversation</button>
+        <br>
+        <br>
+        <div id="alert"></div>
+
+    </form>
+    <script>
+        function sendData() {
+            document.getElementById("alert").innerHTML = "Sending categorisation data...";
+            document.getElementById("alert").style = "color : red";
+            var Level1 = $("#Level1").val();
+            var Level2 = $("#Level2").val();
+            var Level3 = $("#Level3").val();
+            var yesno = $('input[name=yesno]:checked').val();
+            var comments = $("#comments").val();
+            console.log("***" + Level1 + "***" + Level2 + "***" + Level3 + "***" + yesno + "***" + comments + "***");
+            var xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", function() {
+                if (this.readyState === 4) {
+                    // var jsonResult = JSON.parse(this.responseText);
+                    document.getElementById("alert").innerHTML = "Categorisation saved!";
+                    document.getElementById("alert").style = "color : green";
+                }
+            });
+            var URLforGET = "https://pp-category-bot.herokuapp.com/add?Level1=" + Level1 + "&Level2=" + Level2 + "&Level3=" + Level3 + "&yesno=" + yesno + "&comments=" + comments + "&convID=" + convID + "&skill=" + skill;
+            console.log(URLforGET);
+            xhr.open("GET", URLforGET);
+            xhr.send();
+        }
+
+        var convID = "";
+        var skill = "";
+
+        $(document).ready(function() {
+
+            var SDK = lpTag.agentSDK;
+            SDK.init();
+
+            var onSuccess1 = function(data) {
+                // Do something with the returning data
+                convID = data;
+            };
+
+            var onError1 = function(data) {
+                // Do something with the returning data
+                var elem = document.getElementById("Phone");
+                convID = null;
+            };
+
+            var onSuccess2 = function(data) {
+                // Do something with the returning data
+                skill = data;
+            };
+
+            var onError2 = function(data) {
+                // Do something with the returning data
+                skill = null;
+            };
+
+            SDK.get('chatInfo.rtSessionId', onSuccess1, onError1);
+            SDK.get('engagementInfo.skill', onSuccess2, onError2);
+
+        });
+
+    </script>
+
+</body>
+</html>
