@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+<head>
+
+</head>
+
+<html>
+<style>
+    body {
+        margin: 20px;
+    }
+
+    .grid-container-header {
+        display: grid;
+        grid-template-columns: 180px 140px 140px 140px 140px 140px;
+        width: 880px;
+        background-color: #2196F3;
+        padding: 5px;
+    }
+
+    .grid-container-closed {
+        display: grid;
+        grid-template-columns: 180px 140px 140px 140px 140px 140px;
+        width: 880px;
+        background-color: #ff0000;
+        padding: 5px;
+    }
+
+    .grid-container-open {
+        display: grid;
+        grid-template-columns: 180px 140px 140px 140px 140px 140px;
+        width: 880px;
+        background-color: #00ff00;
+        padding: 5px;
+    }
+
+    .grid-item {
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 0px solid rgba(0, 0, 0, 0.8);
+        padding: 0px;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .grid-item-left {
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 0px solid rgba(0, 0, 0, 0.8);
+        padding: 0px;
+        font-size: 20px;
+        text-align: right;
+    }
+
+    .bar-container {
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+        background-color: #2196F3;
+        padding: 5px;
+    }
+
+    .bar-item {
+        background-color: rgba(255, 255, 255, 0.8);
+        border: 0px solid rgba(0, 0, 0, 0.8);
+        padding: 0px;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .loader {
+        border: 16px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 16px solid #3498db;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        /* Safari */
+        animation: spin 2s linear infinite;
+    }
+
+    /* Safari */
+
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    input[type=text],
+    input[type=password] {
+        width: 200px;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #f68a1f;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 4px;
+        cursor: pointer;
+        border-radius: 4px;
+        -webkit-transition-duration: 0.4s;
+        /* Safari */
+        transition-duration: 0.4s;
+        font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+    }
+
+    button:hover {
+        background-color: #da7009;
+        color: white;
+    }
+
+    .cancelbtn {
+        width: auto;
+        padding: 10px 18px;
+        background-color: #f44336;
+    }
+
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+    }
+
+    img.avatar {
+        width: 40%;
+        border-radius: 50%;
+    }
+
+    .label {
+        color: black;
+        width: 120px;
+        height: 50px;
+        padding: 6px;
+        display: block;
+        float: left;
+        vertical-align: middle;
+    }
+
+    .loginelement {
+        width: 130px;
+        height: 50px;
+        vertical-align: middle;
+        line-height: 50px;
+        float: left;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+    span.psw {
+        float: right;
+        padding-top: 16px;
+    }
+
+    /* Change styles for span and cancel button on extra small screens */
+
+    @media screen and (max-width: 300px) {
+        span.psw {
+            display: block;
+            float: none;
+        }
+        .cancelbtn {
+            width: 100%;
+        }
+    }
+</style>
+
+<body>
+
+    <div id="myloader" style="display:none;">
+        <h2>Loading your page...</h2>
+        <div class="loader"></div>
+    </div>
+
+    <div id="mylogin" style="display:none;">
+
+        <h2>Report Login</h2>
+        <div class="loginelement"><b>Account Number</b></div>
+        <input id="accnumb" type="text" placeholder="Enter Account Number">
+        </br>
+
+        <div class="loginelement"><b>Username</b></div>
+        <input id="uname" type="text" placeholder="Enter Username">
+        </br>
+
+        <div class="loginelement"><b>Password</b></div>
+        <input id="pwd" type="password" placeholder="Enter Password">
+        </br>
+
+        <button id="submitLogin">Login</button>
+
+        </br>
+        </br>
+        </br>
+        </br>
+
+        <div id="sendStat"></div>
+
+    </div>
+
+    <div id="myreports" style="display:none;">
+
+        </br>
+        <button type="button" id="logout" class="logout" style="float: right;">Log Out</button>
+
+        <h2>Download your transcripts:</h2>
+        <label><b>Start date</b></label></br>
+
+        <input id="startdate" type="date" />
+        <input id="starthour" type="time">
+        </br>
+
+        <label><b>End date</b></label></br>
+
+        <input id="enddate" type="date" />
+        <input id="endhour" type="time">
+
+        </br>
+        </br>
+        <select name="DropDownTimezone" id="DropDownTimezone">
+            <option>(GMT +1:00 hour) Rome, Brussels, Copenhagen, Madrid, Paris</option>
+            <option>(GMT +2:00) Kaliningrad, South Africa</option>
+            <option>(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg</option>
+            <option>(GMT +3:30) Tehran</option>
+            <option>(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi</option>
+            <option>(GMT +4:30) Kabul</option>
+            <option>(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent</option>
+            <option>(GMT +5:30) Bombay, Calcutta, Madras, New Delhi</option>
+            <option>(GMT +6:00) Almaty, Dhaka, Colombo</option>
+            <option>(GMT +7:00) Bangkok, Hanoi, Jakarta</option>
+            <option>(GMT +8:00) Beijing, Perth, Singapore, Hong Kong</option>
+            <option>(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk</option>
+            <option>(GMT +9:30) Adelaide, Darwin</option>
+            <option>(GMT +10:00) Eastern Australia, Guam, Vladivostok</option>
+            <option>(GMT +11:00) Magadan, Solomon Islands, New Caledonia</option>
+            <option>(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka</option>
+            <option>(GMT -12:00) Eniwetok, Kwajalein</option>
+            <option>(GMT -11:00) Midway Island, Samoa</option>
+            <option>(GMT -10:00) Hawaii</option>
+            <option>(GMT -9:00) Alaska</option>
+            <option>(GMT -8:00) Pacific Time (US &amp; Canada)</option>
+            <option>(GMT -7:00) Mountain Time (US &amp; Canada)</option>
+            <option>(GMT -6:00) Central Time (US &amp; Canada), Mexico City</option>
+            <option>(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima</option>
+            <option>(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz</option>
+            <option>(GMT -3:30) Newfoundland</option>
+            <option>(GMT -3:00) Brazil, Buenos Aires, Georgetown</option>
+            <option>(GMT -2:00) Mid-Atlantic</option>
+            <option>(GMT -1:00 hour) Azores, Cape Verde Islands</option>
+            <option>(GMT) Western Europe Time, London, Lisbon, Casablanca</option>
+        </select>
+        </br>
+        </br>
+
+        <label><b>Options: </b></label>
+        <select id="transcriptOptions">
+            <option>Open</option>
+            <option>Close</option>
+            <option>Open+Close</option>
+        </select>
+
+        </br>
+        </br>
+
+        <button type="button" id="downloadTranscripts" class="downloadTranscripts">Download</button></br>
+        </br>
+        <div id="reportMSG"></div>
+        </br>
+        </br>
+        </br>
+
+        <a id="hiddenbutton" style="visibility:hidden;" href="">Hidden</a>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        var uri = "";
+        var facadeUri = "";
+        var accountReadWrite = "";
+        var timeZone = "";
+        var skillNumber = -1;
+        var teamNumber = 0;
+        var skillArray = [];
+        var teamArray = [];
+        var uname;
+        var pwd;
+        var csrf;
+        var accnumb = localStorage.getItem('account_number');
+        var bearer = localStorage.getItem('bearer');
+        var statisticOptions = 0;
+        var customDate;
+        var endCustomDate;
+
+
+        function checklogin(accnumb, bearer) {
+            $('#myloader').css('display', 'inline');
+            if (!((accnumb === null) || (accnumb === '') || (bearer === null) || (bearer === ''))) {
+                $('#myloader').css('display', 'none');
+                $('#myreports').css('display', 'inline');
+                refreshTranscripts();
+            } else {
+                $('#myloader').css('display', 'none');
+                $('#mylogin').css('display', 'inline');
+            }
+        }
+
+
+        checklogin(accnumb, bearer);
+
+
+        $(document).on('click', function(evt) {
+            if ($(evt.target).is('#logout')) {
+                $('#myreports').css('display', 'none');
+                $('#myloader').css('display', 'inline');
+                setTimeout(function() {
+                    localStorage.setItem('account_number', '');
+                    location.reload();
+                }, 2000);
+            }
+            if ($(evt.target).is('#refresh')) {
+
+                var isChanged = 0;
+                var length = skillArray.length;
+                for (var m = 0; m < length; m++) {
+                    if (skillArray[m].name === $("#skillName").val()) {
+                        skillNumber = skillArray[m].id;
+                        isChanged = 1;
+                    }
+                }
+                if (!isChanged) {
+                    skillNumber = -1;
+                }
+                length = teamArray.length;
+                for (var m = 0; m < length; m++) {
+                    if (teamArray[m].name === $("#teamName").val()) {
+                        teamNumber = teamArray[m].id;
+                        console.log("teamNumber=" + teamNumber);
+                    }
+                }
+                if (customDate < (Date.now() - (1000 * 60 * 60 * 24 * 30))) {
+                    document.getElementById("refreshMSG").innerHTML = "Please do a query related to the last 30 days!";
+                    document.getElementById("refreshMSG").style = "color : red";
+                } else if (customDate > endCustomDate) {
+                    document.getElementById("refreshMSG").innerHTML = "Start date ist more recent than the end date!";
+                    document.getElementById("refreshMSG").style = "color : red";
+                } else {
+                    document.getElementById("refreshMSG").innerHTML = "";
+                    console.log("skill:" + skillNumber + "*****start:" + customDate + "*****end:" + endCustomDate);
+                    loadConvs();
+                }
+
+            }
+        });
+
+
+        $(document).on('click', function(evt) {
+            if ($("#accnumb").val() != "") {
+                if ($(evt.target).is('#submitLogin')) {
+                    uname = $("#uname").val();
+                    pwd = $("#pwd").val();
+                    accnumb = $("#accnumb").val();
+                    console.log(accnumb + " *** " + uname + " *** " + pwd);
+                    $.ajax({
+                        url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/agentVep/baseURI.lpCsds?version=1.0",
+                        jsonp: "cb",
+                        jsonpCallback: "domainCallback",
+                        cache: true,
+                        dataType: "jsonp",
+                        success: function success(data) {
+                            if ('lpCallError' in data.ResultSet) {
+                                document.getElementById("sendStat").innerHTML = "Please insert a correct login!";
+                                document.getElementById("sendStat").style = "color : red";
+                            } else {
+                                uri = data.ResultSet.lpData[0].lpServer;
+                                console.log(uri);
+                                $.ajax({
+                                    url: "https://" + uri + "/api/account/" + accnumb + "/login?v=1.3",
+                                    method: "POST",
+                                    jsonp: "cb",
+                                    jsonpCallback: "domainCallback",
+                                    cache: true,
+                                    contentType: "application/json",
+                                    data: '{"username":"' + uname + '","password":"' + pwd + '"}',
+                                    success: function success(data) {
+                                        csrf = data.csrf;
+                                        bearer = data.bearer;
+                                        localStorage.setItem('account_number', accnumb);
+                                        localStorage.setItem('csrf', csrf);
+                                        localStorage.setItem('bearer', bearer);
+                                        $('#mylogin').css('display', 'none');
+                                        $('#myloader').css('display', 'inline');
+                                        setTimeout(function() {
+                                            $('#myloader').css('display', 'none');
+                                            $('#myreports').css('display', 'inline');
+                                            refreshTranscripts();
+                                        }, 2000);
+                                    },
+                                    error: function error(e, text) {
+                                        document.getElementById("sendStat").innerHTML = "Please insert a correct login!";
+                                        document.getElementById("sendStat").style = "color : red";
+                                    }
+                                });
+                                return data;
+                            }
+                        },
+                        error: function error(e, text) {
+                            console.log(text);
+                            return e;
+                        }
+                    });
+                }
+            }
+        });
+
+        function refreshTranscripts() {
+
+            var date = new Date();
+            var dd = date.getDate();
+            if (dd < 10) {
+                dd = "0" + dd;
+            }
+            var mm = date.getMonth() + 1;
+            if (mm < 10) {
+                mm = "0" + mm;
+            }
+            var y = date.getFullYear();
+            var enddate = y + "-" + mm + "-" + dd;
+
+            date.setDate(date.getDate() - 7);
+            var dd = date.getDate();
+            if (dd < 10) {
+                dd = "0" + dd;
+            }
+            var mm = date.getMonth() + 1;
+            if (mm < 10) {
+                mm = "0" + mm;
+            }
+            var y = date.getFullYear();
+            var startdate = y + "-" + mm + "-" + dd;
+
+            $('#startdate').val(startdate);
+            $('#starthour').val("00:00");
+            $('#enddate').val(enddate);
+            $('#endhour').val("23:59");
+
+            $(document).on('click', function(evt) {
+
+                if ($(evt.target).is('.downloadTranscripts')) {
+
+                    console.log($("#DropDownTimezone").val());
+                    switch ($("#DropDownTimezone").val()) {
+                        case "(GMT +1:00 hour) Rome, Brussels, Copenhagen, Madrid, Paris":
+                            timeZone = ":00 GMT+0100";
+                            break;
+                        case "(GMT +2:00) Kaliningrad, South Africa":
+                            timeZone = ":00 GMT+0200";
+                            break;
+                        case "(GMT +3:00) Baghdad, Riyadh, Moscow, St. Petersburg":
+                            timeZone = ":00 GMT+0300";
+                            break;
+                        case "(GMT +3:30) Tehran":
+                            timeZone = ":00 GMT+0330";
+                            break;
+                        case "(GMT +4:00) Abu Dhabi, Muscat, Baku, Tbilisi":
+                            timeZone = ":00 GMT+0400";
+                            break;
+                        case "(GMT +4:30) Kabul":
+                            timeZone = ":00 GMT+0430";
+                            break;
+                        case "(GMT +5:00) Ekaterinburg, Islamabad, Karachi, Tashkent":
+                            timeZone = ":00 GMT+0500";
+                            break;
+                        case "(GMT +5:30) Bombay, Calcutta, Madras, New Delhi":
+                            timeZone = ":00 GMT+0530";
+                            break;
+                        case "(GMT +6:00) Almaty, Dhaka, Colombo":
+                            timeZone = ":00 GMT+0600";
+                            break;
+                        case "(GMT +7:00) Bangkok, Hanoi, Jakarta":
+                            timeZone = ":00 GMT+0700";
+                            break;
+                        case "(GMT +8:00) Beijing, Perth, Singapore, Hong Kong":
+                            timeZone = ":00 GMT+0800";
+                            break;
+                        case "(GMT +9:00) Tokyo, Seoul, Osaka, Sapporo, Yakutsk":
+                            timeZone = ":00 GMT+0900";
+                            break;
+                        case "(GMT +9:30) Adelaide, Darwin":
+                            timeZone = ":00 GMT+0930";
+                            break;
+                        case "(GMT +10:00) Eastern Australia, Guam, Vladivostok":
+                            timeZone = ":00 GMT+1000";
+                            break;
+                        case "(GMT +11:00) Magadan, Solomon Islands, New Caledonia":
+                            timeZone = ":00 GMT+1100";
+                            break;
+                        case "(GMT +12:00) Auckland, Wellington, Fiji, Kamchatka":
+                            timeZone = ":00 GMT+1200";
+                            break;
+                        case "(GMT -12:00) Eniwetok, Kwajalein":
+                            timeZone = ":00 GMT-1200";
+                            break;
+                        case "(GMT -11:00) Midway Island, Samoa":
+                            timeZone = ":00 GMT-1100";
+                            break;
+                        case "(GMT -10:00) Hawaii":
+                            timeZone = ":00 GMT-1000";
+                            break;
+                        case "(GMT -9:00) Alaska":
+                            timeZone = ":00 GMT-0900";
+                            break;
+                        case "(GMT -8:00) Pacific Time (US &amp; Canada)":
+                            timeZone = ":00 GMT-0800";
+                            break;
+                        case "(GMT -7:00) Mountain Time (US &amp; Canada)":
+                            timeZone = ":00 GMT-0700";
+                            break;
+                        case "(GMT -6:00) Central Time (US &amp; Canada), Mexico City":
+                            timeZone = ":00 GMT-0600";
+                            break;
+                        case "(GMT -5:00) Eastern Time (US &amp; Canada), Bogota, Lima":
+                            timeZone = ":00 GMT-0500";
+                            break;
+                        case "(GMT -4:00) Atlantic Time (Canada), Caracas, La Paz":
+                            timeZone = ":00 GMT-0400";
+                            break;
+                        case "(GMT -3:30) Newfoundland":
+                            timeZone = ":00 GMT-0330";
+                            break;
+                        case "(GMT -3:00) Brazil, Buenos Aires, Georgetown":
+                            timeZone = ":00 GMT-0300";
+                            break;
+                        case "(GMT -2:00) Mid-Atlantic":
+                            timeZone = ":00 GMT-0200";
+                            break;
+                        case "(GMT -1:00 hour) Azores, Cape Verde Islands":
+                            timeZone = ":00 GMT-0100";
+                            break;
+                        case "(GMT) Western Europe Time, London, Lisbon, Casablanca":
+                            timeZone = ":00 GMT+0000";
+                            break;
+                    }
+
+
+                    startdate = $('#startdate').val();
+                    startdate = new Date(startdate);
+                    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    var year = startdate.getFullYear();
+                    var month = months[startdate.getMonth()];
+                    var date = startdate.getDate();
+                    var hour = $('#starthour').val();
+                    startdate = month + " " + date + " " + year + " " + hour + timeZone;
+                    var d = new Date(startdate);
+                    var start = d.getTime();
+
+
+                    enddate = $('#enddate').val();
+                    enddate = new Date(enddate);
+                    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                    var year = enddate.getFullYear();
+                    var month = months[enddate.getMonth()];
+                    var date = enddate.getDate();
+                    var hour = $('#endhour').val();
+                    enddate = month + " " + date + " " + year + " " + hour + timeZone;
+                    var d = new Date(enddate);
+                    var end = d.getTime();
+                    var options = $('#transcriptOptions').val();
+
+                    if (start >= end) {
+                        document.getElementById("reportMSG").innerHTML = "Please insert a correct end date!";
+                        document.getElementById("reportMSG").style = "color : red";
+                    } else if (((end - start) / 1000) > (60 * 60 * 24 * 30)) {
+                        document.getElementById("reportMSG").innerHTML = "No more than 30 days!";
+                        document.getElementById("reportMSG").style = "color : red";
+                    } else {
+                        document.getElementById("reportMSG").innerHTML = "...thinking...";
+                        setTimeout(function() {
+                            downloadTranscripts(start, end, options);
+                        }, 1000);
+                    }
+                }
+            });
+        }
+
+
+        function downloadTranscripts(start, end, options) {
+
+            var conversationsToDownload = 0;
+            var conversationsPartial = 0;
+            var offset = 0;
+            var body = "";
+            var answer = [];
+            var exportObject = [];
+
+            if (options === "Open") {
+                body = '{"start":{"from":' + start + ',"to":' + end + '},"status":["OPEN"]}';
+            } else if (options === "Close") {
+                body = '{"start":{"from":' + start + ',"to":' + end + '},"status":["CLOSE"]}';
+            } else if (options === "Open+Close") {
+                body = '{"start":{"from":' + start + ',"to":' + end + '}, "status":["OPEN","CLOSE"]}';
+            }
+
+
+            $.ajax({
+                url: "https://adminlogin.liveperson.net/csdr/account/" + accnumb + "/service/msgHist/baseURI.lpCsds?version=1.0",
+                jsonp: "cb",
+                jsonpCallback: "domainCallback",
+                cache: true,
+                dataType: "jsonp",
+                success: function success(data) {
+                    if ('lpCallError' in data.ResultSet) {
+                        localStorage.setItem('account_number', '');
+                        location.reload();
+                    } else {
+                        uri = data.ResultSet.lpData[0].lpServer;
+                        console.log(data);
+                        console.log(uri);
+                    }
+                },
+                error: function error(e, text) {
+                    console.log(text);
+                    localStorage.setItem('account_number', '');
+                    location.reload();
+                }
+            });
+
+            function tryUntilSuccess(offset, callback) {
+                console.log(body);
+                $.ajax({
+                    url: "https://" + uri + "/messaging_history/api/account/" + accnumb + "/conversations/search?offset=" + offset + "&limit=100&start:desc",
+                    method: "POST",
+                    jsonp: "cb",
+                    jsonpCallback: "domainCallback",
+                    cache: true,
+                    contentType: "application/json",
+                    data: body,
+                    success: function success(data) {
+                        if (offset == 0) {
+                            conversationsToDownload = data._metadata.count;
+                            conversationsPartial = data.conversationHistoryRecords.length;
+                            console.log(conversationsPartial + " of --> " + conversationsToDownload);
+                        }
+                        if ((data.conversationHistoryRecords.length) == 100) {
+                            offset = offset + 100;
+                            answer = answer.concat(data.conversationHistoryRecords);
+                            document.getElementById("reportMSG").innerHTML = "...downloading sessions:" + Math.round(100 * (offset / data._metadata.count)) + "% completed...";
+                            document.getElementById("reportMSG").style = "color : green";
+                            console.log(data.conversationHistoryRecords);
+                            console.log(answer);
+                            console.log("adding conversations...");
+                            // setTimeout(function(){
+                            tryUntilSuccess(offset, callback);
+                            // }, 1000);
+                        } else {
+                            answer = answer.concat(data.conversationHistoryRecords);
+                            console.log(answer);
+                            console.log(answer.length);
+                            document.getElementById("reportMSG").innerHTML = answer.length + " Messaging conversations downloaded with success!";
+                            document.getElementById("reportMSG").style = "color : green";
+                            for (var i = 0; i < (answer.length); i++) {
+                                var messages = "";
+                                var thismessage = "";
+                                var thisactor = "";
+                                var endReason = "";
+                                var length = answer[i].messageRecords.length;
+                                for (var m = 0; m < length; m++) {
+                                    var type = answer[i].messageRecords[m].type;
+                                    if (type === "TEXT_PLAIN") {
+                                        thismessage = answer[i].messageRecords[m].messageData.msg.text;
+                                        thismessage = thismessage.replace(/[&\/\\#+$~%<>{}]/g, '%d');
+                                    } else {
+                                        thismessage = "-structured content-";
+                                    }
+                                    thisactor = answer[i].messageRecords[m].sentBy;
+                                    messages = messages + "     " + thisactor + ": " + thismessage;
+                                }
+                                console.log(answer[i]);
+
+                                if (answer[i].hasOwnProperty('transfers')) {
+                                    if (typeof answer[i].transfers !== 'undefined' && answer[i].transfers.length > 0) {
+                                        var arraylength = answer[i].transfers.length;
+                                        for (var z = (arraylength - 1); z > -1; z--) {
+                                            if (answer[i].transfers[z].hasOwnProperty('contextData')) {
+                                                if (answer[i].transfers[z].contextData.hasOwnProperty('structuredMetadata')) {
+                                                    var Level1 = answer[i].transfers[0].contextData.structuredMetadata[0].botResponse.intents[0].name;
+                                                    var Level2 = answer[i].transfers[0].contextData.structuredMetadata[0].botResponse.intents[1].name;
+                                                    var Level3 = answer[i].transfers[0].contextData.structuredMetadata[0].botResponse.intents[2].name;
+                                                    var yesno = answer[i].transfers[0].contextData.structuredMetadata[0].botResponse.intents[3].name;
+                                                    var comments = answer[i].transfers[0].contextData.structuredMetadata[0].botResponse.intents[4].name;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                var pieceToAdd = {
+                                    "Level1": Level1,
+                                    "Level2": Level2,
+                                    "Level3": Level3,
+                                    "YesNo": yesno,
+                                    "Comments": comments,
+                                    "conversationID": answer[i].info.conversationId,
+                                    "transcript": messages
+                                };
+                                console.log(pieceToAdd);
+                                exportObject = exportObject.concat(pieceToAdd);
+                            }
+                            console.log(exportObject);
+                            if (exportObject.length > 0) {
+                                exportData(exportObject);
+                            } else {
+                                document.getElementById("reportMSG").innerHTML = "I've not found any conversation in this period!";
+                                document.getElementById("reportMSG").style = "color : red";
+                            }
+                        }
+                    },
+                    error: function error(e, text) {
+                        // document.getElementById("reportMSG").innerHTML = "System error. Please try again!";
+                        // document.getElementById("reportMSG").style = "color : red";
+                        setTimeout(function() {
+                            tryUntilSuccess(offset, callback);
+                        }, 1000);
+                    },
+                    beforeSend: function(xhr, settings) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + bearer);
+                    }
+                });
+            }
+
+            tryUntilSuccess(offset, function(err, resp) {
+                // Your code here...
+            });
+
+
+            function exportData(exportObject) {
+                testTypes = {
+                    "Level1": "String",
+                    "Level2": "String",
+                    "Level3": "String",
+                    "YesNo": "String",
+                    "Comments": "String",
+                    "conversationID": "String",
+                    "transcript": "String"
+                };
+
+                emitXmlHeader = function() {
+                    var headerRow = '<ss:Row>\n';
+                    for (var colName in testTypes) {
+                        headerRow += '  <ss:Cell>\n';
+                        headerRow += '    <ss:Data ss:Type="String">';
+                        headerRow += colName + '</ss:Data>\n';
+                        headerRow += '  </ss:Cell>\n';
+                    }
+                    headerRow += '</ss:Row>\n';
+                    return '<?xml version="1.0"?>\n' +
+                        '<ss:Workbook xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">\n' +
+                        '<ss:Worksheet ss:Name="Sheet1">\n' +
+                        '<ss:Table>\n\n' + headerRow;
+                };
+
+                emitXmlFooter = function() {
+                    return '\n</ss:Table>\n' +
+                        '</ss:Worksheet>\n' +
+                        '</ss:Workbook>\n';
+                };
+
+                jsonToSsXml = function(jsonObject) {
+                    var row;
+                    var col;
+                    var xml;
+                    var data = typeof jsonObject != "object" ? JSON.parse(jsonObject) : jsonObject;
+
+                    xml = emitXmlHeader();
+                    for (row = 0; row < data.length; row++) {
+                        xml += '<ss:Row>\n';
+
+                        for (col in data[row]) {
+                            xml += '  <ss:Cell>\n';
+                            xml += '    <ss:Data ss:Type="' + testTypes[col] + '">';
+                            xml += data[row][col] + '</ss:Data>\n';
+                            xml += '  </ss:Cell>\n';
+                        }
+                        xml += '</ss:Row>\n';
+                    }
+
+                    xml += emitXmlFooter();
+                    return xml;
+                };
+
+                download = function(content, filename, contentType) {
+                    if (!contentType) contentType = 'application/octet-stream';
+                    var a = document.getElementById('hiddenbutton');
+                    var blob = new Blob([content], {
+                        'type': contentType
+                    });
+                    a.href = window.URL.createObjectURL(blob);
+                    a.download = filename;
+                };
+                download(jsonToSsXml(exportObject), 'transcripts.xls', 'application/vnd.ms-excel');
+                $("#hiddenbutton")[0].click();
+
+
+            }
+
+            console.log(start + "****" + end + "****" + options);
+
+        }
+    </script>
+
+</body>
+
+</html>
