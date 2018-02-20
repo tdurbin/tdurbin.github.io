@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Auth0 JWT Generator</title>
+
+<style>
+body {
+margin : 10px;
+padding: 2px;
+background : #f0f0f0;
+}
+#title {
+padding: 2px;
+font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+}
+.button {
+    background-color: #f68a1f;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+	border-radius: 4px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+}
+#btn-login:hover {
+    background-color: #da7009;
+    color: white;
+}
+
+#auth_token{
+    font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+    width: 100%;
+	height : 100px;
+
+}
+</style>
+
+<!-- Latest patch release (recommended for production) -->
+<script src="https://cdn.auth0.com/js/lock/10.2.1/lock.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
+<script>
+//AuthO account details
+var auth_domain = "lpscdemo.eu.auth0.com";
+var auth_client_id = "C7BND3cQPkekO0phB3dEFD3emRmzPVOZ";
+// Auth0 login options
+var options = {
+      allowedConnections: ['Username-Password-Authentication'],
+     // rememberLastLogin: false,
+
+	};
+
+//AuthO application parameters
+var lock = new Auth0Lock(
+  auth_client_id, auth_domain, options ,{
+    auth: {
+      redirectUrl: '',
+      responseType: 'id_token',
+      params: {
+        scope: 'openid profile' // Learn about scopes: https://auth0.com/docs/scopes
+      }
+    }
+  }
+);
+
+// Listening for the authenticated event
+lock.on("authenticated", function(authResult) {
+  // Use the token in authResult to getProfile() and save it to localStorage
+  lock.getProfile(authResult.idToken, function(error, profile) {
+    if (error) {
+      // Handle error
+      return;
+    }
+    localStorage.setItem('token', authResult.idToken);
+    localStorage.setItem('profile', JSON.stringify(profile));
+  });
+});
+//Login function
+function login() {
+      lock.show();
+};
+
+//Logout function
+var pathname = document.referrer;
+var redirect_url = "https://" + auth_domain +"/v2/logout?returnTo="+ pathname + "&client_id=" + auth_client_id
+function logout() {
+	localStorage.removeItem('token');
+    localStorage.removeItem('profile');
+     document.location = redirect_url;
+};
+
+</script>
+</head>
+<body>
+<h1 id="title">Auth0 JWT Generator</h1>
+<button id="btn-login" class="button" style = "visibility : hidden">Log In</button>
+<button id="btn-copy" class="button" style = "visibility : hidden">Copy</button></br>
+<textarea id="auth_token"></textarea>
+
+<script>
+setTimeout(function(){
+var token = localStorage.getItem('token');
+	if (token){
+	var logged_in = true;
+	}
+	else {
+	var logged_in = false;
+	};
+
+
+if (logged_in == true) {
+console.log("logged in");
+document.getElementById('btn-login').textContent = 'Clear JWT';
+document.getElementById('btn-login').style.visibility = "visible";
+document.getElementById('btn-copy').style.visibility = "visible";
+document.getElementById("auth_token").innerHTML = token;
+document.getElementById('btn-login').addEventListener('click', function () { logout();});
+}
+
+if (logged_in == false) {
+console.log("logged out");
+document.getElementById("auth_token").innerHTML = "JWT not found - please log in";
+document.getElementById('btn-login').style.visibility = "visible";
+document.getElementById('btn-login').addEventListener('click', function() { login();});
+}
+if(token) {
+var copyTextareaBtn = document.querySelector('#btn-copy');
+copyTextareaBtn.addEventListener('click', function(event) {
+var copyTextarea = document.querySelector('#auth_token');
+copyTextarea.select();
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+    alert("Copied to clipboard!")
+          }
+    catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
+}
+
+},3000);
+
+</script>
+
+</body>
+</html>
