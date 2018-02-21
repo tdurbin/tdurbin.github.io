@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,44 +10,15 @@
 <!-- BEGIN OAuth2 Script. -->
 <script>
       lpTag.sdes.push({"type":"ctmrinfo","info":{customerId: "identificativo"}});
-     var lpGetAuthenticationToken = function(callback) {
-                 	console.log("inside lpGetAuthenticationToken!");
-                 	var token;
-                 	var xhttp = new XMLHttpRequest();
-					 xhttp.onreadystatechange = function() {
-					    if (xhttp.readyState == 4 && xhttp.status == 200) {
-					      var obj = JSON.parse(xhttp.responseText);
-					      token=obj.id_token;
-					      console.log("got token! " + token);
-					      console.log("calling callback with token...");
-          	   			  callback(token);
+      var lpGetAuthenticationToken = function(callback) {
+      		console.log("inside lpGetAuthenticationToken!");
+      		var token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3NvbWV0aGluZy5pdCIsInN1YiI6ImJyaWFuLm5heWxvckBtYWlsaW5hdG9yLmNvbSIsInByZWZlcnJlZF91c2VybmFtZSI6IkpvaG5Eb2UiLCJwaG9uZV9udW1iZXIiOiIrMS0xMC0zNDQtMzc2NTMzMyIsImdpdmVuX25hbWUiOiJUZXN0IiwiZmFtaWx5X25hbWUiOiJUZXN0MiIsImVtYWlsIjoiZW1haWxAZW1haWwuY29tIiwiZ2VuZGVyIjoiTWFsZSIsImxwX3NkZXMiOlt7InR5cGUiOiJjdG1yaW5mbyIsImluZm8iOnsiY3N0YXR1cyI6ImFjdGl2ZSIsImN0eXBlIjoidmlwIiwiY3VzdG9tZXJJZCI6ImJyaWFuLm5heWxvckBtYWlsaW5hdG9yLmNvbSIsImJhbGFuY2UiOiItMTAwLjk5Iiwic29jaWFsSWQiOiIzNDU2Nzg3NjU0IiwiaW1laSI6Ijk5OTY2MzIxIiwidXNlck5hbWUiOiJicmlhbi5uYXlsb3IiLCJjb21wYW55U2l6ZSI6IjEiLCJhY2NvdW50TmFtZSI6InF1YWQtcGxheSBhY2NvdW50Iiwicm9sZSI6InJldGFpbCBjdXN0b21lciIsImxhc3RQYXltZW50RGF0ZSI6eyJkYXkiOiIxNSIsIm1vbnRoIjoiMTAiLCJ5ZWFyIjoiMjAxNyJ9LCJyZWdpc3RyYXRpb25EYXRlIjp7ImRheSI6IjIzIiwibW9udGgiOiI1IiwieWVhciI6IjIwMTMifX19LHsidHlwZSI6InBlcnNvbmFsIiwicGVyc29uYWwiOnsiZmlyc3RuYW1lIjoiQnJpYW4iLCJsYXN0bmFtZSI6Ik5heWxvciIsImFnZSI6eyJhZ2UiOiIzNyIsInllYXIiOiIxOTgwIiwibW9udGgiOiI0IiwiZGF5IjoiMTUifSwiY29udGFjdHMiOlt7ImVtYWlsIjoiYnJpYW4ubmF5bG9yQG1haWxpbmF0b3IuY29tIiwicGhvbmUiOiIgNDQgMTIzNCAxMjM0NTYifV0sImdlbmRlciI6Ik1hbGUiLCJjb21wYW55IjoiQWNjZW50dXJlIn19XSwiaWF0IjoxNTE5MjA3MTk5LCJleHAiOjE1NTA3NDMxOTl9.WYhSy0qNDJeCtMJqFgod6qBgfES0F0k2MsmSrBTw3718Xg62g6CuJ0O7L_bmsVifnasf9yuMkUesfoGg2TpMBMNl51Pk8uHn5xIVd_t2o7csnTgvhlRExUM3l-h9w9Q-s8XeN9bYJst2nX5PAOE-uaVlPPnOJQ-5ZRcGYjqRq8t-tX_uTalAuKcUW45egt3Ozutp97nd0Hya02ou_GzCimGS_s3hLDtWDvh3XCh3Km4fgJivDI5YIdXX9ysjyeoBD5C137Rqo2gtp6vYmJZxP4CJ9wpTZc86aN2rYpvC2xD5vueyRSGyBd-DGIKaRPOtI_PibniXd_wJFdurdzpisA";
+      		callback(token);
 
-					    }
-					 };
-					 xhttp.open("POST", "https://tomdurbin.eu.auth0.com/oauth/ro", true);
-					 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					 xhttp.send("client_id=iq5jYJte0fi0FYNo0SYnRDtbcGgVwTNc&username=brian.naylor%40mailinator.com&password=Pa55w0rd&connection=Username-Password-Authentication&grant_type=password&scope=openid&device=");
 
     }
 
 </script>
-<!-- END OAuth2 Script. -->
-
-<!--
-<script>
-lpTag.sdes.push({"type":"ctmrinfo","info":{customerId: '1'}});
-// Authentication JSMethod for LiveEngage
-var lpGetAuthenticationToken = function(callback) {
-    console.log("inside lpGetAuthenticationToken!");
-        var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik9USTRRVUUwTTBFNE1FSkRRVUpDTURKRFF6QTJRekl4UVRReE5qQkdNall6TTBSQ05EY3hRUSJ9.eyJpc3MiOiJodHRwczovL2xwc2NkZW1vLmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw1N2EzMDljOGQ4YjQ3NDVlNDM4MWM2ZWMiLCJhdWQiOiJDN0JORDNjUVBrZWtPMHBoQjNkRUZEM2VtUm16UFZPWiIsImlhdCI6MTUxOTIwMDM2NywiZXhwIjoxNTU1MjAwMzY3fQ.axogmJ35WiaRI0Zzc_IatcfsDyLR7qjbl7FuDepamBGLGTACNaVKf1x_PBAk3zKq0ceGNHmp_ue5YvruZuMF6rpPrcE8OdRfLzTfb_ZuwU5rFWxQEayyMqpab36Sa4pgk9s5uJlL82wwTl92gKyCNAeSjWNp1JJe26AAIWZtoOSWoVXEAMDCRZj_txHrW1JFwHCOzzMfx7j5CG0QF1ADPSBg0xnt-h-4F99_XtOcA1npxD7-9f8MyQnwklv8mnFa9UlrAuhx63FgtDK3QjDKFKl9uquWK1lQpL0QQadBDPfKkoUYQUg1nvTHxQgGt1S8NvR4UaeUwDznmwGx4Frm9g";
-            if (token) {
-				console.log("got token! " + token);
-				console.log("calling callback with token...");
-          	   	callback(token);
-    }
-};
-</script>
--->
 
 
 </head>
