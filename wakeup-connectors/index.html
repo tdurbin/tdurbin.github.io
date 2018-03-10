@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+body {
+    margin : 10px;
+    padding: 2px;
+    background : #f0f0f0;
+    font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+    font-size: 11px;
+    color: #515254;
+}
+#title {
+padding: 2px;
+font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+font-size: 24px;
+}
+button {
+    background-color: #f68a1f;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+	  border-radius: 4px;
+	  -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	  font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+}
+button:hover {
+    background-color: #da7009;
+    color: white;
+}
+
+input {
+
+    padding: 12px 20px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+	  font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+}
+input:focus {
+    border: 3px solid #555;
+}
+
+label {
+    font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+    font-size: 13px;
+    line-height: normal;
+    font-weight: bold;
+    color: #515254;
+    outline: none;
+    border: 0;
+    margin: 0;
+    padding: 0
+}
+
+textarea {
+
+    padding: 10px 10px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    font-size: 12px;
+	  font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+}
+textarea:focus {
+    border: 3px solid #555;
+}
+#text {
+padding: 2px;
+font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
+}
+
+</style>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+
+<body>
+
+    <form id="wakeup_form" name="wakeup_form">
+        <button id="mybutton" type="button" onclick="wakeAstraAir()">Wake-up Astra Air Connector</button>
+        <br>
+        <button id="mybutton" type="button" onclick="sendData()">Wake-up Build-It Connector</button>
+        <br>
+        <br>
+        <div id="alert"></div>
+
+    </form>
+
+    <script>
+        function wakeAstraAir() {
+            document.getElementById("alert").innerHTML = "Waking up the Astra Air connector...";
+            document.getElementById("alert").style = "color : red";
+            var xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", function() {
+                if (this.readyState === 4) {
+                    // var jsonResult = JSON.parse(this.responseText);
+                    document.getElementById("alert").innerHTML = "Ready to wake!";
+                    document.getElementById("alert").style = "color : yellow";
+                }
+            });
+            var URLforGET = "https://retail-wcs-connector.herokuapp.com";
+            console.log(URLforGET);
+            xhr.open("GET", URLforGET);
+            xhr.send();
+            document.getElementById("alert").innerHTML = "Astra Air connector is awake!";
+            document.getElementById("alert").style = "color : red";
+        }
+
+        var convID = "";
+        var skill = "";
+
+        $(document).ready(function() {
+
+            var SDK = lpTag.agentSDK;
+            SDK.init();
+
+            var onSuccess1 = function(data) {
+                // Do something with the returning data
+                convID = data;
+            };
+
+            var onError1 = function(data) {
+                // Do something with the returning data
+                var elem = document.getElementById("Phone");
+                convID = null;
+            };
+
+            var onSuccess2 = function(data) {
+                // Do something with the returning data
+                skill = data;
+            };
+
+            var onError2 = function(data) {
+                // Do something with the returning data
+                skill = null;
+            };
+
+            SDK.get('chatInfo.rtSessionId', onSuccess1, onError1);
+            SDK.get('engagementInfo.skill', onSuccess2, onError2);
+
+        });
+
+    </script>
+
+</body>
+</html>
