@@ -1,2 +1,2 @@
-# PP Category Widget
-This is an example widget of how an agent can categorise a conversation. Works in conjunction with the pp-category-bot that appends the agent categorisation information as metadata to the conversation.
+# Demo Connector Test Page
+This page has been built to test, and/or wake-up the Watson connectors running to support the LivePerson Astra Air, Build-It, Y-Bank and Z-Mobile demo environments.
