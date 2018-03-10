@@ -91,13 +91,21 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
 <body>
 
     <form id="wakeup_form" name="wakeup_form">
-        <button id="mybutton" type="button" style="width:350px" onclick="wakeAstraAir()">Wake-up Astra Air Connector</button>
+        <button id="aa_button" type="button" style="width:300px" onclick="wakeAstraAir()">Wake-up Astra Air Connector</button>
         <br>
         <div id="aa_alert"></div>
         <br>
-        <button id="mybutton" type="button" style="width:350px" onclick="wakeBuildIt()">Wake-up Build-It Connector</button>
+        <button id="bi_button" type="button" style="width:300px" onclick="wakeBuildIt()">Wake-up Build-It Connector</button>
         <br>
         <div id="bi_alert"></div>
+        <br>
+        <button id="yb_button" type="button" style="width:300px" onclick="wakeYBank()">Wake-up Y-Bank Connector</button>
+        <br>
+        <div id="yb_alert"></div>
+        <br>
+        <button id="zm_button" type="button" style="width:300px" onclick="wakeZMobile()">Wake-up Z-Mobile Connector</button>
+        <br>
+        <div id="zm_alert"></div>
 
     </form>
 
@@ -125,12 +133,43 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
             var xhr = new XMLHttpRequest();
             xhr.addEventListener("readystatechange", function() {
                 if (this.readyState === 4) {
-                    // var jsonResult = JSON.parse(this.responseText);
                     document.getElementById("bi_alert").innerHTML = "Build-It connector is awake!";
                     document.getElementById("bi_alert").style = "color : green";
                 }
             });
             var URLforGET = "https://retail-wcs-connector.herokuapp.com";
+            console.log(URLforGET);
+            xhr.open("GET", URLforGET);
+            xhr.send();
+        }
+
+        function wakeYBank() {
+            document.getElementById("yb_alert").innerHTML = "Waking up the Y-Bank connector...";
+            document.getElementById("yb_alert").style = "color : red";
+            var xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", function() {
+                if (this.readyState === 4) {
+                    document.getElementById("yb_alert").innerHTML = "Y-Bank connector is awake!";
+                    document.getElementById("yb_alert").style = "color : green";
+                }
+            });
+            var URLforGET = "https://fisrv-wcs-connector.herokuapp.com";
+            console.log(URLforGET);
+            xhr.open("GET", URLforGET);
+            xhr.send();
+        }
+
+        function wakeZMobile() {
+            document.getElementById("zm_alert").innerHTML = "Waking up the Z-Mobile connector...";
+            document.getElementById("zm_alert").style = "color : red";
+            var xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", function() {
+                if (this.readyState === 4) {
+                    document.getElementById("zm_alert").innerHTML = "Z-Mobile connector is awake!";
+                    document.getElementById("zm_alert").style = "color : green";
+                }
+            });
+            var URLforGET = "https://telco-wcs-connector.herokuapp.com";
             console.log(URLforGET);
             xhr.open("GET", URLforGET);
             xhr.send();
