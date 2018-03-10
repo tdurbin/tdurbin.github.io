@@ -97,7 +97,6 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
 
 <body>
 
-    <form id="wakeup_form" name="wakeup_form">
         <button id="aa_button" type="button" style="width:300px" onclick="wakeAstraAir()">Wake-up Astra Air Connector</button>
         <br>
         <div id="aa_alert"></div>
@@ -114,15 +113,14 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
         <br>
         <div id="zm_alert"></div>
         <br>
-    </form>
-    <iframe src="https://tdurbin.github.io/wakeup-connectors/aa.html" style="width:450px;height:450px;background:#FFFFFF;overflow:scroll;" id="MyFrame"></iframe>
-    <select id="MySelectMenu">
-     <option value="https://tdurbin.github.io/wakeup-connectors/aa.html">Astra Air</option>
-     <option value="https://tdurbin.github.io/wakeup-connectors/bi.html">Build-It</option>
-     <option value="https://tdurbin.github.io/wakeup-connectors/yb.html">Y-Bank</option>
-     <option value="https://tdurbin.github.io/wakeup-connectors/zm.html">Z-Mobile</option>
-    </select>
     <button onClick="newSrc();">Test Messaging and Bots!</button>
+    <select id="MySelectMenu">
+        <option value="https://tdurbin.github.io/wakeup-connectors/aa.html">Astra Air</option>
+        <option value="https://tdurbin.github.io/wakeup-connectors/bi.html">Build-It</option>
+        <option value="https://tdurbin.github.io/wakeup-connectors/yb.html">Y-Bank</option>
+        <option value="https://tdurbin.github.io/wakeup-connectors/zm.html">Z-Mobile</option>
+    </select>
+    <iframe src="https://tdurbin.github.io/wakeup-connectors/aa.html" style="width:800px;height:420px;background:#FFFFFF;overflow:scroll;" id="MyFrame"></iframe>
 
     <script>
         function wakeAstraAir() {
