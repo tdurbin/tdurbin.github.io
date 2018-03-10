@@ -93,66 +93,49 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
     <form id="wakeup_form" name="wakeup_form">
         <button id="mybutton" type="button" onclick="wakeAstraAir()">Wake-up Astra Air Connector</button>
         <br>
-        <button id="mybutton" type="button" onclick="sendData()">Wake-up Build-It Connector</button>
+        <div id="aa_alert"></div>
         <br>
+        <button id="mybutton" type="button" style="height:200px;width:200px" onclick="sendData()">Wake-up Build-It Connector</button>
         <br>
-        <div id="alert"></div>
+        <div id="bi_alert"></div>
 
     </form>
 
     <script>
         function wakeAstraAir() {
-            document.getElementById("alert").innerHTML = "Waking up the Astra Air connector...";
-            document.getElementById("alert").style = "color : red";
+            document.getElementById("aa_alert").innerHTML = "Waking up the Astra Air connector...";
+            document.getElementById("aa_alert").style = "color : red";
             var xhr = new XMLHttpRequest();
             xhr.addEventListener("readystatechange", function() {
                 if (this.readyState === 4) {
                     // var jsonResult = JSON.parse(this.responseText);
-                    document.getElementById("alert").innerHTML = "Ready to wake!";
-                    document.getElementById("alert").style = "color : yellow";
+                    document.getElementById("aa_alert").innerHTML = "Astra Air connector is awake!";
+                    document.getElementById("aa_alert").style = "color : green";
+                }
+            });
+            var URLforGET = "https://travel-wcs-connector.herokuapp.com";
+            console.log(URLforGET);
+            xhr.open("GET", URLforGET);
+            xhr.send();
+        }
+
+        function wakeBuildIt() {
+            document.getElementById("bi_alert").innerHTML = "Waking up the Built-It connector...";
+            document.getElementById("bi_alert").style = "color : red";
+            var xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", function() {
+                if (this.readyState === 4) {
+                    // var jsonResult = JSON.parse(this.responseText);
+                    document.getElementById("bi_alert").innerHTML = "Build-It connector is awake!";
+                    document.getElementById("bi_alert").style = "color : green";
                 }
             });
             var URLforGET = "https://retail-wcs-connector.herokuapp.com";
             console.log(URLforGET);
             xhr.open("GET", URLforGET);
             xhr.send();
-            document.getElementById("alert").innerHTML = "Astra Air connector is awake!";
-            document.getElementById("alert").style = "color : red";
         }
 
-        var convID = "";
-        var skill = "";
-
-        $(document).ready(function() {
-
-            var SDK = lpTag.agentSDK;
-            SDK.init();
-
-            var onSuccess1 = function(data) {
-                // Do something with the returning data
-                convID = data;
-            };
-
-            var onError1 = function(data) {
-                // Do something with the returning data
-                var elem = document.getElementById("Phone");
-                convID = null;
-            };
-
-            var onSuccess2 = function(data) {
-                // Do something with the returning data
-                skill = data;
-            };
-
-            var onError2 = function(data) {
-                // Do something with the returning data
-                skill = null;
-            };
-
-            SDK.get('chatInfo.rtSessionId', onSuccess1, onError1);
-            SDK.get('engagementInfo.skill', onSuccess2, onError2);
-
-        });
 
     </script>
 
