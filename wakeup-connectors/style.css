@@ -3,7 +3,7 @@ body {
     padding: 2px;
     background : #eeeeee;
     font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     color: #515254;
 }
 #title {
@@ -31,9 +31,7 @@ button:hover {
     background-color: #da7009;
     color: white;
 }
-
 input {
-
     padding: 12px 20px;
     margin: 4px 0;
     box-sizing: border-box;
@@ -46,7 +44,6 @@ input {
 input:focus {
     border: 3px solid #555;
 }
-
 label {
     font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",sans-serif;
     font-size: 13px;
@@ -58,9 +55,7 @@ label {
     margin: 0;
     padding: 0
 }
-
 textarea {
-
     padding: 10px 10px;
     margin: 4px 0;
     box-sizing: border-box;
