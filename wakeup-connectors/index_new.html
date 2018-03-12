@@ -133,7 +133,7 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
               xhr.addEventListener("readystatechange", function() {
               if (this.readyState === 4) {
                       var jsonResult = JSON.parse(this.responseText);
-                      document.getElementById("aa_alert").innerHTML = jsonResult;
+                      document.getElementById("aa_alert").innerHTML = 'hello' + jsonResult;
                       document.getElementById("aa_alert").style = "color : green";
                   }
               });
