@@ -147,7 +147,7 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
               xhr.onreadystatechange = function() {
                   if (this.readyState == 4 && this.status == 200) {
                       var myObj = JSON.parse(this.responseText);
-                      document.getElementById("aa_alert").innerHTML = myObj.state;
+                      document.getElementById("aa_alert").innerHTML = 'Connector Status: ' + myObj.state;
                   }
               };
               xhr.open(
