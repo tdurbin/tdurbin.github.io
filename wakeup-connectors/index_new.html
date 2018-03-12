@@ -160,7 +160,27 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
                   console.log(xhr.response);
               };
               xhr.send();
-          }, 5000) // delay in milliseconds before closing
+          }, 4000) // delay in milliseconds before closing
+
+          setTimeout(function() {
+          var xhr = new XMLHttpRequest();
+              xhr.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                      var myObj = JSON.parse(this.responseText);
+                      document.getElementById("aa_alert").innerHTML = 'Connector Status: ' + myObj.state;
+                  }
+              };
+              xhr.open(
+                  'GET',
+                  'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
+              );
+              xhr.setRequestHeader('Accept', 'application/vnd.heroku+json; version=3');
+              xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+              xhr.onload = function() {
+                  console.log(xhr.response);
+              };
+              xhr.send();
+          }, 8000) // delay in milliseconds before closing
 
 
 /*
