@@ -130,7 +130,6 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
           var dynoName = 'web.1'
 
           var xhr = new XMLHttpRequest();
-              xhr.addEventListener("readystatechange", function() {
               xhr.open(
                   'DELETE',
                   'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
@@ -144,7 +143,7 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
               xhr.send();
 
           var xhr = new XMLHttpRequest();
-              xmlhttp.onreadystatechange = function() {
+              xhr.onreadystatechange = function() {
                   if (this.readyState == 4 && this.status == 200) {
                       var myObj = JSON.parse(this.responseText);
                       document.getElementById("aa_alert").innerHTML = myObj.state;
