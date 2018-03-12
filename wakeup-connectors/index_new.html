@@ -142,6 +142,7 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
               };
               xhr.send();
 
+          setTimeout(function() {
           var xhr = new XMLHttpRequest();
               xhr.onreadystatechange = function() {
                   if (this.readyState == 4 && this.status == 200) {
@@ -159,6 +160,8 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
                   console.log(xhr.response);
               };
               xhr.send();
+          }, 5000) // delay in milliseconds before closing
+
 
 
 /*
