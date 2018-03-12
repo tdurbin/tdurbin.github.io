@@ -99,45 +99,7 @@
             var newSrc = e.options[e.selectedIndex].value;
             document.getElementById("MyFrame").src = newSrc;
         }
-    </script>
-    <script type="text/javascript">
-        var token = 'b73c6ba5-6de9-432b-8b36-a909c69fa751';
-        var dynoName = 'web.1';
-        var appName = 'travel-wcs-connector';
-        var alert = 'aa_alert';
-        checkStatus(token, appName, dynoName, alert);
-        var appName = 'retail-wcs-connector';
-        var alert = 'bi_alert';
-        checkStatus(token, appName, dynoName, alert);
-    </script>
 
-</head>
-
-<body>
-
-    <button id="aa_button" type="button" style="width:350px" onclick="wakeAstraAir()">Restart Astra Air Connector</button>
-    <div id="aa_alert"></div>
-    <br>
-    <button id="bi_button" type="button" style="width:350px" onclick="wakeBuildIt()">Restart Build-It Connector</button>
-    <div id="bi_alert"></div>
-    <br>
-    <button id="yb_button" type="button" style="width:350px" onclick="wakeYBank()">Restart Y-Bank Connector</button>
-    <div id="yb_alert"></div>
-    <br>
-    <button id="zm_button" type="button" style="width:350px" onclick="wakeZMobile()">Restart Z-Mobile Connector</button>
-    <div id="zm_alert"></div>
-    <br>
-    <select id="MySelectMenu" style="width:82px">
-      <option value="https://tdurbin.github.io/wakeup-connectors/aa.html">Astra Air</option>
-      <option value="https://tdurbin.github.io/wakeup-connectors/bi.html">Build-It</option>
-      <option value="https://tdurbin.github.io/wakeup-connectors/yb.html">Y-Bank</option>
-      <option value="https://tdurbin.github.io/wakeup-connectors/zm.html">Z-Mobile</option>
-    </select>
-    <button type="button" style="width:265px" onclick="newSrc()">Load Messaging Test Page</button>
-    <br><br>
-    <iframe src="https://tdurbin.github.io/wakeup-connectors/aa.html" style="width:600px;height:420px;background:#FFFFFF;overflow:scroll;" id="MyFrame"></iframe>
-
-    <script>
         function wakeAstraAir() {
 
             var token = 'b73c6ba5-6de9-432b-8b36-a909c69fa751';
@@ -305,6 +267,44 @@
             xhr.send();
         }
     </script>
+
+  <script type="text/javascript">
+      var token = 'b73c6ba5-6de9-432b-8b36-a909c69fa751';
+      var dynoName = 'web.1';
+      var appName = 'travel-wcs-connector';
+      var alert = 'aa_alert';
+      checkStatus(token, appName, dynoName, alert);
+      var appName = 'retail-wcs-connector';
+      var alert = 'bi_alert';
+      checkStatus(token, appName, dynoName, alert);
+  </script>
+
+</head>
+
+<body>
+
+    <button id="aa_button" type="button" style="width:350px" onclick="wakeAstraAir()">Restart Astra Air Connector</button>
+    <div id="aa_alert"></div>
+    <br>
+    <button id="bi_button" type="button" style="width:350px" onclick="wakeBuildIt()">Restart Build-It Connector</button>
+    <div id="bi_alert"></div>
+    <br>
+    <button id="yb_button" type="button" style="width:350px" onclick="wakeYBank()">Restart Y-Bank Connector</button>
+    <div id="yb_alert"></div>
+    <br>
+    <button id="zm_button" type="button" style="width:350px" onclick="wakeZMobile()">Restart Z-Mobile Connector</button>
+    <div id="zm_alert"></div>
+    <br>
+    <select id="MySelectMenu" style="width:82px">
+      <option value="https://tdurbin.github.io/wakeup-connectors/aa.html">Astra Air</option>
+      <option value="https://tdurbin.github.io/wakeup-connectors/bi.html">Build-It</option>
+      <option value="https://tdurbin.github.io/wakeup-connectors/yb.html">Y-Bank</option>
+      <option value="https://tdurbin.github.io/wakeup-connectors/zm.html">Z-Mobile</option>
+    </select>
+    <button type="button" style="width:265px" onclick="newSrc()">Load Messaging Test Page</button>
+    <br><br>
+    <iframe src="https://tdurbin.github.io/wakeup-connectors/aa.html" style="width:600px;height:420px;background:#FFFFFF;overflow:scroll;" id="MyFrame"></iframe>
+
 
 </body>
 
