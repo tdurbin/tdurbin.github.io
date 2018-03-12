@@ -131,12 +131,6 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
 
           var xhr = new XMLHttpRequest();
               xhr.addEventListener("readystatechange", function() {
-              if (this.readyState === 4) {
-                      var jsonResult = JSON.parse(this.responseText);
-                      document.getElementById("aa_alert").innerHTML = 'DONE: ' + jsonResult;
-                      document.getElementById("aa_alert").style = "color : green";
-                  }
-              });
               xhr.open(
                   'DELETE',
                   'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
@@ -146,28 +140,29 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
               xhr.setRequestHeader('Authorization', 'Bearer ' + token);
               xhr.onload = function() {
                   console.log(xhr.response);
-                  document.getElementById("aa_alert").innerHTML = 'ONLOAD: ' + xhr.response;
-                  document.getElementById("aa_alert").style = "color : green";
               };
               xhr.send();
+
+          var xhr = new XMLHttpRequest();
+              xmlhttp.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) {
+                      var myObj = JSON.parse(this.responseText);
+                      document.getElementById("aa_alert").innerHTML = myObj.state;
+                  }
+              };
+              xhr.open(
+                  'GET',
+                  'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
+              );
+              xhr.setRequestHeader('Accept', 'application/vnd.heroku+json; version=3');
+              xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+              xhr.onload = function() {
+                  console.log(xhr.response);
+              };
+              xhr.send();
+
+
 /*
-              var xhr = new XMLHttpRequest();
-                  xhr.open(
-                      'GET',
-                      'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
-                  );
-                  xhr.setRequestHeader('Accept', 'application/vnd.heroku+json; version=3');
-                  xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-                  xhr.onload = function() {
-                      console.log(xhr.response);
-                      document.getElementById("aa_alert").innerHTML = xhr.response;
-                      document.getElementById("aa_alert").style = "color : green";
-
-                  };
-                  xhr.send();
-
-
-
             document.getElementById("aa_alert").innerHTML = "Waking up the Astra Air connector...";
             document.getElementById("aa_alert").style = "color : red";
             var xhr = new XMLHttpRequest();
