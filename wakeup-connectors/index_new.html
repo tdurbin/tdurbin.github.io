@@ -123,11 +123,12 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
     <script>
         function wakeAstraAir() {
 
-          document.getElementById("aa_alert").innerHTML = "Restarting the Astra Air connector...";
-          document.getElementById("aa_alert").style = "color : red";
           var token = 'b73c6ba5-6de9-432b-8b36-a909c69fa751';
           var appName = 'travel-wcs-connector';
-          var dynoName = 'web.1'
+          var dynoName = 'web.1';
+          var alert = 'aa_alert';
+          document.getElementById(alert).innerHTML = "Restarting the Astra Air connector...";
+          document.getElementById(alert).style = "color : red";
 
           var xhr = new XMLHttpRequest();
               xhr.open(
@@ -143,7 +144,8 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
               xhr.send();
 
           setTimeout(function() {
-          var xhr = new XMLHttpRequest();
+            checkStatus();
+/*          var xhr = new XMLHttpRequest();
               xhr.onreadystatechange = function() {
                   if (this.readyState == 4 && this.status == 200) {
                       var myObj = JSON.parse(this.responseText);
@@ -159,8 +161,8 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
               xhr.onload = function() {
                   console.log(xhr.response);
               };
-              xhr.send();
-          }, 4000) // delay in milliseconds before closing
+              xhr.send(); */
+          }, 2000) // delay in milliseconds before closing
 
           setTimeout(function() {
           var xhr = new XMLHttpRequest();
@@ -249,6 +251,27 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
             xhr.open("GET", URLforGET);
             xhr.send();
         }
+
+        function checkStatus() {
+        var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var myObj = JSON.parse(this.responseText);
+                    document.getElementById("aa_alert").innerHTML = 'Connector Status: ' + myObj.state;
+                }
+            };
+            xhr.open(
+                'GET',
+                'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
+            );
+            xhr.setRequestHeader('Accept', 'application/vnd.heroku+json; version=3');
+            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            xhr.onload = function() {
+                console.log(xhr.response);
+            };
+            xhr.send();
+          };
+
 
     </script>
 
