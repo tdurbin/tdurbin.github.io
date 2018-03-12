@@ -152,7 +152,7 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
                   xhr.setRequestHeader('Authorization', 'Bearer ' + token);
                   xhr.onload = function() {
                       console.log(xhr.response);
-                      document.getElementById("aa_alert").innerHTML = xhr.response.state;
+                      document.getElementById("aa_alert").innerHTML = xhr.response;
                       document.getElementById("aa_alert").style = "color : green";
 
                   };
