@@ -143,6 +143,22 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
               };
               xhr.send();
 
+              var xhr = new XMLHttpRequest();
+                  xhr.open(
+                      'GET',
+                      'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
+                  );
+                  xhr.setRequestHeader('Accept', 'application/vnd.heroku+json; version=3');
+                  xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                  xhr.onload = function() {
+                      console.log(xhr.response);
+                      document.getElementById("aa_alert").innerHTML = xhr.response;
+                      document.getElementById("aa_alert").style = "color : green";
+
+                  };
+                  xhr.send();
+
+
 /*
             document.getElementById("aa_alert").innerHTML = "Waking up the Astra Air connector...";
             document.getElementById("aa_alert").style = "color : red";
