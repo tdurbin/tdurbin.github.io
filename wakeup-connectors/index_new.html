@@ -123,6 +123,8 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
     <script>
         function wakeAstraAir() {
 
+          document.getElementById("aa_alert").innerHTML = "Restarting the Astra Air connector...";
+          document.getElementById("aa_alert").style = "color : red";
           var token = 'b73c6ba5-6de9-432b-8b36-a909c69fa751';
           var appName = 'travel-wcs-connector';
           var dynoName = 'web.1'
@@ -139,7 +141,6 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
                   console.log(xhr.response);
                   document.getElementById("aa_alert").innerHTML = xhr.response;
                   document.getElementById("aa_alert").style = "color : green";
-
               };
               xhr.send();
 
