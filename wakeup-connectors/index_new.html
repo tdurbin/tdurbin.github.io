@@ -128,149 +128,71 @@ font-family: "Myriad pro","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","
           var dynoName = 'web.1';
           var alert = 'aa_alert';
           document.getElementById(alert).innerHTML = "Restarting the Astra Air connector...";
-          document.getElementById(alert).style = "color : red";
+          document.getElementById(alert).style = "color : green";
 
-          var xhr = new XMLHttpRequest();
-              xhr.open(
-                  'DELETE',
-                  'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
-              );
-              xhr.setRequestHeader('Content-Type', 'application/json');
-              xhr.setRequestHeader('Accept', 'application/vnd.heroku+json; version=3');
-              xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-              xhr.onload = function() {
-                  console.log(xhr.response);
-              };
-              xhr.send();
+          restartDyno(token, appName, dynoName);
 
           setTimeout(function() {
             checkStatus(token, appName, dynoName, alert);
-/*          var xhr = new XMLHttpRequest();
-              xhr.onreadystatechange = function() {
-                  if (this.readyState == 4 && this.status == 200) {
-                      var myObj = JSON.parse(this.responseText);
-                      document.getElementById("aa_alert").innerHTML = 'Connector Status: ' + myObj.state;
-                  }
-              };
-              xhr.open(
-                  'GET',
-                  'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
-              );
-              xhr.setRequestHeader('Accept', 'application/vnd.heroku+json; version=3');
-              xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-              xhr.onload = function() {
-                  console.log(xhr.response);
-              };
-              xhr.send(); */
+          }, 1000) // delay in milliseconds before closing
+
+          setTimeout(function() {
+            checkStatus(token, appName, dynoName, alert);
           }, 2000) // delay in milliseconds before closing
 
           setTimeout(function() {
-          var xhr = new XMLHttpRequest();
-              xhr.onreadystatechange = function() {
-                  if (this.readyState == 4 && this.status == 200) {
-                      var myObj = JSON.parse(this.responseText);
-                      document.getElementById(alert).innerHTML = 'Connector Status: ' + myObj.state;
-                  }
-              };
-              xhr.open(
-                  'GET',
-                  'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
-              );
-              xhr.setRequestHeader('Accept', 'application/vnd.heroku+json; version=3');
-              xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-              xhr.onload = function() {
-                  console.log(xhr.response);
-              };
-              xhr.send();
-          }, 8000) // delay in milliseconds before closing
+            checkStatus(token, appName, dynoName, alert);
+          }, 3000) // delay in milliseconds before closing
 
-
-/*
-            document.getElementById("aa_alert").innerHTML = "Waking up the Astra Air connector...";
-            document.getElementById("aa_alert").style = "color : red";
-            var xhr = new XMLHttpRequest();
-            xhr.addEventListener("readystatechange", function() {
-                if (this.readyState === 4) {
-                    // var jsonResult = JSON.parse(this.responseText);
-                    document.getElementById("aa_alert").innerHTML = "Astra Air connector is awake!";
-                    document.getElementById("aa_alert").style = "color : green";
-                }
-            });
-            var URLforGET = "https://travel-wcs-connector.herokuapp.com";
-            console.log(URLforGET);
-            xhr.open("GET", URLforGET);
-            xhr.send();
-*/
+          setTimeout(function() {
+            checkStatus(token, appName, dynoName, alert);
+          }, 4000) // delay in milliseconds before closing
 
         }
 
         function wakeBuildIt() {
-            document.getElementById("bi_alert").innerHTML = "Waking up the Built-It connector...";
-            document.getElementById("bi_alert").style = "color : red";
-            var xhr = new XMLHttpRequest();
-            xhr.addEventListener("readystatechange", function() {
-                if (this.readyState === 4) {
-                    document.getElementById("bi_alert").innerHTML = "Build-It connector is awake!";
-                    document.getElementById("bi_alert").style = "color : green";
-                }
-            });
-            var URLforGET = "https://retail-wcs-connector.herokuapp.com";
-            console.log(URLforGET);
-            xhr.open("GET", URLforGET);
-            xhr.send();
         }
 
         function wakeYBank() {
-            document.getElementById("yb_alert").innerHTML = "Waking up the Y-Bank connector...";
-            document.getElementById("yb_alert").style = "color : red";
-            var xhr = new XMLHttpRequest();
-            xhr.addEventListener("readystatechange", function() {
-                if (this.readyState === 4) {
-                    document.getElementById("yb_alert").innerHTML = "Y-Bank connector is awake!";
-                    document.getElementById("yb_alert").style = "color : green";
-                }
-            });
-            var URLforGET = "https://fisrv-wcs-connector.herokuapp.com";
-            console.log(URLforGET);
-            xhr.open("GET", URLforGET);
-            xhr.send();
         }
 
         function wakeZMobile() {
-            document.getElementById("zm_alert").innerHTML = "Waking up the Z-Mobile connector...";
-            document.getElementById("zm_alert").style = "color : red";
-            var xhr = new XMLHttpRequest();
-            xhr.addEventListener("readystatechange", function() {
-                if (this.readyState === 4) {
-                    document.getElementById("zm_alert").innerHTML = "Z-Mobile connector is awake!";
-                    document.getElementById("zm_alert").style = "color : green";
-                }
-            });
-            var URLforGET = "https://telco-wcs-connector.herokuapp.com";
-            console.log(URLforGET);
-            xhr.open("GET", URLforGET);
-            xhr.send();
         }
 
         function checkStatus(token, appName, dynoName, alert) {
-        var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var myObj = JSON.parse(this.responseText);
-                    document.getElementById(alert).innerHTML = 'Connector Status: ' + myObj.state;
-                }
-            };
-            xhr.open(
-                'GET',
-                'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
-            );
-            xhr.setRequestHeader('Accept', 'application/vnd.heroku+json; version=3');
-            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
-            xhr.onload = function() {
-                console.log(xhr.response);
-            };
-            xhr.send();
-          }
+            var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var myObj = JSON.parse(this.responseText);
+                        document.getElementById(alert).innerHTML = 'Connector Status: ' + myObj.state;
+                    }
+                };
+                xhr.open(
+                    'GET',
+                    'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
+                );
+                xhr.setRequestHeader('Accept', 'application/vnd.heroku+json; version=3');
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                xhr.onload = function() {
+                    console.log(xhr.response);
+                };
+                xhr.send();
+        }
+
+        function restartDyno(token, appName, dynoName) {
+            var xhr = new XMLHttpRequest();
+                xhr.open(
+                    'DELETE',
+                    'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
+                );
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.setRequestHeader('Accept', 'application/vnd.heroku+json; version=3');
+                xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+                xhr.onload = function() {
+                    console.log(xhr.response);
+                };
+                xhr.send();
+        }
 
     </script>
 
