@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        margin: 10px;
+        padding: 2px;
+        background: #f0f0f0;
+        font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+        font-size: 11px;
+        color: #515254;
+    }
+
+    #title {
+        padding: 2px;
+        font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+        font-size: 24px;
+    }
+
+    button {
+        background-color: #f68a1f;
+        border: none;
+        color: white;
+        padding: 10px 24px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+        -webkit-transition-duration: 0.4s;
+        /* Safari */
+        transition-duration: 0.4s;
+        font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+    }
+
+    button:hover {
+        background-color: #da7009;
+        color: white;
+    }
+
+    input {
+
+        padding: 12px 20px;
+        margin: 4px 0;
+        box-sizing: border-box;
+        border: 3px solid #ccc;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+        font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+    }
+
+    input:focus {
+        border: 3px solid #555;
+    }
+
+    label {
+        font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+        font-size: 13px;
+        line-height: normal;
+        font-weight: bold;
+        color: #515254;
+        outline: none;
+        border: 0;
+        margin: 0;
+        padding: 0
+    }
+
+    textarea {
+
+        padding: 10px 10px;
+        margin: 4px 0;
+        box-sizing: border-box;
+        border: 3px solid #ccc;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+        font-size: 12px;
+        font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+    }
+
+    textarea:focus {
+        border: 3px solid #555;
+    }
+
+    #text {
+        padding: 2px;
+        font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+    }
+</style>
+
+<head>
+    <title>Demo Connector Test Page</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        function newSrc() {
+            var e = document.getElementById("MySelectMenu");
+            var newSrc = e.options[e.selectedIndex].value;
+            document.getElementById("MyFrame").src = newSrc;
+        }
+
+        function wakeAstraAir() {
+
+            var token = 'b73c6ba5-6de9-432b-8b36-a909c69fa751';
+            var appName = 'travel-wcs-connector';
+            var dynoName = 'web.1';
+            var alert = 'aa_alert';
+            document.getElementById(alert).innerHTML = "Restarting the Astra Air connector...";
+            document.getElementById(alert).style = "color : green";
+
+            restartDyno(token, appName, dynoName);
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 2000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 4000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 6000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 8000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 10000)
+
+        }
+
+        function wakeBuildIt() {
+
+            var token = 'b73c6ba5-6de9-432b-8b36-a909c69fa751';
+            var appName = 'retail-wcs-connector';
+            var dynoName = 'web.1';
+            var alert = 'bi_alert';
+            document.getElementById(alert).innerHTML = "Restarting the Build-It connector...";
+            document.getElementById(alert).style = "color : green";
+
+            restartDyno(token, appName, dynoName);
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 2000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 4000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 6000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 8000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 10000)
+
+        }
+
+        function wakeYBank() {
+
+            var token = 'b73c6ba5-6de9-432b-8b36-a909c69fa751';
+            var appName = 'fisrv-wcs-connector';
+            var dynoName = 'web.1';
+            var alert = 'yb_alert';
+            document.getElementById(alert).innerHTML = "Restarting the Y-Bank connector...";
+            document.getElementById(alert).style = "color : green";
+
+            restartDyno(token, appName, dynoName);
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 2000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 4000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 6000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 8000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 10000)
+
+        }
+
+        function wakeZMobile() {
+
+            var token = 'b73c6ba5-6de9-432b-8b36-a909c69fa751';
+            var appName = 'telco-wcs-connector';
+            var dynoName = 'web.1';
+            var alert = 'zm_alert';
+            document.getElementById(alert).innerHTML = "Restarting the Z-Mobile connector...";
+            document.getElementById(alert).style = "color : green";
+
+            restartDyno(token, appName, dynoName);
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 2000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 4000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 6000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 8000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 10000)
+
+        }
+
+        function checkStatus(token, appName, dynoName, alert) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var myObj = JSON.parse(this.responseText);
+                    document.getElementById(alert).innerHTML = 'Connector Status: ' + myObj.state.toUpperCase();
+                }
+            };
+            xhr.open(
+                'GET',
+                'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
+            );
+            xhr.setRequestHeader('Accept', 'application/vnd.heroku+json; version=3');
+            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            xhr.onload = function() {
+                console.log(xhr.response);
+            };
+            xhr.send();
+        }
+
+        function restartDyno(token, appName, dynoName) {
+            var xhr = new XMLHttpRequest();
+            xhr.open(
+                'DELETE',
+                'https://api.heroku.com/apps/' + appName + '/dynos/' + dynoName
+            );
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader('Accept', 'application/vnd.heroku+json; version=3');
+            xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+            xhr.onload = function() {
+                console.log(xhr.response);
+            };
+            xhr.send();
+        }
+    </script>
+
+    <script type="text/javascript">
+        var token = 'b73c6ba5-6de9-432b-8b36-a909c69fa751';
+        var dynoName = 'web.1';
+        var appName = 'travel-wcs-connector';
+        var alert = 'aa_alert';
+        checkStatus(token, appName, dynoName, alert);
+        var appName = 'retail-wcs-connector';
+        var alert = 'bi_alert';
+        checkStatus(token, appName, dynoName, alert);
+        var appName = 'fisrv-wcs-connector';
+        var alert = 'yb_alert';
+        checkStatus(token, appName, dynoName, alert);
+        var appName = 'telco-wcs-connector';
+        var alert = 'zm_alert';
+        checkStatus(token, appName, dynoName, alert);
+  </script>
+
+</head>
+
+<body>
+
+    <button id="aa_button" type="button" style="width:350px" onclick="wakeAstraAir()">Restart Astra Air Connector</button>
+    <div id="aa_alert"></div>
+    <br>
+    <button id="bi_button" type="button" style="width:350px" onclick="wakeBuildIt()">Restart Build-It Connector</button>
+    <div id="bi_alert"></div>
+    <br>
+    <button id="yb_button" type="button" style="width:350px" onclick="wakeYBank()">Restart Y-Bank Connector</button>
+    <div id="yb_alert"></div>
+    <br>
+    <button id="zm_button" type="button" style="width:350px" onclick="wakeZMobile()">Restart Z-Mobile Connector</button>
+    <div id="zm_alert"></div>
+    <br>
+    <select id="MySelectMenu" style="width:82px">
+      <option value="https://tdurbin.github.io/wakeup-connectors/aa.html">Astra Air</option>
+      <option value="https://tdurbin.github.io/wakeup-connectors/bi.html">Build-It</option>
+      <option value="https://tdurbin.github.io/wakeup-connectors/yb.html">Y-Bank</option>
+      <option value="https://tdurbin.github.io/wakeup-connectors/zm.html">Z-Mobile</option>
+    </select>
+    <button type="button" style="width:265px" onclick="newSrc()">Load Messaging Test Page</button>
+    <br><br>
+    <iframe src="https://tdurbin.github.io/wakeup-connectors/aa.html" style="width:600px;height:420px;background:#FFFFFF;overflow:scroll;" id="MyFrame"></iframe>
+
+
+</body>
+
+</html>
