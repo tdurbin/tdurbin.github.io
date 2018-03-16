@@ -113,12 +113,17 @@ maximum-scale=1">
 </br>
 <div id="text" >Message</div>
 <textarea id="msgbody"></textarea></br>
+<button type="button" style="width:265px" onclick="popMsg('Payment Overdue')">Payment Overdue</button>
+
 
 </br>
 
 <button type="button" onclick="sendData()">Send data</button>
 <div id="sendStat"></div>
 <script>
+function popMsg(msg) {
+    document.getElementById("msgbody").src = msg;
+}
 var AccountSid  = "ACb5fb3257bf67189507a00c1f95caa7d7";
 var AuthToken = "430582dc56a920e9875d54affbf5901d";
 var source = "%2B447492889396";
