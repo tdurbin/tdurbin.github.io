@@ -126,7 +126,7 @@ function sendData() {
 var readyToSend = false;
 //var destination = document.getElementById("to").value;
 var msisdn = document.getElementById("msisdn");
-var destination = msisdn.options[e.selectedIndex].value;
+var destination = msisdn.options[msisdn.selectedIndex].value;
 var messageBody = document.getElementById("msgbody").value;
 var authorizationBasic = window.btoa(AccountSid + ':' + AuthToken);
 var request = new XMLHttpRequest();
