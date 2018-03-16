@@ -124,7 +124,9 @@ var AuthToken = "430582dc56a920e9875d54affbf5901d";
 var source = "%2B447492889396";
 function sendData() {
 var readyToSend = false;
-var destination = document.getElementById("to").value;
+//var destination = document.getElementById("to").value;
+var msisdn = document.getElementById("msisdn");
+var destination = msisdn.options[e.selectedIndex].value;
 var messageBody = document.getElementById("msgbody").value;
 var authorizationBasic = window.btoa(AccountSid + ':' + AuthToken);
 var request = new XMLHttpRequest();
