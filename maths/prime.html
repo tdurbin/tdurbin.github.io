@@ -6,24 +6,23 @@
   <script language="JavaScript">
     function PrimeorComposite(){
       var n = document.inputs.turtleHeadsRule.value;
-        if (n===1)
+      if (n===1)
+      {
+        document.write("<p>" + n + "is a COMPOSITE number!</p>");
+      }
+      else if(n === 2)
+      {
+        document.write("<p>" + n + "is a PRIME number!</p>");
+      } else
+      {
+        for(var x = 2; x < n; x++)
         {
-          document.write("<p>" + n + "is a COMPOSITE number!</p>");
-        }
-        else if(n === 2)
-        {
-          document.write("<p>" + n + "is a PRIME number!</p>");
-        } else
-        {
-          for(var x = 2; x < n; x++)
+          if(n % x === 0)
           {
-            if(n % x === 0)
-            {
-              document.write("<p>" + n + "s a COMPOSITE number!</p>");
-            }
+            document.write("<p>" + n + "s a COMPOSITE number!</p>");
           }
-          document.write("<p>" + n + "is a PRIME number!</p>");
         }
+        document.write("<p>" + n + "is a PRIME number!</p>");
       }
     }
   </script>
