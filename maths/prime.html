@@ -9,12 +9,10 @@
       if (n===1)
       {
         document.write("<p>" + n + " is a COMPOSITE number!</p>");
-        return;
       }
       else if(n === 2)
       {
         document.write("<p>" + n + " is a PRIME number!</p>");
-        return;
       } else
       {
         for(var x = 2; x < n; x++)
@@ -22,11 +20,10 @@
           if(n % x === 0)
           {
             document.write("<p>" + n + " is a COMPOSITE number!</p>");
-            return;
+            break;
           }
         }
         document.write("<p>" + n + " is a PRIME number!</p>");
-        return;
       }
     }
   </script>
