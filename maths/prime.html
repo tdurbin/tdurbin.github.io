@@ -8,12 +8,10 @@
       var n = document.inputs.turtleHeadsRule.value;
         if (n===1)
         {
-          return false;
           document.write("<p>" + n + "is not a prime number!</p>");
         }
         else if(n === 2)
         {
-          return true;
           document.write("<p>" + n + "is a prime number!</p>");
         } else
         {
@@ -21,11 +19,9 @@
           {
             if(n % x === 0)
             {
-              return false;
               document.write("<p>" + n + "is not a prime number!</p>");
             }
           }
-          return true;
           document.write("<p>" + n + "is a prime number!</p>");
         }
       }
