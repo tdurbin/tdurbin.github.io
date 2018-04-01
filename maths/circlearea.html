@@ -5,13 +5,15 @@
 <body>
   <script language="JavaScript">
     function calculateArea(){
+      var radius = document.inputs.txtRadius.value;
+      document.write("<p>The area of the circle is " + (Math.PI * radius * radius) + "</p>");
 
     }
   </script>
 
   <form name=inputs>
     Enter the radius of your circle:
-    <input type=:"text" name="radius" size=10>
+    <input type=:"text" name="txtRadius" size=10>
     <br>
     <input type="button" value="Calculate" onClick='calculateArea();'>
   </form>
