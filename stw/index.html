@@ -103,6 +103,7 @@
         var msg = "";
         var overduePayment = "Your latest water bill from Severn Trent Water is now overdue. Please can you take action and pay your outstanding balance. If you need to contact us just respond directly to this SMS, or message us via Facebook Messenger... https://m.me/404596936720861";
         var preActivation = "Congratulations, your application for a water meter has been processed. Your engineer will be at your property next week, but you do not need to be home for the installation. If you have any questions about your meter installation just respond directly to this SMS, or message us via Facebook Messenger... https://m.me/404596936720861";
+        var waterSupply = "An important message from Severn Trent Water. Your water supply will be reduced over the next two days due to essential maintenance. If you have any questions about this reduced supply just respond directly to this SMS, or message us via Facebook Messenger... https://m.me/404596936720861";
 
         function popMsg(msg) {
             //    var msg = "Payment overdue."
@@ -170,6 +171,8 @@
     <button type="button" style="width:265px" onclick="popMsg(overduePayment)">Payment Overdue</button>
     </br>
     <button type="button" style="width:265px" onclick="popMsg(preActivation)">Meter Installation</button>
+    </br>
+    <button type="button" style="width:265px" onclick="popMsg(waterSupply)">Water Supply</button>
 
 </body>
 
