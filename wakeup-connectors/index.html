@@ -232,6 +232,39 @@
 
         }
 
+        function wakeRBM() {
+
+            var token = 'b73c6ba5-6de9-432b-8b36-a909c69fa751';
+            var appName = 'rbm-wcs-connector';
+            var dynoName = 'web.1';
+            var alert = 'rbm_alert';
+            document.getElementById(alert).innerHTML = "Restarting the RBM connector...";
+            document.getElementById(alert).style = "color : green";
+
+            restartDyno(token, appName, dynoName);
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 2000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 4000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 6000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 8000)
+
+            setTimeout(function() {
+                checkStatus(token, appName, dynoName, alert);
+            }, 10000)
+
+        }
+
         function checkStatus(token, appName, dynoName, alert) {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function() {
@@ -283,6 +316,9 @@
         var appName = 'telco-wcs-connector';
         var alert = 'zm_alert';
         checkStatus(token, appName, dynoName, alert);
+        var appName = 'rbm-wcs-connector';
+        var alert = 'rbm_alert';
+        checkStatus(token, appName, dynoName, alert);
   </script>
 
 </head>
@@ -300,6 +336,9 @@
     <br>
     <button id="zm_button" type="button" style="width:350px" onclick="wakeZMobile()">Restart Z-Mobile Connector</button>
     <div id="zm_alert"></div>
+    <br>
+    <button id="rbm_button" type="button" style="width:350px" onclick="wakeRBM()">Restart RBM Connector</button>
+    <div id="rbm_alert"></div>
     <br>
     <select id="MySelectMenu" style="width:82px">
       <option value="https://tdurbin.github.io/wakeup-connectors/aa.html">Astra Air</option>
