@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimumscale=1, maximum-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <title>EE SMS Message Sender</title>
+    <title>CM SMS Message Sender</title>
 
     <style>
         body {
@@ -97,9 +97,8 @@
     </style>
 
     <script>
-        var AccountSid = "ACabffb3606cec0d0d06f15d9351b70d40";
-        var AuthToken = "058a3157ae511b0caa699ef42362c3a7";
-        var source = "%2B447480549496";
+        var productToken = "4AD27BB1-E136-4BBC-9F86-F7CAB5AB9204";
+        var sender = "0014049903068";
         var msg = "";
         var upgradeMsg1 = "Upgrade message 1. If you need to contact us just respond directly to this SMS, or message us via Facebook Messenger... https://m.me/1829380294035323";
         var upgradeMsg2 = "Upgrade message 1. If you need to contact us just respond directly to this SMS, or message us via Facebook Messenger... https://m.me/1829380294035323";
@@ -116,7 +115,6 @@
             var msisdn = document.getElementById("msisdn");
             var destination = msisdn.options[msisdn.selectedIndex].value;
             var messageBody = document.getElementById("msgbody").value;
-            var authorizationBasic = window.btoa(AccountSid + ':' + AuthToken);
             var request = new XMLHttpRequest();
             console.log("variables passed" + destination + messageBody);
             if (messageBody != "" && destination != "") {
@@ -127,11 +125,8 @@
                 document.getElementById("sendStat").style = "color : red";
             }
             if (readyToSend === true) {
-                request.open('POST', "https://api.twilio.com/2010-04-01/Accounts/" + AccountSid + "/Messages.json", true);
-                request.setRequestHeader('Authorization', 'Basic ' + authorizationBasic);
-                request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-                request.setRequestHeader('Accept', 'application/json');
-                request.send("To=%2B" + destination + "&From=" + source + "&Body=" + messageBody);
+                request.open('GET', "https://sgw01.cm.nl/gateway.ashx?producttoken=" + productToken + "&body=" + messageBody + "&to=" + destination + "&from=" + sender, true);
+                request.send(null);
                 console.log("sending message..");
                 request.onreadystatechange = function() {
                     if (request.readyState === 4) {
@@ -154,12 +149,12 @@
 <body>
 
     <img src="ee.png" alt="EE" height="151" width="151">
-    <div id="title">EE SMS Message Sender</div>
+    <div id="title">CM SMS Message Sender</div>
     </br>
     <div id="text">To:</div>
     <select id="msisdn" style="width:200px">
-        <option value="447920104653">Message Nathan</option>
-        <option value="447766367842">Message Tom</option>
+        <option value="0017624365008">Message Tom's Pixel</option>
+        <option value="00447766367842">Message Tom's iPhone</option>
     </select>
     <button type="button" onclick="sendData()">Send Message</button>
     <div id="sendStat"></div>
