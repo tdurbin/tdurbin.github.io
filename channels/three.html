@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="https://www.liveperson.com/assets/img/favicon.ico">
+
+    <!-- BEGIN LivePerson Monitor. -->
+        <script type="text/javascript">window.lpTag=window.lpTag||{},'undefined'==typeof window.lpTag._tagCount?(window.lpTag={wl:lpTag.wl||null,scp:lpTag.scp||null,site:'1685908'||'',section:lpTag.section||'',tagletSection:lpTag.tagletSection||null,autoStart:lpTag.autoStart!==!1,ovr:lpTag.ovr||{},_v:'1.10.0',_tagCount:1,protocol:'https:',events:{bind:function(t,e,i){lpTag.defer(function(){lpTag.events.bind(t,e,i)},0)},trigger:function(t,e,i){lpTag.defer(function(){lpTag.events.trigger(t,e,i)},1)}},defer:function(t,e){0===e?(this._defB=this._defB||[],this._defB.push(t)):1===e?(this._defT=this._defT||[],this._defT.push(t)):(this._defL=this._defL||[],this._defL.push(t))},load:function(t,e,i){var n=this;setTimeout(function(){n._load(t,e,i)},0)},_load:function(t,e,i){var n=t;t||(n=this.protocol+'//'+(this.ovr&&this.ovr.domain?this.ovr.domain:'lptag.liveperson.net')+'/tag/tag.js?site='+this.site);var o=document.createElement('script');o.setAttribute('charset',e?e:'UTF-8'),i&&o.setAttribute('id',i),o.setAttribute('src',n),document.getElementsByTagName('head').item(0).appendChild(o)},init:function(){this._timing=this._timing||{},this._timing.start=(new Date).getTime();var t=this;window.attachEvent?window.attachEvent('onload',function(){t._domReady('domReady')}):(window.addEventListener('DOMContentLoaded',function(){t._domReady('contReady')},!1),window.addEventListener('load',function(){t._domReady('domReady')},!1)),'undefined'===typeof window._lptStop&&this.load()},start:function(){this.autoStart=!0},_domReady:function(t){this.isDom||(this.isDom=!0,this.events.trigger('LPT','DOM_READY',{t:t})),this._timing[t]=(new Date).getTime()},vars:lpTag.vars||[],dbs:lpTag.dbs||[],ctn:lpTag.ctn||[],sdes:lpTag.sdes||[],hooks:lpTag.hooks||[],identities:lpTag.identities||[],ev:lpTag.ev||[]},lpTag.init()):window.lpTag._tagCount+=1;</script>
+    <!-- END LivePerson Monitor. -->
+    
+    <script>
+        lpTag.sdes.push({
+            "type": "ctmrinfo",
+            "info": {
+                customerId: '1'
+            }
+        });
+
+        // Authentication JSMethod for LiveEngage
+        var lpGetAuthenticationToken = function(callback) {
+            console.log("inside lpGetAuthenticationToken!");
+            var token = "tom_human";
+            if (token) {
+                console.log("got token! " + token);
+                console.log("calling callback with token...");
+                callback(token);
+            }
+        };
+    </script>
+
+    <style>
+        body {
+            background-color: white;
+        }
+        h1 {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h2 {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h3 {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+
+    <title>Contact Santander on | SMS | Facebook | WhatsApp | Apple</title>
+</head>
+
+<body>
+
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- Your customer chat code -->
+    <div class="fb-customerchat"
+        attribution=setup_tool
+        page_id="1829380294035323">
+    </div>
+
+    <img src="san.png" width=100%>
+
+    <h3>Message with us through any of these channels!</h3>
+
+    <div>
+        <a href="sms://+14152127482&body=I have a question about...">
+        <img src="sms.png" width="200" height="auto">
+    </div>
+
+    <div>
+        <a href="https://m.me/1829380294035323">
+        <img src="messenger.png" width="200" height="auto">
+    </div>
+
+    <!-- LivePerson Account
+    <div>
+        <a href="https://api.whatsapp.com/send?phone=12126094200&text=Hello, I have a question about...">
+        <img src="wa.png" width="200" height="auto">
+    </div> -->
+
+    <!-- LiveDeflect Account -->
+    <div>
+        <a href="https://api.whatsapp.com/send?phone=17704159731&text=Hello, I have a question about...">
+        <img src="wa.png" width="200" height="auto">
+    </div>
+
+    <div>
+        <a href="https://rw.apple.com/urn:biz:5fc69572-f4b4-11e7-97e6-b97859c148c8?biz-intent-id=tom_abc">
+        <img src="abc.png" width="200" height="auto">
+    </div>
+
+</body>
+
+</html>
