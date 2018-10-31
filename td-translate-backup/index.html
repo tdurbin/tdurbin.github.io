@@ -96,14 +96,12 @@
                 document.getElementById('visitorChat2').innerHTML = chatLine;
                 //translate the visitors chat line based on skill group
 
-                if (skill == "French") {
-                    Microsoft.Translator.Widget.Translate('fr', 'en', onProgress, onError, onComplete2, onRestoreOriginal);
-                } else if (skill == "German") {
-                    Microsoft.Translator.Widget.Translate('de', 'en', onProgress, onError, onComplete2, onRestoreOriginal);
-                } else if (skill == "Italian") {
-                    Microsoft.Translator.Widget.Translate('it', 'en', onProgress, onError, onComplete2, onRestoreOriginal);
+                if (skill == "Spanish") {
+                    Microsoft.Translator.Widget.Translate('es', 'en', onProgress, onError, onComplete2, onRestoreOriginal);
+                } else if (skill == "Russian") {
+                    Microsoft.Translator.Widget.Translate('ru', 'en', onProgress, onError, onComplete2, onRestoreOriginal);
                 } else {
-                    Microsoft.Translator.Widget.Translate('en', 'en', onProgress, onError, onComplete2, onRestoreOriginal);
+                    Microsoft.Translator.Widget.Translate('it', 'en', onProgress, onError, onComplete2, onRestoreOriginal);
                 }
             }
         };
@@ -128,14 +126,12 @@
             //update the hidden div
             document.getElementById('agentChatTranslated').innerHTML = document.getElementById('agentChat').value;
             //transalte the agents message
-            if (skill == "French") {
-                Microsoft.Translator.Widget.Translate('en', 'fr', onProgress, onError, onComplete, onRestoreOriginal);
-            } else if (skill == "German") {
-                Microsoft.Translator.Widget.Translate('en', 'de', onProgress, onError, onComplete, onRestoreOriginal);
-            } else if (skill == "Italian") {
-                Microsoft.Translator.Widget.Translate('en', 'it', onProgress, onError, onComplete, onRestoreOriginal);
+            if (skill == "Spanish") {
+                Microsoft.Translator.Widget.Translate('en', 'es', onProgress, onError, onComplete, onRestoreOriginal);
+            } else if (skill == "Russian") {
+                Microsoft.Translator.Widget.Translate('en', 'ru', onProgress, onError, onComplete, onRestoreOriginal);
             } else {
-                Microsoft.Translator.Widget.Translate('en', 'en', onProgress, onError, onComplete, onRestoreOriginal);
+                Microsoft.Translator.Widget.Translate('en', 'it', onProgress, onError, onComplete, onRestoreOriginal);
             }
         }
         //called when the translation is complete
