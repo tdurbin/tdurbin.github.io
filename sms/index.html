@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimumscale=1, maximum-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.liveperson.com/assets/img/favicon.ico">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <title>SMS Message Sender</title>
+    <title>Admiral SMS Message Sender</title>
 
     <style>
         body {
@@ -102,7 +102,7 @@
         var AuthToken = "058a3157ae511b0caa699ef42362c3a7";
         var source = "%2B14152127482";
         var msg = "";
-        var smsMessage01 = "Great news, you are eligible for an upgrade. Check out your offers at https://ee.co.uk/customershop, call us on 150 or start an SMS chat with us by clicking here... sms:888123";
+        var smsMessage01 = "Your policy is coming up for renewal. Message with our policy advisors for the best renewal deals!%0a%0aYou can also message us on Facebook Messenger 🙋... https://m.me/1829380294035323";
         var smsMessage02 = "Why not add a second car to you policy and save £££. Message with our policy advisors to see how much you could save!%0a%0aYou can also message us securely via WhatsApp 🙋... https://api.whatsapp.com/send?phone=17704159731&text=Hello%2C%20I%20have%20a%20question%20about%20your%20multi-car%20deals%2E%2E%2E";
         var smsMessage03 = "We have an update for you about your active claim. Message with our claim advisors for a quick update.%0a%0aYou can also message us securely on Apple iMessage... https://rw.apple.com/urn:biz:5fc69572-f4b4-11e7-97e6-b97859c148c8?biz-intent-id=tom_abc";
 
@@ -154,12 +154,13 @@
 
 <body>
 
-    <div id="title">SMS Message Sender</div>
+    <img src="admiral_logo.png" alt="Admiral" width=320px height=auto>
+    <div id="title">Admiral SMS Message Sender</div>
     </br>
     <div id="text">To:</div>
     <select id="msisdn" style="width:200px">
-        <option value="+17126315857">Message Tom iOS</option>
-        <option value="+17624364635">Message Tom Android</option>
+        <option value="+17126315857">Message Tom</option>
+        <option value="+447521366609">Message Laura</option>
     </select>
     <button type="button" onclick="sendData()">Send Message</button>
     <div id="sendStat"></div>
@@ -167,7 +168,7 @@
     </br>
     <div id="text">Message</div>
     <textarea id="msgbody" rows="8" cols="48"></textarea></br>
-    <button type="button" style="width:265px" onclick="popMsg(smsMessage01)">Upgrade Message - SMS</button>
+    <button type="button" style="width:265px" onclick="popMsg(smsMessage01)">Policy renewal - FB</button>
     </br>
     <button type="button" style="width:265px" onclick="popMsg(smsMessage02)">Multi-car promotion - WA</button>
     </br>
