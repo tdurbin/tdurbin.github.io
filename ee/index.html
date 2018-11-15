@@ -2,177 +2,267 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimumscale=1, maximum-scale=1">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <title>EE SMS Message Sender</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- BEGIN LivePerson Monitor. -->
+    <script type="text/javascript">
+        window.lpTag = window.lpTag || {}, 'undefined' == typeof window.lpTag._tagCount ? (window.lpTag = {
+            wl: lpTag.wl || null,
+            scp: lpTag.scp || null,
+            site: '1685908' || '',
+            section: lpTag.section || '',
+            tagletSection: lpTag.tagletSection || null,
+            autoStart: lpTag.autoStart !== !1,
+            ovr: lpTag.ovr || {},
+            _v: '1.10.0',
+            _tagCount: 1,
+            protocol: 'https:',
+            events: {
+                bind: function(t, e, i) {
+                    lpTag.defer(function() {
+                        lpTag.events.bind(t, e, i)
+                    }, 0)
+                },
+                trigger: function(t, e, i) {
+                    lpTag.defer(function() {
+                        lpTag.events.trigger(t, e, i)
+                    }, 1)
+                }
+            },
+            defer: function(t, e) {
+                0 === e ? (this._defB = this._defB || [], this._defB.push(t)) : 1 === e ? (this._defT = this._defT || [], this._defT.push(t)) : (this._defL = this._defL || [], this._defL.push(t))
+            },
+            load: function(t, e, i) {
+                var n = this;
+                setTimeout(function() {
+                    n._load(t, e, i)
+                }, 0)
+            },
+            _load: function(t, e, i) {
+                var n = t;
+                t || (n = this.protocol + '//' + (this.ovr && this.ovr.domain ? this.ovr.domain : 'lptag.liveperson.net') + '/tag/tag.js?site=' + this.site);
+                var o = document.createElement('script');
+                o.setAttribute('charset', e ? e : 'UTF-8'), i && o.setAttribute('id', i), o.setAttribute('src', n), document.getElementsByTagName('head').item(0).appendChild(o)
+            },
+            init: function() {
+                this._timing = this._timing || {}, this._timing.start = (new Date).getTime();
+                var t = this;
+                window.attachEvent ? window.attachEvent('onload', function() {
+                    t._domReady('domReady')
+                }) : (window.addEventListener('DOMContentLoaded', function() {
+                    t._domReady('contReady')
+                }, !1), window.addEventListener('load', function() {
+                    t._domReady('domReady')
+                }, !1)), 'undefined' === typeof window._lptStop && this.load()
+            },
+            start: function() {
+                this.autoStart = !0
+            },
+            _domReady: function(t) {
+                this.isDom || (this.isDom = !0, this.events.trigger('LPT', 'DOM_READY', {
+                    t: t
+                })), this._timing[t] = (new Date).getTime()
+            },
+            vars: lpTag.vars || [],
+            dbs: lpTag.dbs || [],
+            ctn: lpTag.ctn || [],
+            sdes: lpTag.sdes || [],
+            hooks: lpTag.hooks || [],
+            identities: lpTag.identities || [],
+            ev: lpTag.ev || []
+        }, lpTag.init()) : window.lpTag._tagCount += 1;
+    </script>
+    <!-- END LivePerson Monitor. -->
 
     <style>
-        body {
-            margin: 10px;
-            padding: 2px;
-            background: #f0f0f0;
-            font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
-            font-size: 11px;
-            color: #515254;
-        }
-
-        #title {
-            padding: 2px;
-            font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
-            font-size: 24px;
-        }
-
-        button {
-            background-color: #f68a1f;
-            border: none;
-            color: white;
-            padding: 10px 24px;
-            text-align: center;
+        a:link {
             text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
+        }
+
+        body {
+            background-color: #f6f4f0;
+        }
+
+        .btn {
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            border: none;
             cursor: pointer;
-            border-radius: 4px;
-            -webkit-transition-duration: 0.4s;
-            /* Safari */
-            transition-duration: 0.4s;
-            font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
         }
 
-        button:hover {
-            background-color: #da7009;
-            color: white;
+        .btn__trigger {
+            transition: box-shadow 300ms ease-in-out;
+            position: fixed;
+            z-index: 10;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            display: block;
+            border-radius: 50px;
         }
 
-        input {
-
-            padding: 12px 20px;
-            margin: 4px 0;
-            box-sizing: border-box;
-            border: 3px solid #ccc;
-            -webkit-transition: 0.5s;
-            transition: 0.5s;
-            outline: none;
-            font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+        .btn__trigger--views {
+            width: 4rem;
+            height: 4rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            background-color: #007b86;
+            color: #fff;
+            font-size: 1rem;
+            line-height: 4;
+            font-weight: lighter;
+            text-align: center;
         }
 
-        input:focus {
-            border: 3px solid #555;
+        .btn__trigger--views:hover {
+            box-shadow: 0 14px 10px rgba(0, 0, 0, 0.24), 0 10px 10px rgba(0, 0, 0, 0.24);
         }
 
-        label {
-            font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
-            font-size: 13px;
-            line-height: normal;
-            font-weight: bold;
-            color: #515254;
-            outline: none;
-            border: 0;
-            margin: 0;
-            padding: 0
+        .my-nav {
+            position: fixed;
+            opacity: 0;
         }
 
-        textarea {
-
-            padding: 10px 10px;
-            margin: 4px 0;
-            box-sizing: border-box;
-            border: 3px solid #ccc;
-            -webkit-transition: 0.5s;
-            transition: 0.5s;
-            outline: none;
-            font-size: 12px;
-            font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+        .my-nav.reveal {
+            visibility: visible;
+            opacity: 1;
         }
 
-        textarea:focus {
-            border: 3px solid #555;
+        .my-nav.reveal:after {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            display: block;
+            content: "";
+
         }
 
-        #text {
-            padding: 2px;
-            font-family: "Myriad pro", "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+        .my-nav--list {
+            visibility: hidden;
+            bottom: 6.5rem;
+            right: 1.75rem;
+            text-align: right;
         }
+
+        .my-nav__item {
+            transition: opacity 150ms ease-in-out;
+            display: block;
+            font-size: 0.90rem;
+            opacity: 0;
+        }
+
+        .my-nav__item.visible {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .my-nav__link {
+            transition: background-color 150ms ease-in-out;
+            display: inline-block;
+            width: auto;
+            margin: 1rem 0;
+            padding: 1rem 0.75rem;
+            box-shadow: inset 0 0 0 2px #007b86;
+            background-color: #ffffff;
+            border-radius: 25px;
+            color: black;
+            cursor: pointer;
+        }
+
+        .my-nav__link:last-child {
+            margin-bottom: 0;
+        }
+
+        h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #6d6e71;
+            margin-left: 0.90em;
+        	margin-right: 0.90em;
+        }
+        h2 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #6d6e71;
+            margin-left: 0.90em;
+            margin-right: 4em;
+        }
+        h3 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #6d6e71;
+            margin-left: 0.90em;
+        	margin-right: 4em;
+        }
+
     </style>
-
-    <script>
-        var AccountSid = "ACabffb3606cec0d0d06f15d9351b70d40";
-        var AuthToken = "058a3157ae511b0caa699ef42362c3a7";
-        var source = "%2B447480549496";
-        var msg = "";
-        var upgradeMsg1 = "Upgrade message 1. If you need to contact us just respond directly to this SMS, or message us via Facebook Messenger... https://m.me/1829380294035323";
-        var upgradeMsg2 = "Upgrade message 1. If you need to contact us just respond directly to this SMS, or message us via Facebook Messenger... https://m.me/1829380294035323";
-        var upgradeMsg3 = "Upgrade message 1. If you need to contact us just respond directly to this SMS, or message us via Facebook Messenger... https://m.me/1829380294035323";
-
-        function popMsg(msg) {
-            //    var msg = "Payment overdue."
-            document.getElementById("msgbody").value = msg;
-        }
-
-        function sendData() {
-            var readyToSend = false;
-            //var destination = document.getElementById("to").value;
-            var msisdn = document.getElementById("msisdn");
-            var destination = msisdn.options[msisdn.selectedIndex].value;
-            var messageBody = document.getElementById("msgbody").value;
-            var authorizationBasic = window.btoa(AccountSid + ':' + AuthToken);
-            var request = new XMLHttpRequest();
-            console.log("variables passed" + destination + messageBody);
-            if (messageBody != "" && destination != "") {
-                var readyToSend = true;
-            } else {
-                console.log("error");
-                document.getElementById("sendStat").innerHTML = "Fill in the fields!!";
-                document.getElementById("sendStat").style = "color : red";
-            }
-            if (readyToSend === true) {
-                request.open('POST', "https://api.twilio.com/2010-04-01/Accounts/" + AccountSid + "/Messages.json", true);
-                request.setRequestHeader('Authorization', 'Basic ' + authorizationBasic);
-                request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-                request.setRequestHeader('Accept', 'application/json');
-                request.send("To=%2B" + destination + "&From=" + source + "&Body=" + messageBody);
-                console.log("sending message..");
-                request.onreadystatechange = function() {
-                    if (request.readyState === 4) {
-                        console.log(request.responseText);
-                        document.getElementById("sendStat").innerHTML = "Message Sent"
-                        document.getElementById("sendStat").style = "color : green";
-                    }
-                    if (this.readyState == 4 && this.status == 400) {
-                        document.getElementById("sendStat").innerHTML = "Failed to send";
-                        document.getElementById("sendStat").style = "color : red";
-                    }
-                };
-            }
-            console.log("readyToSend? " + readyToSend);
-        }
-    </script>
-
 </head>
 
 <body>
 
-    <img src="ee.png" alt="EE" height="151" width="151">
-    <div id="title">EE SMS Message Sender</div>
-    </br>
-    <div id="text">To:</div>
-    <select id="msisdn" style="width:200px">
-        <option value="447920104653">Message Nathan</option>
-        <option value="447766367842">Message Tom</option>
-    </select>
-    <button type="button" onclick="sendData()">Send Message</button>
-    <div id="sendStat"></div>
-    </br>
-    </br>
-    <div id="text">Message</div>
-    <textarea id="msgbody" rows="8" cols="48"></textarea></br>
-    <button type="button" style="width:265px" onclick="popMsg(upgradeMsg1)">Upgrade Message 1</button>
-    </br>
-    <button type="button" style="width:265px" onclick="popMsg(upgradeMsg2)">Upgrade Message 2</button>
-    </br>
-    <button type="button" style="width:265px" onclick="popMsg(upgradeMsg3)">Upgrade Message 3</button>
+    <img src="ee_header.png" width=100%>
 
+    <h2>Click on the + button below to Message us about your upgrade using your preferred messaging channel...</h2>
+
+    <ul class="my-nav my-nav--list">
+        <div id="wrapper-templates">
+
+            <li class="my-nav__item">
+                <a class="my-nav__link" href="https://api.whatsapp.com/send?phone=17704159731&text=I%20would%20like%20to%20upgrade%20my%20phone%2E%2E%2E" target="_blank">
+                    <img src="icons/wa.png" width="50" height="50">
+                </a>
+            </li>
+
+            <li class="my-nav__item">
+                <a class="my-nav__link" href="sms://+14152127482&body=I%20would%20like%20to%20upgrade%20my%20phone%2E%2E%2E" target="_blank">
+                    <img src="icons/sms.png" width="50" height="50">
+                </a>
+            </li>
+
+            <li class="my-nav__item">
+                <a class="my-nav__link" href="https://rw.apple.com/urn:biz:5fc69572-f4b4-11e7-97e6-b97859c148c8?biz-intent-id=tom_abc" target="_blank">
+                    <img src="icons/apple.png" width="50" height="50">
+                </a>
+            </li>
+
+            <li class="my-nav__item">
+                <a class="my-nav__link" href="https://m.me/1829380294035323" target="_blank">
+                    <img src="icons/fb.png" width="50" height="50">
+                </a>
+            </li>
+
+        </div>
+    </ul>
+
+    <a class="btn btn__trigger btn__trigger--views" id="trigger">+</a>
+
+    <script>
+        function displayList() {
+            $.fn.reverse = [].reverse;
+            var trigger = $("#trigger"),
+                mainTarget = $(".my-nav"),
+                targetItem = $('.my-nav__item'),
+                html = $("html");
+            trigger.on("click", function(event) {
+                mainTarget.toggleClass("reveal unreveal");
+                targetItem.reverse().each(function(i, el) {
+                    setTimeout(function() {
+                        $(el).toggleClass("visible");
+                    }, i * 68);
+                })
+                html.on("click", function() {
+                    targetItem.removeClass("visible");
+                    mainTarget.removeClass("reveal");
+                });
+                event.preventDefault();
+                event.stopPropagation();
+            });
+        }
+        $(document).on('page:load', displayList);
+        $(document).ready(displayList);
+    </script>
 </body>
 
 </html>
