@@ -14,6 +14,18 @@
     <!-- END LivePerson Monitor. -->
 
     <script>
+        var smsURI;
+        //iPhone Version:
+        if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
+            smsURI = "sms:+447480549496&body=I%20would%20like%20to%20upgrade%20my%20phone%2E%2E%2E";
+        }
+        //Android Version:
+        if(navigator.userAgent.match(/android/i)) {
+            smsURI = "sms:+447480549496?body=I%20would%20like%20to%20upgrade%20my%20phone%2E%2E%2E";
+        }
+    </script>
+
+    <script>
         lpTag.sdes.push({
             "type": "ctmrinfo",
             "info": {
@@ -83,7 +95,7 @@
     <br>
 
     <div>
-        <a href="sms:+447480549496?body=I%20would%20like%20to%20upgrade%20my%20phone%2E%2E%2E">
+        <a href=smsURI>
         <img src="icons/sms.png" width="100" height="auto">
     </div>
 
