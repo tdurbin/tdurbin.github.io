@@ -18,12 +18,12 @@
         //iPhone Version:
         if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
             smsURI = "sms:+14152127482&body=I%20would%20like%20to%20upgrade%20my%20EE%20phone%2E%2E%2E";
-            alert("This is an iPhone!");
+            // alert("This is an iPhone!");
         }
         //Android Version:
         if(navigator.userAgent.match(/android/i)) {
             smsURI = "sms:+14152127482?body=I%20would%20like%20to%20upgrade%20my%20EE%20phone%2E%2E%2E";
-            alert("This is an Android device!");
+            // alert("This is an Android device!");
         }
         openPage = function() {
             location.href = smsURI;
