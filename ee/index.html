@@ -23,6 +23,10 @@
         if(navigator.userAgent.match(/android/i)) {
             smsURI = "sms:+447480549496?body=I%20would%20like%20to%20upgrade%20my%20phone%2E%2E%2E";
         }
+        openPage = function() {
+            location.href = smsURI;
+        }
+
     </script>
 
     <script>
@@ -95,7 +99,7 @@
     <br>
 
     <div>
-        <a href=smsURI>
+        <a href ="javascript:openPage()">
         <img src="icons/sms.png" width="100" height="auto">
     </div>
 
