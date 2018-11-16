@@ -18,12 +18,12 @@
         //iPhone Version:
         if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
             smsURI = "sms:+447480549496&body=I%20would%20like%20to%20upgrade%20my%20phone%2E%2E%2E";
-            alert("*** iPhone ***");
+            alert("This is an iPhone!");
         }
         //Android Version:
         if(navigator.userAgent.match(/android/i)) {
             smsURI = "sms:+447480549496?body=I%20would%20like%20to%20upgrade%20my%20phone%2E%2E%2E";
-            alert("*** Android ***");
+            alert("This is an Android device!");
         }
         openPage = function() {
             location.href = smsURI;
