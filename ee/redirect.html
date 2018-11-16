@@ -2,12 +2,25 @@
 <html lang="en">
 
 <head>
+    <meta property="og:title" content="EE Upgrade via SMS" />
+    <meta property="og:image" content="https://tdurbin.github.io/ee/og_image.png" />
 
     <script>
-      window.location.href = "sms://+447480549496";
+        var smsURI;
+        //iPhone Version:
+        if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
+            smsURI = "sms:+14152127482&body=I%20would%20like%20to%20upgrade%20my%20EE%20phone%2E%2E%2E";
+            // alert("This is an iPhone!");
+        }
+        //Android Version:
+        if (navigator.userAgent.match(/android/i)) {
+            smsURI = "sms:+14152127482?body=I%20would%20like%20to%20upgrade%20my%20EE%20phone%2E%2E%2E";
+            // alert("This is an Android device!");
+        }
+        window.location.href = smsURI;
     </script>
 
-    <title>EE Upgrade redirect to SMS</title>
+    <title>EE Upgrade via SMS</title>
 
 </head>
 
