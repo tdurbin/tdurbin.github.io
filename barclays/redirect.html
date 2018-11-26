@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta property="og:title" content="Barclays - Contact Us" />
+    <meta property="og:image" content="https://tdurbin.github.io/barclays/og_image.png" />
+
+    <script>
+        var smsURI;
+        //iPhone Version:
+        if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
+            smsURI = "sms:+14152127482&body=What%20can%20you%20help%20me%20with...";
+            // alert("This is an iPhone!");
+        }
+        //Android Version:
+        if (navigator.userAgent.match(/android/i)) {
+            smsURI = "sms:+14152127482?body=What%20can%20you%20help%20me%20with...";
+            // alert("This is an Android device!");
+        }
+        window.location.href = smsURI;
+    </script>
+
+    <title>Barclays - Contact Us</title>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
