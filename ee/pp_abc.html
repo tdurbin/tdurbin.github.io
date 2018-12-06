@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta property="og:title" content="Place a bet at Hereford" />
+    <meta property="og:image" content="https://tdurbin.github.io/ee/pp_image.png" />
+
+    <script>
+        var smsURI;
+        //iPhone Version:
+        if ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i))) {
+            smsURI = "https://rw.apple.com/urn:biz:5fc69572-f4b4-11e7-97e6-b97859c148c8?biz-intent-id=tom_abc";
+            // alert("This is an iPhone!");
+        }
+        //Android Version:
+        if (navigator.userAgent.match(/android/i)) {
+            smsURI = "sms:+14152127482?body=I%20would%20like%20to%20upgrade%20my%20EE%20phone%2E%2E%2E";
+            // alert("This is an Android device!");
+        }
+        window.location.href = smsURI;
+    </script>
+
+    <title>PP via ABC</title>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
