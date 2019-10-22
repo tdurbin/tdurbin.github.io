@@ -180,10 +180,8 @@
                 visitorApi.requestSupport({ serviceId: serviceId }, sessionReadyCallback);
             });
         }
-    </script>
 
-    <script>
-       function enterServiceNumber() {
+        function enterServiceNumber() {
             var serviceId = prompt("Please enter the CoBrowse service number in the field below.");
             if (serviceId) {
                 requestCobrowse(serviceId);
