@@ -5,12 +5,13 @@
 
     <meta property="og:title" content="Welcome to Z-Mobile" />
     <meta property="og:image" content="https://content.lparc.com/tdurbin/ufb.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="shortcut icon" type="image/x-icon" href="https://www.liveperson.com/assets/img/favicon.ico" />
 
     <!-- BEGIN LivePerson Monitor. -->
     <script type="text/javascript">
-        window.lpTag=window.lpTag||{},'undefined'==typeof window.lpTag._tagCount?(window.lpTag={wl:lpTag.wl||null,scp:lpTag.scp||null,site:'1685908'||'',section:lpTag.section||'',tagletSection:lpTag.tagletSection||null,autoStart:lpTag.autoStart!==!1,ovr:lpTag.ovr||{},_v:'1.10.0',_tagCount:1,protocol:'https:',events:{bind:function(t,e,i){lpTag.defer(function(){lpTag.events.bind(t,e,i)},0)},trigger:function(t,e,i){lpTag.defer(function(){lpTag.events.trigger(t,e,i)},1)}},defer:function(t,e){0===e?(this._defB=this._defB||[],this._defB.push(t)):1===e?(this._defT=this._defT||[],this._defT.push(t)):(this._defL=this._defL||[],this._defL.push(t))},load:function(t,e,i){var n=this;setTimeout(function(){n._load(t,e,i)},0)},_load:function(t,e,i){var n=t;t||(n=this.protocol+'//'+(this.ovr&&this.ovr.domain?this.ovr.domain:'lptag.liveperson.net')+'/tag/tag.js?site='+this.site);var o=document.createElement('script');o.setAttribute('charset',e?e:'UTF-8'),i&&o.setAttribute('id',i),o.setAttribute('src',n),document.getElementsByTagName('head').item(0).appendChild(o)},init:function(){this._timing=this._timing||{},this._timing.start=(new Date).getTime();var t=this;window.attachEvent?window.attachEvent('onload',function(){t._domReady('domReady')}):(window.addEventListener('DOMContentLoaded',function(){t._domReady('contReady')},!1),window.addEventListener('load',function(){t._domReady('domReady')},!1)),'undefined'===typeof window._lptStop&&this.load()},start:function(){this.autoStart=!0},_domReady:function(t){this.isDom||(this.isDom=!0,this.events.trigger('LPT','DOM_READY',{t:t})),this._timing[t]=(new Date).getTime()},vars:lpTag.vars||[],dbs:lpTag.dbs||[],ctn:lpTag.ctn||[],sdes:lpTag.sdes||[],hooks:lpTag.hooks||[],identities:lpTag.identities||[],ev:lpTag.ev||[]},lpTag.init()):window.lpTag._tagCount+=1;</script>
+        window.lpTag = window.lpTag || {}, 'undefined' == typeof window.lpTag._tagCount ? (window.lpTag = { wl: lpTag.wl || null, scp: lpTag.scp || null, site: '1685908' || '', section: lpTag.section || '', tagletSection: lpTag.tagletSection || null, autoStart: lpTag.autoStart !== !1, ovr: lpTag.ovr || {}, _v: '1.10.0', _tagCount: 1, protocol: 'https:', events: { bind: function (t, e, i) { lpTag.defer(function () { lpTag.events.bind(t, e, i) }, 0) }, trigger: function (t, e, i) { lpTag.defer(function () { lpTag.events.trigger(t, e, i) }, 1) } }, defer: function (t, e) { 0 === e ? (this._defB = this._defB || [], this._defB.push(t)) : 1 === e ? (this._defT = this._defT || [], this._defT.push(t)) : (this._defL = this._defL || [], this._defL.push(t)) }, load: function (t, e, i) { var n = this; setTimeout(function () { n._load(t, e, i) }, 0) }, _load: function (t, e, i) { var n = t; t || (n = this.protocol + '//' + (this.ovr && this.ovr.domain ? this.ovr.domain : 'lptag.liveperson.net') + '/tag/tag.js?site=' + this.site); var o = document.createElement('script'); o.setAttribute('charset', e ? e : 'UTF-8'), i && o.setAttribute('id', i), o.setAttribute('src', n), document.getElementsByTagName('head').item(0).appendChild(o) }, init: function () { this._timing = this._timing || {}, this._timing.start = (new Date).getTime(); var t = this; window.attachEvent ? window.attachEvent('onload', function () { t._domReady('domReady') }) : (window.addEventListener('DOMContentLoaded', function () { t._domReady('contReady') }, !1), window.addEventListener('load', function () { t._domReady('domReady') }, !1)), 'undefined' === typeof window._lptStop && this.load() }, start: function () { this.autoStart = !0 }, _domReady: function (t) { this.isDom || (this.isDom = !0, this.events.trigger('LPT', 'DOM_READY', { t: t })), this._timing[t] = (new Date).getTime() }, vars: lpTag.vars || [], dbs: lpTag.dbs || [], ctn: lpTag.ctn || [], sdes: lpTag.sdes || [], hooks: lpTag.hooks || [], identities: lpTag.identities || [], ev: lpTag.ev || [] }, lpTag.init()) : window.lpTag._tagCount += 1;</script>
     </script>
     <!-- END LivePerson Monitor. -->
 
@@ -28,7 +29,7 @@
             smsURI = "sms:+447480549496?body=I%20have%20a%20problem%20with%20my%20TV";
             // alert("This is an Android device!");
         }
-        openPage = function() {
+        openPage = function () {
             location.href = smsURI;
         }
     </script>
@@ -42,7 +43,7 @@
         });
 
         // Authentication JSMethod for LiveEngage
-        var lpGetAuthenticationToken = function(callback) {
+        var lpGetAuthenticationToken = function (callback) {
             console.log("inside lpGetAuthenticationToken!");
             var token = "tom_bot";
             if (token) {
@@ -52,6 +53,48 @@
             }
         };
     </script>
+
+    <script>
+        function requestCobrowse(serviceId) {
+            lpTag.taglets.cobrowse.loadApi(function (visitorApi) {
+
+                console.log("CoBrowse visitor API loaded");
+                visitorApi.once("sessionRejected", function () {
+                    alert("The service number is invalid.");
+                });
+
+                visitorApi.once("sessionOffered", function (event) {
+                    console.log("Agent answered the request and offers a CoBrowse session");
+                    var automaticallyAcceptOffer = true; // Set to false if you would like to ask the visitor to confirm the session
+                    start.
+
+                        if(automaticallyAcceptOffer || confirm("Would you like to start a CoBrowse session with '" + event.agentAlias +
+                            "'?")) {
+                        visitorApi.acceptSupportOffer(event);
+                    } else {
+                        visitorApi.cancelSupportOffer(event);
+                    }
+                });
+
+
+                function sessionReadyCallback(startEvent) {
+                    if (startEvent) {
+                        console.log("Session is ready and will be started shortly.");
+                    }
+                }
+
+                visitorApi.requestSupport({ serviceId: serviceId }, sessionReadyCallback);
+            });
+        }
+
+        function enterServiceNumber() {
+            var serviceId = prompt("Please enter the CoBrowse service number in the field below.");
+            if (serviceId) {
+                requestCobrowse(serviceId);
+            }
+        }
+    </script>
+
 
     <style>
         body {
@@ -125,7 +168,7 @@
     <br>
 
 
-<!--
+    <!--
     <div>
         <a href="https://rw.apple.com/urn:biz:5fc69572-f4b4-11e7-97e6-b97859c148c8?biz-intent-id=tom_abc&body=I%20want%20a%20new%20iPhone">
             <img src="icons/apple.png" width="100" height="auto">
@@ -135,20 +178,16 @@
     <br>
 -->
 
-    <div
-        class="apple-business-chat-banner-container"
-        data-apple-business-id="5fc69572-f4b4-11e7-97e6-b97859c148c8"
-        data-apple-business-intent-id="tom_abc"
-        data-apple-business-group-id="Ask us a question!"
-        data-apple-banner-cta="Ask us a question!"
-        data-apple-banner-context="Message with us now!"
-        data-apple-banner-scale="1.3"
-        data-apple-banner-background-color="rgb(175,17,97)"
-        data-apple-banner-text-color="rgb(255,255,255)"
-        data-apple-banner-icon-background-color="rgb(255,255,255)"
-        data-apple-banner-icon-color="rgb(175,17,97)"
-        data-apple-banner-orientation="vertical"
-    ></div>
+    <div class="apple-business-chat-banner-container" data-apple-business-id="5fc69572-f4b4-11e7-97e6-b97859c148c8"
+        data-apple-business-intent-id="tom_abc" data-apple-business-group-id="Ask us a question!"
+        data-apple-banner-cta="Ask us a question!" data-apple-banner-context="Message with us now!"
+        data-apple-banner-scale="1.3" data-apple-banner-background-color="rgb(175,17,97)"
+        data-apple-banner-text-color="rgb(255,255,255)" data-apple-banner-icon-background-color="rgb(255,255,255)"
+        data-apple-banner-icon-color="rgb(175,17,97)" data-apple-banner-orientation="vertical"></div>
+
+    <br>
+
+    <button onclick="enterServiceNumber()">Start CoBrowse</button>
 
 </body>
 
