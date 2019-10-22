@@ -162,12 +162,11 @@
                     var automaticallyAcceptOffer = true; // Set to false if you would like to ask the visitor to confirm the session
                     start.
 
-                        if(automaticallyAcceptOffer || confirm("Would you like to start a CoBrowse session with '" + event.agentAlias +
-                            "'?")) {
-                        visitorApi.acceptSupportOffer(event);
-                    } else {
-                        visitorApi.cancelSupportOffer(event);
-                    }
+                        if(automaticallyAcceptOffer || confirm("Would you like to start a CoBrowse session with '" + event.agentAlias + "'?")) {
+                            visitorApi.acceptSupportOffer(event);
+                        } else {
+                            visitorApi.cancelSupportOffer(event);
+                        }
                 });
 
                 function sessionReadyCallback(startEvent) {
