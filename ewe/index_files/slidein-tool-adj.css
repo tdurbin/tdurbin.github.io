@@ -1,0 +1,126 @@
+/*--------------------------------------------------
+ * Individualsierung
+ * ------------------------------------------------- */
+
+.si-tool.si-tool--bar{
+    border-width: 0px;
+    border-color: #73BDCC;
+	background-image: radial-gradient(circle at 40% 65%,#a8a19e,#56524b);
+}
+
+.si-tool-mobile-logo,
+.si-tool-desktop-logo{
+    margin: 0 0 10px 0;
+}
+
+/* ------------------
+ * Content
+ * ------------------ */
+
+/* Headline */
+.si-tool-headline{
+    font-size: 18px;
+    font-weight: bold;
+    font-style: semibold;
+    margin: 10px 0px 10px 0px;
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+}
+
+/* Message */
+.si-tool-msg{
+    font-size: 14px;
+    font-weight: normal;
+    font-style: normal;
+    margin: 0px 0px 10px 0px;
+	font-family: 'Open Sans', sans-serif;
+	padding-right: 20px;
+	color: white;
+	min-width: 200px;
+}
+
+/* Note */
+.si-tool-note{
+    font-size: 11px;
+    font-weight: normal;
+    font-style: italic;
+    margin: 0 0 10px 15px;
+	font-family: 'Open Sans', sans-serif;
+	color: white;
+}
+
+/* ------------------
+ * Elements
+ * ------------------ */
+
+.si-tool-close{
+    text-decoration: none;
+	margin: 0;
+	align-self:flex-start;
+	cursor: pointer;
+
+}
+
+.si-tool-close-icon{
+    background-color: transparent; 
+	/*background-image: url("closebutton.png");*/
+	background-repeat: no-repeat;
+	background-position: center;
+    color: white;
+
+	height: 25px;
+	width: 25px;
+	font-size: 1.5em;
+
+	padding: 0;
+	margin: 0;
+}
+
+.si-tool-close-label{
+    font-size: 14px;
+}
+
+/* ------------------
+ * Buttons
+ * ------------------ */
+
+/* Base button */
+.si-tool-btn{
+    margin-top: 15px !important;
+    margin-bottom: 5px;
+	margin-left: 0px;
+	margin-right:50px;
+	width: 180px; 
+	height: 40px;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 10px 10px;
+	font-family: 'Open Sans', sans-serif;
+
+}
+
+/* Primary button */
+.si-tool-btn--primary{
+    color: black;
+    background-color: #ffce04;
+	margin-top:5px;
+}
+.si-tool-btn--primary:hover,
+.si-tool-btn--primary:focus,
+.si-tool-btn--primary:active{
+    color: #00;
+    background-color: #ffe14b;
+}
+
+/* Secondary button */
+.si-tool-btn--secondary{
+    color: #ffffff;
+    background-color: #4c4842;
+	visibility: normal;
+}
+.si-tool-btn--secondary:hover,
+.si-tool-btn--secondary:focus,
+.si-tool-btn--secondary:active{
+    color: #ffffff;
+    background-color: #625e59;
+}
