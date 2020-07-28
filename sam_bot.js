@@ -1,12 +1,4 @@
-lpTag.sdes.push({
-    "type": "ctmrinfo",
-    "info": {
-        customerId: '1'
-    }
-});
-
-// Authentication JSMethod for LiveEngage
-var lpGetAuthenticationToken = function(callback) {
+var lpGetAuthenticationToken = function (callback) {
     console.log("inside lpGetAuthenticationToken!");
     var token = "sam_bot";
     if (token) {
@@ -15,3 +7,13 @@ var lpGetAuthenticationToken = function(callback) {
         callback(token);
     }
 };
+
+lpTag.identities = [];
+lpTag.identities.push(identityFn);
+function identityFn(callback) {
+    callback({
+        iss: "https://twd-oauth2.herokuapp.com/",
+        acr: "loa1",
+        sub: "srosendorff|20200217"
+    });
+}
