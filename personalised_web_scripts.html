@@ -1,0 +1,126 @@
+<!-- example regex -->
+[/s/S]*.(euronics|eulerhermes|williamhill|barclays|charlottetilbury|hillebrand|kuehne-nagel|ubisoft|booking|edfenergy|bt|custhelp|refinitiv|yell|tsb|nwl|cadbury).co(m|.uk)\/
+
+<!-- regular tag injection -->
+<script src="https://tdurbin.github.io/letag.js"></script>
+<script src="https://tdurbin.github.io/auth_bot.js"></script>
+
+<!-- cobrowse injection -->
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.1/sweetalert.min.js'></script>
+<link rel="stylesheet" type="text/css"
+	  href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.1/sweetalert.min.css">
+
+
+<script type="text/javascript">
+	/**
+	 * Requests a CoBrowse session using an agent's service id. This can be used in phone-only scenarios when
+	 * CoBrowse cannot be started via chat.
+	 *
+	 * Example Usage: requestCobrowse("123456");
+	 * @param serviceId
+	 */
+	function requestCobrowse(serviceId) {
+		lpTag.taglets.cobrowse.loadApi(function (visitorApi) {
+
+			console.log("CoBrowse visitor API loaded");
+
+			visitorApi.once("sessionRejected", function () {
+				alert("The service number is invalid.");
+			});
+
+			visitorApi.once("sessionOffered", function (event) {
+				console.log("Agent answered the request and offers a CoBrowse session");
+				var automaticallyAcceptOffer = true; // Set to false if you would like to ask the visitor to confirm the session start.
+
+				if (automaticallyAcceptOffer || confirm("Would you like to start a CoBrowse session with '" + event.agentAlias + "'?")) {
+					visitorApi.acceptSupportOffer(event);
+				} else {
+					visitorApi.cancelSupportOffer(event);
+				}
+			});
+
+
+			function sessionReadyCallback(startEvent) {
+				if (startEvent) {
+					console.log("Session is ready and will be started shortly.");
+				}
+			}
+
+			visitorApi.requestSupport({serviceId: serviceId}, sessionReadyCallback);
+		});
+	}
+
+
+	/**
+	 * Example: Display a simple dialog for entering the service number. In non proof-of-concept
+	 * deployments the prompt should be replaced with a dialog that reflects the CI of the brand.
+	 *H
+	 * This method should be called to show the service dialog, e.g.
+	 * <button onclick=enterServiceNumber>Request Native Cobrowse</button>
+	 */
+	function enterServiceNumber() {
+
+		swal.setDefaults({confirmButtonColor: '#650360'});
+
+		swal({
+			title: "Request CoBrowse",
+			text: "Please enter the service number provided over the phone:",
+			type: "input",
+			showCancelButton: true,
+			closeOnConfirm: false,
+			animation: "slide-from-top",
+			inputPlaceholder: "Service Number"
+		}, function (serviceId) {
+			if (serviceId === false) return false;
+			if (serviceId === "") {
+				swal.showInputError("Please specify a service number!");
+				return false
+			}
+
+			swal.close();
+			requestCobrowse(serviceId);
+		});
+	}
+
+	// IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT
+	// To place the button in the menubar of the brand's website
+	// simply adjust the buttonContainer css selector
+	window.addEventListener("load", function () {
+		var buttonContainer = "#form > footer > div.container-fluid > div.row-fluid > div:nth-child(1) > div.span4.nav-select1 > ul > li:nth-child(7) > a";
+                var $ = window.$ || window.jQuery;
+		if ($) {
+			$(buttonContainer).last().replaceWith("<a href='javascript:enterServiceNumber();'>CoBrowse with us</a>");
+			swal.close();
+		}
+	});
+
+</script>
+
+<!-- WA button -->
+<script src="https://emea-sc.github.io/clicktowhatsapp/index.js"></script>
+
+ <div id="mycontainer-waclick"
+       waclick-skill="testmdskill"
+       waclick-templateId="180597190528599"
+       waclick-outboundNumber="441242650378"
+       waclick-proactiveVariables=["Marco","shoes","in_Milan"] >
+ </div>
+
+ <!-- Product SDE injection -->
+ <script>
+    lpTag.sdes = lpTag.sdes||[];
+    lpTag.sdes.push(
+       {
+            "type": "prodView",
+            "currency": "HUF",
+            "products": [{
+                "product": {
+                       "name": "iPhone 11 Pro Max 64 GB",
+                       "category": "Apple",
+                       "sku": "iphone11promax64",
+                       "price": 35280
+                }
+            }]
+       }
+    );
+</script>
