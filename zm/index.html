@@ -5,7 +5,8 @@
 
     <meta property="og:title" content="Welcome to Y-Bank" />
     <meta property="og:image" content="https://content.lparc.com/tdurbin/ufb.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="shortcut icon" type="image/x-icon" href="https://www.liveperson.com/assets/img/favicon.ico" />
 
     <!-- BEGIN LivePerson Monitor. -->
@@ -49,7 +50,7 @@
             }
         };
 
-        lpTag.identities=[];
+        lpTag.identities = [];
         lpTag.identities.push(identityFn);
         function identityFn(callback) {
             callback({
@@ -113,7 +114,27 @@
             margin-right: auto;
         }
 
+        .float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+
+        .my-float {
+            margin-top: 16px;
+        }
     </style>
+
+
 
     <title>Welcome to Y-Bank</title>
 
@@ -144,7 +165,8 @@
     <br>
 
     <div>
-        <a href="https://business.google.com/message?args=CjkIAxIkMjU5Mjg4N2YtZDY1ZC00MDRiLTlkMjktYTVkYzVkNGQ5OGNkGgpjYy1saXN0aW5nIgNHTU0SVAoSY2MtbGlzdGluZ19jb250ZXh0Ej4KOHR5cGUuZ29vZ2xlYXBpcy5jb20vY2hhdC5ib3QucGxhdGZvcm0uQnVzaW5lc3NIdWJDb250ZXh0EgJICA">
+        <a
+            href="https://business.google.com/message?args=CjkIAxIkMjU5Mjg4N2YtZDY1ZC00MDRiLTlkMjktYTVkYzVkNGQ5OGNkGgpjYy1saXN0aW5nIgNHTU0SVAoSY2MtbGlzdGluZ19jb250ZXh0Ej4KOHR5cGUuZ29vZ2xlYXBpcy5jb20vY2hhdC5ib3QucGxhdGZvcm0uQnVzaW5lc3NIdWJDb250ZXh0EgJICA">
             <img src="icons/google.png" width="100" height="auto">
         </a>
     </div>
@@ -196,7 +218,7 @@
         <h3>Call or message us on <a href="tel:447480549496">07480 549496</a></h3>
     </div>
 
-    
+
     <br>
 
     <div class="apple-business-chat-banner-container" data-apple-business-id="5fc69572-f4b4-11e7-97e6-b97859c148c8"
@@ -206,6 +228,11 @@
         data-apple-banner-text-color="rgb(255,255,255)" data-apple-banner-icon-background-color="rgb(255,255,255)"
         data-apple-banner-icon-color="rgb(175,17,97)" data-apple-banner-orientation="vertical">
     </div>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <a href="https://api.whatsapp.com/send?phone=441242650378&text=Hello" class="float" target="_blank">
+        <i class="fa fa-whatsapp my-float"></i>
+    </a>
 
     <!-- Simple Voice to CoBrowse code example -->
 
