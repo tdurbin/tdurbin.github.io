@@ -1,0 +1,22 @@
+Welcome to HSBC Business Banking. How can we help you today?
+
+[ { "value": "Business Banking", "display": "Business Banking" }, { "display": "Cards", "value": "Cards" }, { "value": "Commercial Mortgage", "display": "Commercial Mortgage" }, { "value": "Loans", "display": "Loans" } ]
+
+[
+    {
+        "value": "Business Banking",
+        "display": "Business Banking"
+    },
+    {
+        "display": "Cards",
+        "value": "Cards"
+    },
+    {
+        "value": "Commercial Mortgage",
+        "display": "Commercial Mortgage"
+    },
+    {
+        "value": "Loans",
+        "display": "Loans"
+    }
+]
