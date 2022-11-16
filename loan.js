@@ -10,7 +10,7 @@ lpTag.sdes.push(
                 "product": {
                 "name": "Premier Personal Loan",
                 "category": "Loan",
-                "sku": "hsbc_prem_loan",
+                "sku": "hsbc_ppl",
                 "price": 15000
                 }, "quantity": 1
             }]
