@@ -1,22 +1,22 @@
-Welcome to HSBC Business Banking. How can we help you today?
+Welcome to TSB! How can we help you today?
 
 [ { "value": "Business Banking", "display": "Business Banking" }, { "display": "Cards", "value": "Cards" }, { "value": "Commercial Mortgage", "display": "Commercial Mortgage" }, { "value": "Loans", "display": "Loans" } ]
 
 [
     {
-        "value": "Business Banking",
-        "display": "Business Banking"
+        "value": "What is my balance?",
+        "display": "What is my balance?"
     },
     {
-        "display": "Cards",
-        "value": "Cards"
+        "display": "I've lost my card",
+        "value": "I've lost my card"
     },
     {
-        "value": "Commercial Mortgage",
-        "display": "Commercial Mortgage"
+        "value": "Card not working",
+        "display": "Card not working"
     },
     {
-        "value": "Loans",
-        "display": "Loans"
+        "value": "Apply for a loan",
+        "display": "Apply for a loan"
     }
 ]
