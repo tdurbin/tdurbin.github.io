@@ -2,7 +2,7 @@ lpTag.sdes = lpTag.sdes||[];
 lpTag.sdes.push(
    {
         "type": "cart",
-        "total": 45,
+        "total": 810,
         "currency": "GBP",
         "numItems": 3,
         "products": [{
