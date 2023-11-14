@@ -17,7 +17,7 @@ lpTag.sdes.push(
                 "preferred": "EMAIL",  // EMAIL, PHONE
                 "address": {
                     "country": "UK",  // COUNTRY
-                    "region": "OXON",  // REGION
+                    "region": "Bicester",  // REGION
                     "zipcode": "OX26 6XA"  // ZIP OR POSTAL CODE
                 },
             }],
