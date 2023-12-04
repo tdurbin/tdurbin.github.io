@@ -4,7 +4,7 @@ lpTag.sdes.push(
         "type": "cart",
         "total": 1821,
         "currency": "EUR",
-        "numItems": 2,
+        "numItems": 3,
         "products": [{
             "product": {
                 "name": "iPhone 15 128GB Black",
