@@ -87,6 +87,21 @@
         .button1 {background-color: #4CAF50;} /* Green */
         .button2 {background-color: #008CBA;} /* Blue */
 
+    table {
+      width: 100%;
+      height: 100vh; /* Adjust the height as needed */
+      border-collapse: collapse;
+    }
+
+    td {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .centered-div {
+      display: inline-block;
+    }
+
     </style>
 
     <title>William Hill | Authenticated</title>
@@ -117,7 +132,16 @@
     </div>
 -->
 
-    <div class="a" id="lp_messaging_button"></div>
+<table>
+    <tr>
+      <td>
+        <div class="centered-div" id="lp_messaging_button">
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <div class="a" id="lp_messaging_button"></div>
     
 </body>
 
