@@ -16,7 +16,7 @@ lpTag.sdes.push(
                 "name": "Full Fibre 500",
                 "category": "Full Fibre",
                 "sku": "ff500",
-                "price": 39
+                "price": 35
             }
         },
         {
@@ -25,14 +25,6 @@ lpTag.sdes.push(
                 "category": "Full Fibre",
                 "sku": "ff900",
                 "price": 45
-            }
-        },
-        {
-            "product": {
-                "name": "Full Fibre 65",
-                "category": "Full Fibre",
-                "sku": "ff65",
-                "price": 28
             }
         }]
     }
