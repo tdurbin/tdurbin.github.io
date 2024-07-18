@@ -14,6 +14,27 @@
     </script>
     <!-- END LivePerson Monitor. -->
 
+    <!-- BEGIN OAuth2 Script. -->
+    <script>
+        lpTag.sdes.push({
+            "type": "ctmrinfo",
+            "info": {
+                customerId: '1'
+            }
+        });
+        // Authentication JSMethod for LiveEngage
+        var lpGetAuthenticationToken = function (callback) {
+            console.log("inside lpGetAuthenticationToken!");
+            var token = "tom_bot";
+            if (token) {
+                console.log("got token! " + token);
+                console.log("calling callback with token...");
+                callback(token);
+            }
+        };
+    </script>
+
+
     <script src="https://tdurbin.github.io/tt/marketing_source.js"></script>
 
     <style>
