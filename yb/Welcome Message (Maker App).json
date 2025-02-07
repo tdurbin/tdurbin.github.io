@@ -1,7 +1,4 @@
-Welcome to Santander! How can we help you today?
-
-[ { "value": "Business Banking", "display": "Business Banking" }, { "display": "Cards", "value": "Cards" }, { "value": "Commercial Mortgage", "display": "Commercial Mortgage" }, { "value": "Loans", "display": "Loans" } ]
-
+Welcome to Nationwide! How can we help you today?
 [
     {
         "value": "What is my balance?",
@@ -20,3 +17,7 @@ Welcome to Santander! How can we help you today?
         "display": "Apply for a loan"
     }
 ]
+
+
+[ { "value": "Business Banking", "display": "Business Banking" }, { "display": "Cards", "value": "Cards" }, { "value": "Commercial Mortgage", "display": "Commercial Mortgage" }, { "value": "Loans", "display": "Loans" } ]
+
