@@ -33,7 +33,7 @@
 
     <style>
         body {
-            background-color: #1c1c1d;
+            background-color: #000;
             color: #fff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -48,8 +48,14 @@
 
         header img.logo {
             max-width: 200px;
-            /* Adjust size as needed */
+            height: 100px;
+            /* Set the desired height */
             margin-bottom: 20px;
+            border: 2px solid white;
+            border-radius: 5px;
+            object-fit: cover;
+            object-position: center center;
+            /* Symmetrically crops from all sides */
         }
 
         header p {
