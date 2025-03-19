@@ -34,3 +34,38 @@ City v Burnley now!
 
 [ { "value": "Create my Bet Builder!", "display": "Create my Bet Builder!" } ]
 
+
+
+{
+    "type": "vertical",
+    "tag": "generic",
+    "elements": [
+        {
+            "type": "image",
+            "url": "https://tdurbin.github.io/images/lp_banner.jpg"
+        },
+        {
+            "type": "text",
+            "text": "CX Transformation in Banking",
+            "tag": "title"
+        },
+        {
+            "type": "text",
+            "text": "Thank you for participating in the LivePerson London Dinner Masterclass 🤖🤓. We have prepared this CX Transformation in Banking white paper for your reading pleasure as a takeaway from the Masterclass!",
+            "tag": "subtitle"
+        },
+        {
+            "type": "button",
+            "title": "Download White Paper",
+            "click": {
+                "actions": [
+                    {
+                        "type": "link",
+                        "uri": "https://tdurbin.github.io/images/CX%20Transformation%20in%20Banking.pdf"
+                    }
+                ]
+            }
+        }
+    ]
+}
+
