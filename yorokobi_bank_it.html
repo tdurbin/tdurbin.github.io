@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOROKOBI Bank - Homepage</title>
+
+    <script
+        type="text/javascript">window.lpTag = window.lpTag || {}, 'undefined' == typeof window.lpTag._tagCount ? (window.lpTag = { wl: lpTag.wl || null, scp: lpTag.scp || null, site: '10859403' || '', section: lpTag.section || '', tagletSection: lpTag.tagletSection || null, autoStart: lpTag.autoStart !== !1, ovr: lpTag.ovr || {}, _v: '1.10.0', _tagCount: 1, protocol: 'https:', events: { bind: function (t, e, i) { lpTag.defer(function () { lpTag.events.bind(t, e, i) }, 0) }, trigger: function (t, e, i) { lpTag.defer(function () { lpTag.events.trigger(t, e, i) }, 1) } }, defer: function (t, e) { 0 === e ? (this._defB = this._defB || [], this._defB.push(t)) : 1 === e ? (this._defT = this._defT || [], this._defT.push(t)) : (this._defL = this._defL || [], this._defL.push(t)) }, load: function (t, e, i) { var n = this; setTimeout(function () { n._load(t, e, i) }, 0) }, _load: function (t, e, i) { var n = t; t || (n = this.protocol + '//' + (this.ovr && this.ovr.domain ? this.ovr.domain : 'lptag.liveperson.net') + '/tag/tag.js?site=' + this.site); var o = document.createElement('script'); o.setAttribute('charset', e ? e : 'UTF-8'), i && o.setAttribute('id', i), o.setAttribute('src', n), document.getElementsByTagName('head').item(0).appendChild(o) }, init: function () { this._timing = this._timing || {}, this._timing.start = (new Date).getTime(); var t = this; window.attachEvent ? window.attachEvent('onload', function () { t._domReady('domReady') }) : (window.addEventListener('DOMContentLoaded', function () { t._domReady('contReady') }, !1), window.addEventListener('load', function () { t._domReady('domReady') }, !1)), 'undefined' === typeof window._lptStop && this.load() }, start: function () { this.autoStart = !0 }, _domReady: function (t) { this.isDom || (this.isDom = !0, this.events.trigger('LPT', 'DOM_READY', { t: t })), this._timing[t] = (new Date).getTime() }, vars: lpTag.vars || [], dbs: lpTag.dbs || [], ctn: lpTag.ctn || [], sdes: lpTag.sdes || [], hooks: lpTag.hooks || [], identities: lpTag.identities || [], ev: lpTag.ev || [] }, lpTag.init()) : window.lpTag._tagCount += 1;</script>
+    <script>
+        lpTag.sdes.push({
+            "type": "ctmrinfo",
+            "info": {
+                customerId: '1'
+            }
+        });
+        // Authentication JSMethod for LiveEngage
+        var lpGetAuthenticationToken = function (callback) {
+            console.log("inside lpGetAuthenticationToken!");
+            var token = "tom_bot";
+            if (token) {
+                console.log("got token! " + token);
+                console.log("calling callback with token...");
+                callback(token);
+            }
+        };
+    </script>
+    <script>
+
+        /**
+        * Requests a CoBrowse session using an agent's service id. This can be used in phone-only scenarios when
+        * CoBrowse cannot be started via chat.
+        *
+        * Example Usage: requestCobrowse("123456");
+        * @param serviceId
+        */
+        function requestCobrowse(serviceId) {
+            lpTag.taglets.cobrowse.loadApi(function (visitorApi) {
+
+                console.log("CoBrowse visitor API loaded");
+                visitorApi.once("sessionRejected", function () {
+                    alert("Il numero di servizio non è valido.");
+                });
+
+                visitorApi.once("sessionOffered", function (event) {
+                    console.log("L'agente ha risposto alla richiesta e offre una sessione di CoBrowse");
+                    var automaticallyAcceptOffer = true; // Imposta su false se desideri chiedere al visitatore di confermare l'inizio della sessione.
+
+                    if (automaticallyAcceptOffer || confirm("Desideri iniziare una sessione di CoBrowse con '" + event.agentAlias + "'?")) {
+                        visitorApi.acceptSupportOffer(event);
+                    } else {
+                        visitorApi.cancelSupportOffer(event);
+                    }
+                });
+
+
+                function sessionReadyCallback(startEvent) {
+                    if (startEvent) {
+                        console.log("La sessione è pronta e inizierà a breve.");
+                    }
+                }
+
+                visitorApi.requestSupport({ serviceId: serviceId }, sessionReadyCallback);
+            });
+        }
+
+        /**
+        * Example: Display a simple dialog for entering the service number. In non proof-of-concept
+        * deployments the prompt should be replaced with a dialog that reflects the CI of the brand.
+        */
+
+        function enterServiceNumber() {
+            var serviceId = prompt("Inserisci il numero di servizio CoBrowse nel campo sottostante.");
+            if (serviceId) {
+                requestCobrowse(serviceId);
+            }
+        }
+
+    </script>
+
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        header img.logo {
+            max-width: 150px;
+            border: 2px solid white;
+            border-radius: 10px;
+        }
+
+        header p {
+            font-style: italic;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            border-bottom: 1px solid #fff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #fff;
+            color: #000;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #ddd;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #333;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="https://tdurbin.github.io/gtm/yorokobi_logo.png" alt="Logo Banca YOROKOBI" class="logo">
+        <p>Il tuo futuro, al sicuro.</p>
+    </header>
+    <main>
+        <section>
+            <h2>Online Banking</h2>
+            <p>Accedi ai tuoi conti sempre e ovunque. Gestisci le tue finanze con facilità e sicurezza.</p>
+            <a href="#" class="cta-button">Scopri di più</a>
+        </section>
+        <section>
+            <h2>Prestiti Personali</h2>
+            <p>Opzioni di prestito flessibili per soddisfare le tue esigenze finanziarie. Richiedi online e ottieni l'approvazione rapidamente.</p>
+            <a href="#" class="cta-button">Richiedi ora</a>
+        </section>
+        <section>
+            <h2>Servizi di Investimento</h2>
+            <p>Fai crescere il tuo patrimonio con la consulenza dei nostri esperti in investimenti. Esplora la nostra gamma di prodotti di investimento.</p>
+            <a href="#" class="cta-button">Esplora gli Investimenti</a>
+        </section>
+        <section>
+            <h2>Supporto Clienti</h2>
+            <p>Ottieni aiuto per navigare nel nostro sito.</p>
+            <a href="javascript:enterServiceNumber();" class="cta-button">Inizia CoBrowse</a>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Banca YOROKOBI. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+
+</html>
