@@ -46,10 +46,11 @@
             
             if (authCode) {
                 // Pass the code we grabbed from the URL to LivePerson
-                callback({
-                    ssoKey: authCode,
-                    redirect_uri: "https://tdurbin.github.io/auth/chat.html" // Must match the value used in index.html
-                });
+                callback(authCode);
+                //callback({
+                //    ssoKey: authCode,
+                //    redirect_uri: "https://tdurbin.github.io/auth/chat.html" // Must match the value used in index.html
+                //});
             } else {
                 // If the chat is opened but the user isn't logged in, send them to login
                 console.log("User not logged in, cannot start authenticated chat.");
