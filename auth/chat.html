@@ -40,7 +40,8 @@
 
         // 2. Define the LivePerson Authentication Hook
         // This function is called AUTOMATICALLY by the LivePerson SDK when the chat window opens
-        window.lpGetAuthenticationToken = function(callback) {
+        // window.lpGetAuthenticationToken = function(callback) {
+        var lpGetAuthenticationToken = function(callback) {
             console.log("LivePerson is asking for the token...");
             
             if (authCode) {
