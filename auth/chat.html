@@ -110,7 +110,7 @@
             statusDiv.className = "status-box success";
             statusDiv.innerHTML = `
                 <strong>Authentication Successful</strong><br><br>
-                <span><strong>User ID (sub):</strong> ${userInfo.sub : 'Unknown'}</span><br>
+                <span><strong>User ID (sub):</strong> ${userInfo ? userInfo.sub : 'Unknown'}</span><br>
                 <span><strong>Auth Code:</strong> ${credentials.code.substring(0,15)}...</span><br><br>
                 <em>The LivePerson chat button should appear shortly.</em>
             `;
