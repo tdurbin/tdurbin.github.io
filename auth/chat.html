@@ -93,11 +93,10 @@
             if (credentials.code) {
                 console.log("[Auth] Sending Code to Backend.");
                 // Note: The redirect_uri here allows the backend to verify the code
-                // callback({
-                //     ssoKey: credentials.code,
-                //     redirect_uri: CONF.redirect_uri
-                // });
-                callback(credentials.code);
+                callback({
+                    ssoKey: credentials.code,
+                    redirect_uri: CONF.redirect_uri
+                });
             } else {
                 console.error("[Auth] No Auth Code available.");
                 callback(null);
