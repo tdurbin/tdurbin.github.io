@@ -87,7 +87,7 @@
 
         // RUNTIME: Define Authentication Handshake (Security)
         // This runs when the chat window actually tries to connect
-        window.lpGetAuthenticationToken = function(callback) {
+        var lpGetAuthenticationToken = function(callback) {
             console.log("[Auth] LivePerson requesting handshake...");
             
             if (credentials.code) {
