@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Secure Chat Area</title>
+    <style>
+        body { font-family: sans-serif; padding: 50px; }
+        .status { padding: 20px; background: #e0f7fa; border-radius: 5px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to the Member Area</h1>
+    
+    <div id="status" class="status">Checking authentication...</div>
+    <button onclick="logout()">Log Out</button>
+
+    <script>
+        // 1. Parse the URL to get the 'code' sent by Auth0
+        const urlParams = new URLSearchParams(window.location.search);
+        const authCode = urlParams.get('code');
+
+        const statusDiv = document.getElementById('status');
+
+        if (authCode) {
+            statusDiv.innerHTML = `<strong>Success!</strong> Auth Code received: <code>${authCode.substring(0,10)}...</code><br>Connecting to LivePerson...`;
+            
+            // CLEAN URL (Optional): Remove the code from the address bar so the user doesn't see it
+            // window.history.replaceState({}, document.title, window.location.pathname);
+            
+        } else {
+            statusDiv.innerHTML = "No credentials found. Redirecting to login...";
+            setTimeout(() => { window.location.href = 'index.html'; }, 2000);
+        }
+
+        // 2. Define the LivePerson Authentication Hook
+        // This function is called AUTOMATICALLY by the LivePerson SDK when the chat window opens
+        window.lpGetAuthenticationToken = function(callback) {
+            console.log("LivePerson is asking for the token...");
+            
+            if (authCode) {
+                // Pass the code we grabbed from the URL to LivePerson
+                callback({
+                    ssoKey: authCode,
+                    redirect_uri: "ttps://tdurbin.github.io/auth/chat.html" // Must match the value used in index.html
+                });
+            } else {
+                // If the chat is opened but the user isn't logged in, send them to login
+                console.log("User not logged in, cannot start authenticated chat.");
+                callback(null); // Or redirect to login
+            }
+        };
+
+        // 3. LOGOUT FUNCTION
+        function logout() {
+            // Replace with your domain and client ID
+            const domain = "dev-0ds2lps500xulygz.uk.auth0.com";
+            const clientId = "YetyzcqmFckYtsLOH3HhLieK6yRNy254z";
+            const returnTo = "https://tdurbin.github.io/auth/index.html";
+            
+            window.location.href = `https://${domain}/v2/logout?client_id=${clientId}&returnTo=${encodeURIComponent(returnTo)}`;
+        }
+    </script>
+
+    </body>
+</html>
