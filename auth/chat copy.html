@@ -50,27 +50,40 @@
         const credentials = getAuthParams();
         let userInfo = null;
 
+        // PRE-LOAD: Define LivePerson Identity (Targeting)
+        // This MUST run before the main LP tag loads
+        // window.lpTag = window.lpTag || {};
+        // window.lpTag.identities = [];
+        // window.lpTag.identities.push(function(callback) {
+        //     if (credentials.id_token) {
+        //         userInfo = decodeJwt(credentials.id_token);
+        //         console.log("[Identity] User identified:", userInfo.sub);
+        //         
+        //         callback({
+        //             iss: userInfo.iss, // e.g. https://dev-....auth0.com/
+        //             acr: 'loa1',       // Mandatory for LP
+        //             sub: userInfo.sub  // The unique User ID 
+        //         });
+        //     } else {
+        //         console.warn("[Identity] No ID Token found. Chat button may be hidden.");
+        //         callback(null);
+        //     }
+        // });
+
         // Initialize the lpTag namespace and the identity array, if the identity function is placed above the tag.
         var lpTag = {};
         lpTag.identities = [];
 
-        // lpTag.identities.push(identityFn);
+        lpTag.identities.push(identityFn);
         userInfo = decodeJwt(credentials.id_token);
         console.log("[Identity] User identified:", userInfo.sub);
-        // function identityFn(callback) {
-        //     callback({
-        //         iss: userInfo.iss,
-        //         acr: "loa1",
-        //         sub: userInfo.sub
-        //     });
-        // }
-
-        lpTag.sdes.push({
-            "type": "ctmrinfo",
-            "info": {
-                customerId: credentials.code
-            }
-        });
+        function identityFn(callback) {
+            callback({
+                iss: userInfo.iss,
+                acr: "loa1",
+                sub: userInfo.sub
+            });
+        }
 
         // RUNTIME: Define Authentication Handshake (Security)
         // This runs when the chat window actually tries to connect
