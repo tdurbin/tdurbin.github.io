@@ -95,7 +95,9 @@
                 // Passing null tells LP "I have nothing new to give you." 
                 // If LP has a refresh token (offline_access), it will stay connected. 
                 // If not, the user will need to log in again.
-                callback(null); 
+                // callback(null); 
+                const returnTo = "https://tdurbin.github.io/auth/index.html";
+                window.location.href = `https://${CONF.auth0_domain}/v2/logout?client_id=${CONF.auth0_client_id}&returnTo=${encodeURIComponent(returnTo)}`;
             }
             // SCENARIO 3: No code at all.
             else {
