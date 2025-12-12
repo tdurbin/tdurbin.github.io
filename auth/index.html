@@ -36,7 +36,7 @@
                         `response_type=code id_token` +
                         `&client_id=${CONFIG.clientId}` +
                         `&redirect_uri=${encodeURIComponent(CONFIG.redirectUri)}` +
-                        `&scope=openid profile email` +
+                        `&scope=openid profile email offline_access` +
                         `&nonce=${nonce}`;
 
             // 3. Redirect
