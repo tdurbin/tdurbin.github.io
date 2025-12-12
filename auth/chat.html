@@ -31,10 +31,7 @@
         function getAuthParams() {
             const hash = window.location.hash.substring(1);
             const params = new URLSearchParams(hash);
-            return {
-                code: params.get('code'),
-                id_token: params.get('id_token')
-            };
+            return { id_token: params.get('id_token') };
         }
 
         // Decode JWT to read the 'sub' and 'iss'
@@ -52,8 +49,7 @@
         // --- 2. LOGIC ---
         
         const credentials = getAuthParams();
-        let userInfo = null;
-        userInfo = decodeJwt(credentials.id_token);
+        let userInfo = decodeJwt(credentials.id_token);
         
         // PRE-LOAD: Define LivePerson Identity (Targeting)
         // Required to show the messaging invite button.
@@ -98,7 +94,7 @@
     <script>
         const statusDiv = document.getElementById('status');
 
-        if (credentials.code || credentials.id_token) {
+        if (credentials.id_token) {
 
             // Pretty-print the decoded JSON for easier reading
             const jsonPayload = userInfo ? JSON.stringify(userInfo, null, 2) : "Could not decode";
@@ -118,9 +114,6 @@
                 
                 <p><strong>2. Raw ID Token (JWT):</strong></p>
                 <textarea style="width:100%; height:80px; font-family:monospace; font-size:12px; padding:5px;">${credentials.id_token || "No ID Token found"}</textarea>
-                
-                <p><strong>3. Auth Code (ssoKey):</strong></p>
-                <textarea style="width:100%; height:40px; font-family:monospace; font-size:12px; padding:5px;">${credentials.code || "No Code found"}</textarea>
             `;
 
             // OPTIONAL: Comment this out while debugging so you can see the parameters in the URL
@@ -128,10 +121,9 @@
 
         } else {
             statusDiv.className = "status-box error";
-            statusDiv.innerHTML = `
-                <strong>No Credentials Found</strong><br>
-                Please return to the login page to authenticate.
-            `;
+            statusDiv.innerHTML = "Session expired. Please log in again.";
+            // Optional: Auto-redirect to login
+            setTimeout(() => logout(), 2000);
         }
 
         function logout() {

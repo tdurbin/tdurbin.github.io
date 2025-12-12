@@ -27,21 +27,20 @@
         };
 
         function login() {
-            // 1. Create a random nonce (Required when requesting id_token)
+            // 1. Create a random nonce (REQUIRED for id_token security)
             const nonce = "nonce-" + Math.random().toString(36).substring(2) + Date.now();
             
             // 2. Construct the Auth0 URL
-            // We request "code" (for backend security) AND "id_token" (for frontend identity)
             const url = `https://${CONFIG.domain}/authorize?` + 
-                        `response_type=code id_token` +
+                        `response_type=id_token` +
                         `&client_id=${CONFIG.clientId}` +
                         `&redirect_uri=${encodeURIComponent(CONFIG.redirectUri)}` +
-                        `&scope=openid profile email offline_access` +
+                        `&scope=openid profile email` +
                         `&nonce=${nonce}`;
 
             // 3. Redirect
             window.location.href = url;
-        }
+        } 
     </script>
 </body>
 </html>
