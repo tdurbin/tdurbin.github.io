@@ -72,11 +72,11 @@
         var lpGetAuthenticationToken = function(callback) {
             console.log("[Auth] LivePerson requesting handshake...");
             
-            if (credentials.code) {
-                console.log("[Auth] Sending Code to Backend.");
-                // Note: The redirect_uri here allows the backend to verify the code
+            if (credentials.id_token) {
+                console.log("[Auth] Sending ID Token (JWT) to Backend.");
+                // Note: The redirect_uri here allows the backend to verify the token
                 callback({
-                    ssoKey: credentials.code,
+                    ssoKey: credentials.id_token,
                     redirect_uri: CONF.redirect_uri
                 });
             } else {
