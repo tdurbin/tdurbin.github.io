@@ -78,14 +78,19 @@
 
         // RUNTIME: Define Authentication Handshake (Security)
         // This runs when the chat window actually tries to connect
-        // Authentication JSMethod for LiveEngage
-        var lpGetAuthenticationToken = function (callback) {
-            console.log("inside lpGetAuthenticationToken!");
-            var token = credentials.code;
-            if (token) {
-                console.log("got token! " + token);
-                console.log("calling callback with token...");
-                callback(token);
+        var lpGetAuthenticationToken = function(callback) {
+            console.log("[Auth] LivePerson requesting handshake...");
+            
+            if (credentials.code) {
+                console.log("[Auth] Sending Code to Backend.");
+                // Note: The redirect_uri here allows the backend to verify the code
+                callback({
+                    ssoKey: credentials.code,
+                    redirect_uri: CONF.redirect_uri
+                });
+            } else {
+                console.error("[Auth] No Auth Code available.");
+                callback(null);
             }
         };
 
