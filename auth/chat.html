@@ -53,28 +53,28 @@
         
         const credentials = getAuthParams();
         let userInfo = null;
-
+        userInfo = decodeJwt(credentials.id_token);
+        
         // Initialize the lpTag namespace and the identity array, if the identity function is placed above the tag.
         // var lpTag = {};
         // lpTag.identities = [];
 
-        // lpTag.identities.push(identityFn);
-        userInfo = decodeJwt(credentials.id_token);
+        lpTag.identities.push(identityFn);
         console.log("[Identity] User identified:", userInfo.sub);
-        // function identityFn(callback) {
-        //     callback({
-        //         iss: userInfo.iss,
-        //         acr: "loa1",
-        //         sub: userInfo.sub
-        //     });
-        // }
+        function identityFn(callback) {
+            callback({
+                iss: userInfo.iss,
+                acr: "loa1",
+                sub: userInfo.sub
+            });
+        }
 
-        lpTag.sdes.push({
-            "type": "ctmrinfo",
-            "info": {
-                customerId: userInfo.sub
-            }
-        });
+        //lpTag.sdes.push({
+        //    "type": "ctmrinfo",
+        //    "info": {
+        //        customerId: userInfo.sub
+        //    }
+        //});
 
         // RUNTIME: Define Authentication Handshake (Security)
         // This runs when the chat window actually tries to connect
@@ -84,11 +84,10 @@
             if (credentials.code) {
                 console.log("[Auth] Sending Code to Backend.");
                 // Note: The redirect_uri here allows the backend to verify the code
-                callback(credentials.code);
-//              callback({
-//                  ssoKey: credentials.code,
-//                  redirect_uri: CONF.redirect_uri
-//              });
+                callback({
+                    ssoKey: credentials.code,
+                    redirect_uri: CONF.redirect_uri
+                });
             } else {
                 console.error("[Auth] No Auth Code available.");
                 callback(null);
