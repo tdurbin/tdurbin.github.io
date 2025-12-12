@@ -75,20 +75,18 @@
 
         // RUNTIME: Define Authentication Handshake (Security)
         // This runs when the chat window attempts to connect (initially or on refresh)
-        //window.
-        var lpGetAuthenticationToken = function(callback) {
+        window.lpGetAuthenticationToken = function(callback) {
             console.log("[Auth] LivePerson requesting handshake...");
             
             // SCENARIO 1: First time connecting. We have a code and haven't used it.
             if (credentials.code && !codeHasBeenUsed) {
                 console.log("[Auth] Sending Auth Code to LivePerson backend.");
                 codeHasBeenUsed = true; // MARK AS USED to prevent 401 loop
-                
+                callback(credentials.code);                 
                 //callback({
                 //    ssoKey: credentials.code,
                 //    redirect_uri: CONF.redirect_uri
-                // });
-                callback(credentials.code);
+                //});
             } 
             // SCENARIO 2: Re-connecting (e.g. minimize/maximize) but code is stale.
             else if (codeHasBeenUsed) {
@@ -97,14 +95,8 @@
                 // Passing null tells LP "I have nothing new to give you." 
                 // If LP has a refresh token (offline_access), it will stay connected. 
                 // If not, the user will need to log in again.
-                // callback(null); 
-                // const returnTo = "https://tdurbin.github.io/auth/index.html";
-                // window.location.href = `https://${CONF.auth0_domain}/v2/logout?client_id=${CONF.auth0_client_id}&returnTo=${encodeURIComponent(returnTo)}`;
-                //callback({
-                //    ssoKey: credentials.code,
-                //    redirect_uri: CONF.redirect_uri
-                //});
-                callback(credentials.code);
+                //callback(null);
+                callback(credentials.code); 
             }
             // SCENARIO 3: No code at all.
             else {
