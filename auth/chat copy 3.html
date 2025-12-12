@@ -12,6 +12,10 @@
         button { background: #555; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; }
     </style>
 
+    <!-- BEGIN LivePerson Monitor. -->
+    <script type="text/javascript">window.lpTag=window.lpTag||{},'undefined'==typeof window.lpTag._tagCount?(window.lpTag={wl:lpTag.wl||null,scp:lpTag.scp||null,site:'81412129'||'',section:lpTag.section||'',tagletSection:lpTag.tagletSection||null,autoStart:lpTag.autoStart!==!1,ovr:lpTag.ovr||{},_v:'1.10.0',_tagCount:1,protocol:'https:',events:{bind:function(t,e,i){lpTag.defer(function(){lpTag.events.bind(t,e,i)},0)},trigger:function(t,e,i){lpTag.defer(function(){lpTag.events.trigger(t,e,i)},1)}},defer:function(t,e){0===e?(this._defB=this._defB||[],this._defB.push(t)):1===e?(this._defT=this._defT||[],this._defT.push(t)):(this._defL=this._defL||[],this._defL.push(t))},load:function(t,e,i){var n=this;setTimeout(function(){n._load(t,e,i)},0)},_load:function(t,e,i){var n=t;t||(n=this.protocol+'//'+(this.ovr&&this.ovr.domain?this.ovr.domain:'lptag.liveperson.net')+'/tag/tag.js?site='+this.site);var o=document.createElement('script');o.setAttribute('charset',e?e:'UTF-8'),i&&o.setAttribute('id',i),o.setAttribute('src',n),document.getElementsByTagName('head').item(0).appendChild(o)},init:function(){this._timing=this._timing||{},this._timing.start=(new Date).getTime();var t=this;window.attachEvent?window.attachEvent('onload',function(){t._domReady('domReady')}):(window.addEventListener('DOMContentLoaded',function(){t._domReady('contReady')},!1),window.addEventListener('load',function(){t._domReady('domReady')},!1)),'undefined'===typeof window._lptStop&&this.load()},start:function(){this.autoStart=!0},_domReady:function(t){this.isDom||(this.isDom=!0,this.events.trigger('LPT','DOM_READY',{t:t})),this._timing[t]=(new Date).getTime()},vars:lpTag.vars||[],dbs:lpTag.dbs||[],ctn:lpTag.ctn||[],sdes:lpTag.sdes||[],hooks:lpTag.hooks||[],identities:lpTag.identities||[],ev:lpTag.ev||[]},lpTag.init()):window.lpTag._tagCount+=1;</script>
+    <!-- END LivePerson Monitor. -->
+
     <script>
         // --- CONFIGURATION ---
         const CONF = {
@@ -50,60 +54,47 @@
         const credentials = getAuthParams();
         let userInfo = null;
 
-        // --- 3. LIVEPERSON INTEGRATION ---
-        // RUNTIME: Define User Identity (Targeting)
         // Initialize the lpTag namespace and the identity array, if the identity function is placed above the tag.
-        var lpTag = {};
-        lpTag.identities = [];
+        // var lpTag = {};
+        // lpTag.identities = [];
 
-        lpTag.identities.push(identityFn);
+        // lpTag.identities.push(identityFn);
         userInfo = decodeJwt(credentials.id_token);
         console.log("[Identity] User identified:", userInfo.sub);
-        function identityFn(callback) {
-            callback({
-                iss: userInfo.iss,
-                acr: "loa1",
-                sub: userInfo.sub
-            });
-        }
+        // function identityFn(callback) {
+        //     callback({
+        //         iss: userInfo.iss,
+        //         acr: "loa1",
+        //         sub: userInfo.sub
+        //     });
+        // }
+
+        lpTag.sdes.push({
+            "type": "ctmrinfo",
+            "info": {
+                customerId: userInfo.sub
+            }
+        });
 
         // RUNTIME: Define Authentication Handshake (Security)
         // This runs when the chat window actually tries to connect
-        // 4. DEFINE AUTHENTICATION HOOK (Runs when user clicks Chat)
-        // This validates the secure session (Authentication)
-        let codeHasBeenUsed = false; // FLAG: Track if we used the code
-
-        window.lpGetAuthenticationToken = function(callback) {
-            console.log("AUTH: LivePerson requesting handshake...");
+        var lpGetAuthenticationToken = function(callback) {
+            console.log("[Auth] LivePerson requesting handshake...");
             
-            // Scenario A: We have a code and haven't used it yet
-            if (authData.code && !codeHasBeenUsed) {
-                console.log("AUTH: Sending Auth Code to LivePerson backend.");
-                codeHasBeenUsed = true; // Mark as used immediately
-                
+            if (credentials.code) {
+                console.log("[Auth] Sending Code to Backend.");
+                // Note: The redirect_uri here allows the backend to verify the code
                 callback({
-                    ssoKey: authData.code,
+                    ssoKey: credentials.code,
                     redirect_uri: CONF.redirect_uri
                 });
-            } 
-            // Scenario B: We already used the code, so it's dead.
-            else if (codeHasBeenUsed) {
-                console.error("AUTH: Session expired and Auth Code already used. Redirecting to refresh...");
-                // Optional: Automatically send them back to login to get a new code
-                // window.location.href = 'index.html'; 
-                callback(null);
-            }
-            // Scenario C: No code at all
-            else {
-                console.error("AUTH: No Auth Code available.");
+            } else {
+                console.error("[Auth] No Auth Code available.");
                 callback(null);
             }
         };
-    </script>
 
-    <!-- BEGIN LivePerson Monitor. -->
-    <script type="text/javascript">window.lpTag=window.lpTag||{},'undefined'==typeof window.lpTag._tagCount?(window.lpTag={wl:lpTag.wl||null,scp:lpTag.scp||null,site:'81412129'||'',section:lpTag.section||'',tagletSection:lpTag.tagletSection||null,autoStart:lpTag.autoStart!==!1,ovr:lpTag.ovr||{},_v:'1.10.0',_tagCount:1,protocol:'https:',events:{bind:function(t,e,i){lpTag.defer(function(){lpTag.events.bind(t,e,i)},0)},trigger:function(t,e,i){lpTag.defer(function(){lpTag.events.trigger(t,e,i)},1)}},defer:function(t,e){0===e?(this._defB=this._defB||[],this._defB.push(t)):1===e?(this._defT=this._defT||[],this._defT.push(t)):(this._defL=this._defL||[],this._defL.push(t))},load:function(t,e,i){var n=this;setTimeout(function(){n._load(t,e,i)},0)},_load:function(t,e,i){var n=t;t||(n=this.protocol+'//'+(this.ovr&&this.ovr.domain?this.ovr.domain:'lptag.liveperson.net')+'/tag/tag.js?site='+this.site);var o=document.createElement('script');o.setAttribute('charset',e?e:'UTF-8'),i&&o.setAttribute('id',i),o.setAttribute('src',n),document.getElementsByTagName('head').item(0).appendChild(o)},init:function(){this._timing=this._timing||{},this._timing.start=(new Date).getTime();var t=this;window.attachEvent?window.attachEvent('onload',function(){t._domReady('domReady')}):(window.addEventListener('DOMContentLoaded',function(){t._domReady('contReady')},!1),window.addEventListener('load',function(){t._domReady('domReady')},!1)),'undefined'===typeof window._lptStop&&this.load()},start:function(){this.autoStart=!0},_domReady:function(t){this.isDom||(this.isDom=!0,this.events.trigger('LPT','DOM_READY',{t:t})),this._timing[t]=(new Date).getTime()},vars:lpTag.vars||[],dbs:lpTag.dbs||[],ctn:lpTag.ctn||[],sdes:lpTag.sdes||[],hooks:lpTag.hooks||[],identities:lpTag.identities||[],ev:lpTag.ev||[]},lpTag.init()):window.lpTag._tagCount+=1;</script>
-    <!-- END LivePerson Monitor. -->
+    </script>
 
 </head>
 <body>
