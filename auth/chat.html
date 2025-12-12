@@ -55,10 +55,8 @@
         let userInfo = null;
         userInfo = decodeJwt(credentials.id_token);
         
-        // Initialize the lpTag namespace and the identity array, if the identity function is placed above the tag.
-        // var lpTag = {};
-        // lpTag.identities = [];
-
+        // PRE-LOAD: Define LivePerson Identity (Targeting)
+        // Required to show the messaging invite button.
         lpTag.identities.push(identityFn);
         console.log("[Identity] User identified:", userInfo.sub);
         function identityFn(callback) {
@@ -68,13 +66,6 @@
                 sub: userInfo.sub
             });
         }
-
-        //lpTag.sdes.push({
-        //    "type": "ctmrinfo",
-        //    "info": {
-        //        customerId: userInfo.sub
-        //    }
-        //});
 
         // RUNTIME: Define Authentication Handshake (Security)
         // This runs when the chat window actually tries to connect
@@ -113,7 +104,7 @@
             statusDiv.innerHTML = `
                 <strong>Authentication Successful</strong><br><br>
                 <span><strong>User ID (sub):</strong> ${userInfo ? userInfo.sub : 'Unknown'}</span><br>
-                <span><strong>Auth Code:</strong> ${credentials.code.substring(0,15)}...</span><br><br>
+                <span><strong>Auth Code:</strong> ${credentials.code}</span><br><br>
                 <em>The LivePerson chat button should appear shortly.</em>
             `;
             
