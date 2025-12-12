@@ -91,41 +91,26 @@
 <body>
 
     <h1>Welcome to the Member Area</h1>
-
+    
     <div id="status" class="status-box">Initializing...</div>
     <button onclick="logout()">Log Out</button>
 
     <script>
+        // --- 4. UI FEEDBACK & CLEANUP ---
         const statusDiv = document.getElementById('status');
 
-        if (credentials.code || credentials.id_token) {
-
-            // Pretty-print the decoded JSON for easier reading
-            const jsonPayload = userInfo ? JSON.stringify(userInfo, null, 2) : "Could not decode";
-
+        if (credentials.code && credentials.id_token) {
             statusDiv.className = "status-box success";
             statusDiv.innerHTML = `
-                <h3>✅ Authentication Successful</h3>
-                <p><strong>Status:</strong> Credentials received.</p>
-                <p><strong>User ID (sub):</strong> <code>${userInfo ? userInfo.sub : 'Unknown'}</code></p>
-                
-                <hr style="margin: 20px 0; border: 0; border-top: 1px solid #ccc;">
-                
-                <h4>🔍 Debug Information</h4>
-                
-                <p><strong>1. Decoded Payload (What LP sees):</strong></p>
-                <pre style="background:#f4f4f4; padding:10px; border-radius:5px; overflow-x:auto;">${jsonPayload}</pre>
-                
-                <p><strong>2. Raw ID Token (JWT):</strong></p>
-                <textarea style="width:100%; height:80px; font-family:monospace; font-size:12px; padding:5px;">${credentials.id_token || "No ID Token found"}</textarea>
-                
-                <p><strong>3. Auth Code (ssoKey):</strong></p>
-                <textarea style="width:100%; height:40px; font-family:monospace; font-size:12px; padding:5px;">${credentials.code || "No Code found"}</textarea>
+                <strong>Authentication Successful</strong><br><br>
+                <span><strong>User ID (sub):</strong> ${userInfo ? userInfo.sub : 'Unknown'}</span><br>
+                <span><strong>Auth Code:</strong> ${credentials.code}</span><br><br>
+                <em>The LivePerson chat button should appear shortly.</em>
             `;
-
-            // OPTIONAL: Comment this out while debugging so you can see the parameters in the URL
-            // window.history.replaceState({}, document.title, window.location.pathname);
-
+            
+            // SECURITY: Clear the address bar so the code/token aren't visible
+            window.history.replaceState({}, document.title, window.location.pathname);
+            
         } else {
             statusDiv.className = "status-box error";
             statusDiv.innerHTML = `
