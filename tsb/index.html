@@ -37,7 +37,7 @@
         footer { background-color: var(--tsb-dark-blue); color: white; padding: 40px; margin-top: 50px; font-size: 12px; text-align: center; }
         
         /* DEMO CONSOLE STYLES */
-        #lp-monitor { position: fixed; bottom: 20px; right: 20px; width: 380px; background-color: #1a1a1a; color: #00ff41; font-family: 'Courier New', monospace; padding: 15px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.6); z-index: 9999; font-size: 11px; opacity: 0.95; border: 1px solid #333; }
+        #lp-monitor { position: fixed; bottom: 20px; left: 20px; width: 380px; background-color: #1a1a1a; color: #00ff41; font-family: 'Courier New', monospace; padding: 15px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.6); z-index: 9999; font-size: 11px; opacity: 0.95; border: 1px solid #333; }
         #lp-monitor h4 { margin: 0 0 10px 0; color: #fff; border-bottom: 1px solid #444; padding-bottom: 5px; display: flex; justify-content: space-between; font-size: 13px; }
         #lp-output { height: 200px; overflow-y: auto; white-space: pre-wrap; scrollbar-width: thin; scrollbar-color: #444 #1a1a1a; }
         .log-entry { margin-bottom: 10px; border-bottom: 1px dashed #333; padding-bottom: 5px; }
@@ -127,6 +127,21 @@
     <script>
         // Scenario 1: On Page Load
         window.onload = function() {
+
+            lpTag.sdes = lpTag.sdes||[];
+            lpTag.sdes.push(
+                {
+                    "type": "prodView",  //MANDATORY
+                    "products": [{  //ARRAY OF PRODUCTS
+                       "product": {
+                            "name": "Mortgage in Principle",  //PRODUCT NAME
+                            "category": "Mortgages",  //PRODUCT CATEGORY NAME
+                            "sku": "MIP-001"  //PRODUCT SKU OR UNIQUE IDENTIFIER
+                        }
+                    }]
+                }
+            );
+
             pushDemoSDE("prodView", {
                 "products": [{
                     "product": {
@@ -164,7 +179,8 @@
                             "preferred": "EMAIL",  // EMAIL, PHONE
                         }],
                         "gender": "FEMALE",  // MALE, FEMALE, OTHER
-                        "language": "en-GB",  // LANGUAGE 
+                        "company": "Sarah Smith LLC", // COMPANY NAME
+                        "language": "en-GB"  // LANGUAGE 
                         }
                 }
             );
@@ -191,11 +207,24 @@
 
         // Scenario 3: Start Application (Lead)
         function triggerApplicationSDE() {
+            const leadId = Math.floor(Math.random() * 99999);
+            lpTag.sdes = lpTag.sdes||[];
+            lpTag.sdes.push(
+                {
+                    "type": "lead",  //MANDATORY
+                        "lead": {
+                        "topic": "Mortgage Application",  //TOPIC OR NAME OF A SUBMITTED LEAD
+                        "value": 250000.00,  //EVALUATED VALUE OF THE LEAD
+                        "currency": "GBP",  //CURRENCY CODE
+                        "leadId": "TSB-" + leadId  //LEAD IDENTIFIER OR TICKET ID
+                        }
+                }
+            );
             pushDemoSDE("lead", {
                 "lead": {
-                    "topic": "mortgage_application",
+                    "topic": "Mortgage Application",
                     "value": 250000.00,
-                    "leadId": "LEAD-" + Math.floor(Math.random() * 99999),
+                    "leadId": "TSB-" + leadId,
                     "currency": "GBP"
                 }
             });
