@@ -1,76 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage in Principle | Apply for a Mortgage | TSB Bank</title>
+    
+    <style>
+        :root { --tsb-dark-blue: #001f5f; --tsb-blue: #142b6f; --tsb-light-blue: #00a4e4; --tsb-text-grey: #555; }
+        body, html { margin: 0; padding: 0; font-family: 'Open Sans', Arial, sans-serif; color: #333; background-color: #f4f4f4; line-height: 1.5; }
+        
+        /* Header & Nav */
+        header { background-color: #fff; border-bottom: 1px solid #ddd; padding: 15px 40px; display: flex; align-items: center; justify-content: space-between; }
+        .logo { font-size: 24px; font-weight: 800; color: var(--tsb-dark-blue); letter-spacing: -1px; text-decoration: none; }
+        .logo span { color: var(--tsb-light-blue); }
+        .nav-links { display: flex; gap: 20px; font-size: 14px; font-weight: 600; color: var(--tsb-blue); align-items: center; }
+        
+        /* Interactive Login Link */
+        .login-link { 
+            color: white; background-color: var(--tsb-blue); padding: 8px 20px; 
+            border-radius: 20px; text-decoration: none; transition: 0.3s; cursor: pointer;
+        }
+        .login-link:hover { background-color: var(--tsb-light-blue); }
 
-    <meta property="og:title" content="Welcome to TSB" />
-    <meta property="og:image" content="https://tdurbin.github.io/tsb/tsb_avatar.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="shortcut icon" type="image/x-icon" href="https://tdurbin.github.io/tsb/tsb_avatar.png" />
+        .breadcrumb { background-color: #f4f4f4; padding: 10px 40px; font-size: 12px; color: #666; }
+        .hero { background-color: var(--tsb-dark-blue); color: white; padding: 40px 40px; }
+        .hero h1 { margin: 0; font-size: 36px; font-weight: 300; }
+        .container { max-width: 960px; margin: 0 auto; padding: 40px 20px; background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-top: -20px; position: relative; }
+        h2 { color: var(--tsb-blue); font-weight: 400; font-size: 28px; margin-top: 0; }
+        p { margin-bottom: 20px; color: var(--tsb-text-grey); }
+        .checklist { list-style: none; padding: 0; margin: 20px 0; }
+        .checklist li { position: relative; padding-left: 30px; margin-bottom: 12px; color: #444; }
+        .checklist li::before { content: '✓'; position: absolute; left: 0; color: var(--tsb-light-blue); font-weight: bold; }
+        .btn { display: inline-block; background-color: var(--tsb-light-blue); color: white; padding: 12px 30px; text-decoration: none; font-weight: 700; border-radius: 4px; transition: background 0.2s; cursor: pointer; border: none; font-size: 16px; }
+        .btn:hover { background-color: #008cc3; }
+        .cta-box { background-color: #f9f9f9; border-left: 5px solid var(--tsb-light-blue); padding: 20px; margin-top: 30px; }
+        footer { background-color: var(--tsb-dark-blue); color: white; padding: 40px; margin-top: 50px; font-size: 12px; text-align: center; }
+        
+        /* DEMO CONSOLE STYLES */
+        #lp-monitor { position: fixed; bottom: 20px; right: 20px; width: 380px; background-color: #1a1a1a; color: #00ff41; font-family: 'Courier New', monospace; padding: 15px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.6); z-index: 9999; font-size: 11px; opacity: 0.95; border: 1px solid #333; }
+        #lp-monitor h4 { margin: 0 0 10px 0; color: #fff; border-bottom: 1px solid #444; padding-bottom: 5px; display: flex; justify-content: space-between; font-size: 13px; }
+        #lp-output { height: 200px; overflow-y: auto; white-space: pre-wrap; scrollbar-width: thin; scrollbar-color: #444 #1a1a1a; }
+        .log-entry { margin-bottom: 10px; border-bottom: 1px dashed #333; padding-bottom: 5px; }
+        .log-time { color: #888; font-size: 10px; }
+        .sde-type { color: #fff; font-weight: bold; }
+        .blink { animation: blinker 1s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+    </style>
 
+    <script>
+        window.lpTag = window.lpTag || {};
+        window.lpTag.sdes = window.lpTag.sdes || [];
+        
+        function pushDemoSDE(sdeType, data) {
+            // A. Send to LivePerson
+            try {
+                window.lpTag.sdes.push({
+                    "type": sdeType,
+                    "info": data
+                });
+            } catch (e) {
+                console.error("Tag error:", e);
+            }
+
+            // B. Visual Output
+            const monitor = document.getElementById('lp-output');
+            if(monitor) {
+                const time = new Date().toLocaleTimeString();
+                const jsonStr = JSON.stringify(data, null, 2);
+                const entry = document.createElement('div');
+                entry.className = 'log-entry';
+                entry.innerHTML = `<span class="log-time">[${time}]</span> <span class="sde-type">SDE: ${sdeType}</span><br>${jsonStr}`;
+                monitor.insertBefore(entry, monitor.firstChild);
+            }
+        }
+    </script>
     <!-- BEGIN LivePerson Monitor. -->
     <script type="text/javascript">window.lpTag=window.lpTag||{},'undefined'==typeof window.lpTag._tagCount?(window.lpTag={wl:lpTag.wl||null,scp:lpTag.scp||null,site:'39922357'||'',section:lpTag.section||'',tagletSection:lpTag.tagletSection||null,autoStart:lpTag.autoStart!==!1,ovr:lpTag.ovr||{},_v:'1.10.0',_tagCount:1,protocol:'https:',events:{bind:function(t,e,i){lpTag.defer(function(){lpTag.events.bind(t,e,i)},0)},trigger:function(t,e,i){lpTag.defer(function(){lpTag.events.trigger(t,e,i)},1)}},defer:function(t,e){0===e?(this._defB=this._defB||[],this._defB.push(t)):1===e?(this._defT=this._defT||[],this._defT.push(t)):(this._defL=this._defL||[],this._defL.push(t))},load:function(t,e,i){var n=this;setTimeout(function(){n._load(t,e,i)},0)},_load:function(t,e,i){var n=t;t||(n=this.protocol+'//'+(this.ovr&&this.ovr.domain?this.ovr.domain:'lptag.liveperson.net')+'/tag/tag.js?site='+this.site);var o=document.createElement('script');o.setAttribute('charset',e?e:'UTF-8'),i&&o.setAttribute('id',i),o.setAttribute('src',n),document.getElementsByTagName('head').item(0).appendChild(o)},init:function(){this._timing=this._timing||{},this._timing.start=(new Date).getTime();var t=this;window.attachEvent?window.attachEvent('onload',function(){t._domReady('domReady')}):(window.addEventListener('DOMContentLoaded',function(){t._domReady('contReady')},!1),window.addEventListener('load',function(){t._domReady('domReady')},!1)),'undefined'===typeof window._lptStop&&this.load()},start:function(){this.autoStart=!0},_domReady:function(t){this.isDom||(this.isDom=!0,this.events.trigger('LPT','DOM_READY',{t:t})),this._timing[t]=(new Date).getTime()},vars:lpTag.vars||[],dbs:lpTag.dbs||[],ctn:lpTag.ctn||[],sdes:lpTag.sdes||[],hooks:lpTag.hooks||[],identities:lpTag.identities||[],ev:lpTag.ev||[]},lpTag.init()):window.lpTag._tagCount+=1;</script>
     <!-- END LivePerson Monitor. -->
-    
-    <style>
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #ffffff;
-        }
-
-        div.a {
-            text-align: center;
-        }
-
-        h1 {
-            color: #333;
-            margin-left: 1em;
-            margin-right: 1em;
-        }
-
-        h2 {
-            color: #333;
-            margin-left: 1em;
-            margin-right: 1em;
-        }
-
-        h3 {
-            color: #333;
-            margin-left: 1em;
-            margin-right: 1em;
-        }
-
-        img {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    </style>
-
-    <title>Welcome to TSB</title>
 
 </head>
-
 <body>
 
-    <img src="https://tdurbin.github.io/tsb/tsb_header.png" width="610">
+    <header>
+        <a href="#" class="logo">TSB <span>Bank</span></a>
+        <nav class="nav-links">
+            <span>Personal</span>
+            <span>Business</span>
+            <span>Help</span>
+            <a class="login-link" onclick="simulateLogin()">Login</a>
+        </nav>
+    </header>
 
-    <br>
-
-    <div class="a">
-        <h1>Web Messaging Test Page for TSB</h1>
+    <div class="breadcrumb">
+        Personal Banking > Mortgages > Mortgage in principle
     </div>
 
-    <div class="a">
-        <h2>*** Unauthenticated ***</h2>
+    <section class="hero">
+        <h1>Apply for a Mortgage in Principle</h1>
+    </section>
+
+    <div class="container">
+        <h2>What you need to apply</h2>
+        <p>A Mortgage in Principle gives you a good idea of how much you can afford to borrow. Start online in as little as 10 minutes without affecting your credit score.</p>
+        
+        <ul class="checklist">
+            <li>You must be 18 or over and a UK resident</li>
+            <li>We'll need to know information about the property</li>
+            <li>Your latest bank statement</li>
+            <li>Your latest payslip, or if you're self-employed, your latest 2 years self-assessments</li>
+            <li>Details of any financial commitments you have</li>
+        </ul>
+
+        <div class="cta-box">
+            <h3>Get a Mortgage in Principle in minutes</h3>
+            <p>Apply in as little as 10 minutes. A qualified Mortgage Adviser will then give you a call to go through the details.</p>
+            
+            <button class="btn" onclick="triggerApplicationSDE()">Start application online</button>
+            <p style="font-size: 12px; margin-top: 10px; color: #888;">(Opens in a new tab)</p>
+        </div>
+
+        <br><br>
+        <h2>Already a TSB customer?</h2>
+        <p>Existing TSB mortgage customers can switch to a new deal online.</p>
     </div>
 
-    <div class="a">
-        <h3>Click on the 'Message' button on the bottom-right</h3>
-        <h3>of the page to start a messaging conversation.</h3>
+    <footer>
+        <p>TSB Bank plc. Registered office: Henry Duncan House, 120 George Street, Edinburgh EH2 4LH.</p>
+        <p>&copy; 2024 TSB Bank. All rights reserved.</p>
+    </footer>
+
+    <div id="lp-monitor">
+        <h4>LivePerson SDE Monitor <span class="blink">●</span></h4>
+        <div id="lp-output">
+            <div style="color: #666; font-style: italic; padding-top:10px;">Waiting for events...</div>
+        </div>
     </div>
 
+    <script>
+        // Scenario 1: On Page Load
+        window.onload = function() {
+            pushDemoSDE("prodView", {
+                "products": [{
+                    "product": {
+                        "name": "Mortgage in Principle",
+                        "category": "Mortgages",
+                        "sku": "MIP-001"
+                    }
+                }]
+            });
+        };
+
+        // Scenario 2: Simulate Login (Passes Personal Data)
+        function simulateLogin() {
+            // Visual feedback
+            const btn = document.querySelector('.login-link');
+            btn.innerText = "Welcome, Sarah";
+            btn.style.backgroundColor = "#4CAF50"; // Green for logged in
+
+            // Send Personal Info SDE
+            pushDemoSDE("personalInfo", {
+                "personalInfo": {
+                    "name": {
+                        "givenName": "Sarah",
+                        "surname": "Smith"
+                    },
+                    "contacts": [{
+                        "email": "sarah.smith@example.com",
+                        "phone": "+447700900000",
+                        "preferred": "EMAIL"
+                    }],
+                    "gender": "FEMALE",
+                    "language": "en-GB"
+                }
+            });
+            
+            alert("User 'Logged In'. Personal data sent to LivePerson.");
+        }
+
+        // Scenario 3: Start Application (Lead)
+        function triggerApplicationSDE() {
+            pushDemoSDE("lead", {
+                "lead": {
+                    "topic": "mortgage_application",
+                    "value": 250000.00,
+                    "leadId": "LEAD-" + Math.floor(Math.random() * 99999),
+                    "currency": "GBP"
+                }
+            });
+            alert("Application Started! Lead data sent.");
+        }
+    </script>
 </body>
-
 </html>
