@@ -48,20 +48,8 @@
     </style>
 
     <script>
-        window.lpTag = window.lpTag || {};
-        window.lpTag.sdes = window.lpTag.sdes || [];
         
         function pushDemoSDE(sdeType, data) {
-            // A. Send to LivePerson
-            try {
-                window.lpTag.sdes.push({
-                    "type": sdeType,
-                    "info": data
-                });
-            } catch (e) {
-                console.error("Tag error:", e);
-            }
-
             // B. Visual Output
             const monitor = document.getElementById('lp-output');
             if(monitor) {
@@ -157,8 +145,8 @@
             btn.innerText = "Welcome, Sarah";
             btn.style.backgroundColor = "#4CAF50"; // Green for logged in
 
-            window.lpTag.sdes = lpTag.sdes||[];
-            window.lpTag.sdes.push(
+            lpTag.sdes = lpTag.sdes||[];
+            lpTag.sdes.push(
                 {
                     "type": "personal",  //MANDATORY
                         "personal": {
@@ -184,7 +172,8 @@
                         "language": "en-US",  // LANGUAGE 
                         "company": "company"  // VISITOR COMPANY NAME
                         }
-            });
+                }
+            );
 
             // Send Personal Info SDE
             pushDemoSDE("personalInfo", {
