@@ -157,8 +157,8 @@
             btn.innerText = "Welcome, Sarah";
             btn.style.backgroundColor = "#4CAF50"; // Green for logged in
 
-            lpTag.sdes = lpTag.sdes||[];
-            lpTag.sdes.push(
+            window.lpTag.sdes = lpTag.sdes||[];
+            window.lpTag.sdes.push(
                 {
                     "type": "personal",  //MANDATORY
                         "personal": {
@@ -185,7 +185,7 @@
                         "company": "company"  // VISITOR COMPANY NAME
                         }
             });
-            
+
             // Send Personal Info SDE
             pushDemoSDE("personalInfo", {
                 "personalInfo": {
