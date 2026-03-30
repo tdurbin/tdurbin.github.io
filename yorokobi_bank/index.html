@@ -22,15 +22,6 @@
                 customerId: '1'
             }
         });
-        // Authentication JSMethod for LiveEngage
-        function getParameterByName(name, url = window.location.href) {
-            name = name.replace(/[\[\]]/g, '\\$&');
-            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
-        }
  
         var lpGetAuthenticationToken = function (callback) {
             console.log("inside lpGetAuthenticationToken!");
@@ -54,6 +45,32 @@
         };
         */
 
+        // Authentication JSMethod for LiveEngage
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        var idtoken = "tom_bot"; // Default token
+        var idsub = "auth0|57a309c8d8b4745e4381c6e"; // Default sub
+        var personName = getParameterByName('name'); // Get the name from the URL
+         
+        if (personName) {
+            personName = personName.toLowerCase(); // Ensure case-insensitivity
+            if (personName === "john") {
+                idtoken = "js_bot";
+                idsub = " jhoward|20200224";
+            } else if (personName === "jamie" || personName === "jim") {
+                idtoken = "jamie_bot";
+                idsub = "jcorker";
+            } // You can add more 'else if' conditions for other names
+        }
+
+
         // Simulate Auth after LPTag loads
         lpTag.identities.push(identityFn);
         console.log("User identified!");
@@ -61,14 +78,14 @@
             callback({
                 iss: "https://something.someplace.com/",
                 acr: "loa1",
-                sub: "auth0|57a309c8d8b4745e4381c6e"
+                sub: idsub
             });
         }
 
         // Authentication JSMethod for LiveEngage
         var lpGetAuthenticationToken = function (callback) {
             console.log("inside lpGetAuthenticationToken!");
-            var token = "tom_bot";
+            var token = idtoken;
             if (token) {
                 console.log("got token! " + token);
                 console.log("calling callback with token...");
