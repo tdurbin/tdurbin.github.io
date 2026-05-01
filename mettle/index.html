@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mettle | Dashboard</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #f4f5f7; 
+            color: #1a1a1a; 
+        }
+        header { 
+            background-color: #000; 
+            color: #fff; 
+            padding: 16px 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .logo { 
+            font-size: 24px; 
+            font-weight: 700; 
+            letter-spacing: -0.5px; 
+            display: flex; 
+            align-items: center; 
+        }
+        .logo-m {
+            background-color: #d4ff00; /* Mettle's neon yellow/green */
+            color: #000;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        .user-menu { 
+            font-size: 14px; 
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .container { 
+            max-width: 1040px; 
+            margin: 40px auto; 
+            padding: 0 20px; 
+        }
+        .dashboard-grid { 
+            display: grid; 
+            grid-template-columns: 240px 1fr; 
+            gap: 30px; 
+        }
+        .card { 
+            background: #fff; 
+            border-radius: 12px; 
+            padding: 24px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04); 
+            border: 1px solid #eaeaea;
+        }
+        .balance-title { 
+            font-size: 13px; 
+            color: #666; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            margin-bottom: 8px; 
+            font-weight: 600;
+        }
+        .balance-amount { 
+            font-size: 42px; 
+            font-weight: 700; 
+            margin: 0; 
+            color: #000; 
+            letter-spacing: -1px;
+        }
+        .actions { 
+            margin-top: 24px; 
+            display: flex; 
+            gap: 12px; 
+        }
+        .btn { 
+            padding: 12px 24px; 
+            border-radius: 8px; 
+            border: none; 
+            font-weight: 600; 
+            font-size: 14px;
+            cursor: pointer; 
+            text-align: center; 
+            transition: all 0.2s ease;
+        }
+        .btn-primary { 
+            background-color: #000; 
+            color: #fff; 
+            flex: 1;
+        }
+        .btn-primary:hover {
+            background-color: #333;
+        }
+        .btn-secondary { 
+            background-color: #f0f0f0; 
+            color: #000; 
+            flex: 1;
+        }
+        .btn-secondary:hover {
+            background-color: #e4e4e4;
+        }
+        .section-title { 
+            font-size: 18px; 
+            font-weight: 700; 
+            margin-bottom: 20px; 
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .transaction { 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 16px 0; 
+            border-bottom: 1px solid #f0f0f0; 
+            align-items: center;
+        }
+        .transaction:last-child { 
+            border-bottom: none; 
+            padding-bottom: 0;
+        }
+        .tx-info { 
+            display: flex; 
+            flex-direction: column; 
+        }
+        .tx-merchant { 
+            font-weight: 600; 
+            font-size: 15px;
+        }
+        .tx-date { 
+            font-size: 13px; 
+            color: #777; 
+            margin-top: 4px; 
+        }
+        .tx-amount { 
+            font-weight: 600; 
+            font-size: 16px;
+        }
+        .tx-positive { 
+            color: #008a00; 
+        }
+        .sidebar-nav { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0; 
+        }
+        .sidebar-nav li { 
+            padding: 14px 16px; 
+            font-weight: 500; 
+            cursor: pointer; 
+            border-radius: 8px;
+            margin-bottom: 4px;
+            color: #444;
+        }
+        .sidebar-nav li:hover { 
+            background-color: #f4f5f7; 
+            color: #000;
+        }
+        .active-nav { 
+            background-color: #000 !important; 
+            color: #fff !important; 
+        }
+        
+        /* Inject container for LivePerson demo */
+        #lp-demo-container {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fffbdd;
+            border-left: 4px solid #f0e68c;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+    </style>
+
+    <script
+        type="text/javascript">window.lpTag = window.lpTag || {}, 'undefined' == typeof window.lpTag._tagCount ? (window.lpTag = { wl: lpTag.wl || null, scp: lpTag.scp || null, site: '10859403' || '', section: lpTag.section || '', tagletSection: lpTag.tagletSection || null, autoStart: lpTag.autoStart !== !1, ovr: lpTag.ovr || {}, _v: '1.10.0', _tagCount: 1, protocol: 'https:', events: { bind: function (t, e, i) { lpTag.defer(function () { lpTag.events.bind(t, e, i) }, 0) }, trigger: function (t, e, i) { lpTag.defer(function () { lpTag.events.trigger(t, e, i) }, 1) } }, defer: function (t, e) { 0 === e ? (this._defB = this._defB || [], this._defB.push(t)) : 1 === e ? (this._defT = this._defT || [], this._defT.push(t)) : (this._defL = this._defL || [], this._defL.push(t)) }, load: function (t, e, i) { var n = this; setTimeout(function () { n._load(t, e, i) }, 0) }, _load: function (t, e, i) { var n = t; t || (n = this.protocol + '//' + (this.ovr && this.ovr.domain ? this.ovr.domain : 'lptag.liveperson.net') + '/tag/tag.js?site=' + this.site); var o = document.createElement('script'); o.setAttribute('charset', e ? e : 'UTF-8'), i && o.setAttribute('id', i), o.setAttribute('src', n), document.getElementsByTagName('head').item(0).appendChild(o) }, init: function () { this._timing = this._timing || {}, this._timing.start = (new Date).getTime(); var t = this; window.attachEvent ? window.attachEvent('onload', function () { t._domReady('domReady') }) : (window.addEventListener('DOMContentLoaded', function () { t._domReady('contReady') }, !1), window.addEventListener('load', function () { t._domReady('domReady') }, !1)), 'undefined' === typeof window._lptStop && this.load() }, start: function () { this.autoStart = !0 }, _domReady: function (t) { this.isDom || (this.isDom = !0, this.events.trigger('LPT', 'DOM_READY', { t: t })), this._timing[t] = (new Date).getTime() }, vars: lpTag.vars || [], dbs: lpTag.dbs || [], ctn: lpTag.ctn || [], sdes: lpTag.sdes || [], hooks: lpTag.hooks || [], identities: lpTag.identities || [], ev: lpTag.ev || [] }, lpTag.init()) : window.lpTag._tagCount += 1;
+    </script>
+
+    <script>
+        var idtoken = "tom_bot"; // Default token
+        var idsub = "auth0|57a309c8d8b4745e4381c6e"; // Default sub
+         
+        // Simulate Auth after LPTag loads
+        lpTag.identities.push(identityFn);
+        console.log("User identified!");
+        function identityFn(callback) {
+            callback({
+                iss: "https://something.someplace.com/",
+                acr: "loa1",
+                sub: idsub
+            });
+        }
+
+        // Authentication JSMethod for LiveEngage
+        var lpGetAuthenticationToken = function (callback) {
+            console.log("inside lpGetAuthenticationToken!");
+            var token = idtoken;
+            if (token) {
+                console.log("got token! " + token);
+                console.log("calling callback with token...");
+                callback(token);
+            }
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-m">m</div>
+            mettle
+        </div>
+        <div class="user-menu">Demo Company Ltd ▼</div>
+    </header>
+
+    <div class="container">
+        <div class="dashboard-grid">
+            <!-- Sidebar -->
+            <div>
+                <ul class="sidebar-nav">
+                    <li class="active-nav">Home</li>
+                    <li>Transactions</li>
+                    <li>Invoicing</li>
+                    <li>Tax & Pots</li>
+                    <li>Integrations</li>
+                    <li>Account details</li>
+                    <li>Help & Support</li>
+                </ul>
+                
+                <div id="lp-demo-container">
+                    <strong>Demo Area</strong>
+                    <p>LivePerson tag injections and chat widgets will appear on this mock dashboard.</p>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="card" style="margin-bottom: 24px;">
+                    <div class="balance-title">Available Balance</div>
+                    <p class="balance-amount">£14,250.75</p>
+                    <div class="actions">
+                        <button class="btn btn-primary">Make a payment</button>
+                        <button class="btn btn-secondary">Create invoice</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="section-title">Recent transactions</div>
+                    
+                    <div class="transaction">
+                        <div class="tx-info">
+                            <span class="tx-merchant">Invoice #1042 Paid</span>
+                            <span class="tx-date">Today, 11:30 AM</span>
+                        </div>
+                        <span class="tx-amount tx-positive">+£2,400.00</span>
+                    </div>
+                    
+                    <div class="transaction">
+                        <div class="tx-info">
+                            <span class="tx-merchant">Stripe Payments UK</span>
+                            <span class="tx-date">Yesterday, 09:15 AM</span>
+                        </div>
+                        <span class="tx-amount tx-positive">+£850.50</span>
+                    </div>
+                    
+                    <div class="transaction">
+                        <div class="tx-info">
+                            <span class="tx-merchant">Amazon Web Services</span>
+                            <span class="tx-date">28 Apr 2026</span>
+                        </div>
+                        <span class="tx-amount">-£112.40</span>
+                    </div>
+                    
+                    <div class="transaction">
+                        <div class="tx-info">
+                            <span class="tx-merchant">TFL Travel Charge</span>
+                            <span class="tx-date">27 Apr 2026</span>
+                        </div>
+                        <span class="tx-amount">-£14.20</span>
+                    </div>
+                    
+                    <div class="transaction">
+                        <div class="tx-info">
+                            <span class="tx-merchant">HMRC Corporation Tax</span>
+                            <span class="tx-date">25 Apr 2026</span>
+                        </div>
+                        <span class="tx-amount">-£4,500.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LivePerson Script Injection Placeholder -->
+    <script>
+        console.log("Mock Mettle dashboard loaded. Ready for LivePerson tag injection.");
+    </script>
+</body>
+</html>
