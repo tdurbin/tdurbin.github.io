@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Bets - In-Play Betting & Odds</title>
+    <style>
+        :root {
+            --db-blue: #0052FF;
+            --db-orange: #FFA500;
+            --db-dark-blue: #0A1931;
+            --db-light-grey: #f0f2f5;
+            --db-grey: #e4e6eb;
+            --db-text: #1c1e21;
+            --db-white: #ffffff;
+            --db-green: #28a745;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--db-light-grey);
+            color: var(--db-text);
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* --- Header --- */
+        header {
+            background-color: var(--db-white);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--db-grey);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--db-blue);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span:first-child {
+            font-size: 28px;
+            margin-right: 8px;
+        }
+        
+        .logo .brand-name {
+            color: var(--db-dark-blue);
+        }
+
+        .user-account {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-info {
+            text-align: right;
+            margin-right: 15px;
+        }
+
+        .user-info .username {
+            font-weight: 600;
+        }
+        
+        .user-info .balance {
+            color: #555;
+            font-size: 12px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background-color: var(--db-blue);
+            color: var(--db-white);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        nav.main-nav {
+            background-color: var(--db-blue);
+            color: var(--db-white);
+        }
+
+        nav.main-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0 20px;
+            display: flex;
+        }
+
+        nav.main-nav li a {
+            color: var(--db-white);
+            text-decoration: none;
+            padding: 15px 20px;
+            display: block;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        nav.main-nav li a:hover, .main-nav li a.active {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* --- Main Layout --- */
+        .main-layout {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .left-sidebar, .right-sidebar {
+            background-color: var(--db-white);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .left-sidebar {
+            flex-basis: 220px;
+        }
+
+        .main-content {
+            flex-grow: 1;
+        }
+
+        .right-sidebar {
+            flex-basis: 300px;
+        }
+
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--db-blue);
+            padding-bottom: 10px;
+        }
+
+        .sports-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sports-menu li a {
+            display: block;
+            text-decoration: none;
+            color: var(--db-text);
+            padding: 10px 5px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .sports-menu li a:hover, .sports-menu li a.active {
+            background-color: var(--db-light-grey);
+            color: var(--db-blue);
+        }
+
+        .content-card {
+            background-color: var(--db-white);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .card-header {
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            border-bottom: 1px solid var(--db-grey);
+        }
+
+        .match {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 15px;
+            border-bottom: 1px solid var(--db-grey);
+        }
+        .match:last-child {
+            border-bottom: none;
+        }
+
+        .team-info {
+            font-weight: 600;
+        }
+
+        .odds-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-odd {
+            background-color: var(--db-light-grey);
+            border: 1px solid var(--db-grey);
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.2s;
+        }
+
+        .btn-odd:hover {
+            background-color: var(--db-grey);
+        }
+        
+        .bet-slip .empty-state {
+            text-align: center;
+            padding: 40px 10px;
+            color: #666;
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: var(--db-dark-blue);
+            color: var(--db-grey);
+            font-size: 12px;
+        }
+
+        footer a {
+            color: var(--db-white);
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+    </style>
+
+    <script
+        type="text/javascript">window.lpTag = window.lpTag || {}, 'undefined' == typeof window.lpTag._tagCount ? (window.lpTag = { wl: lpTag.wl || null, scp: lpTag.scp || null, site: '10859403' || '', section: lpTag.section || '', tagletSection: lpTag.tagletSection || null, autoStart: lpTag.autoStart !== !1, ovr: lpTag.ovr || {}, _v: '1.10.0', _tagCount: 1, protocol: 'https:', events: { bind: function (t, e, i) { lpTag.defer(function () { lpTag.events.bind(t, e, i) }, 0) }, trigger: function (t, e, i) { lpTag.defer(function () { lpTag.events.trigger(t, e, i) }, 1) } }, defer: function (t, e) { 0 === e ? (this._defB = this._defB || [], this._defB.push(t)) : 1 === e ? (this._defT = this._defT || [], this._defT.push(t)) : (this._defL = this._defL || [], this._defL.push(t)) }, load: function (t, e, i) { var n = this; setTimeout(function () { n._load(t, e, i) }, 0) }, _load: function (t, e, i) { var n = t; t || (n = this.protocol + '//' + (this.ovr && this.ovr.domain ? this.ovr.domain : 'lptag.liveperson.net') + '/tag/tag.js?site=' + this.site); var o = document.createElement('script'); o.setAttribute('charset', e ? e : 'UTF-8'), i && o.setAttribute('id', i), o.setAttribute('src', n), document.getElementsByTagName('head').item(0).appendChild(o) }, init: function () { this._timing = this._timing || {}, this._timing.start = (new Date).getTime(); var t = this; window.attachEvent ? window.attachEvent('onload', function () { t._domReady('domReady') }) : (window.addEventListener('DOMContentLoaded', function () { t._domReady('contReady') }, !1), window.addEventListener('load', function () { t._domReady('domReady') }, !1)), 'undefined' === typeof window._lptStop && this.load() }, start: function () { this.autoStart = !0 }, _domReady: function (t) { this.isDom || (this.isDom = !0, this.events.trigger('LPT', 'DOM_READY', { t: t })), this._timing[t] = (new Date).getTime() }, vars: lpTag.vars || [], dbs: lpTag.dbs || [], ctn: lpTag.ctn || [], sdes: lpTag.sdes || [], hooks: lpTag.hooks || [], identities: lpTag.identities || [], ev: lpTag.ev || [] }, lpTag.init()) : window.lpTag._tagCount += 1;
+    </script>
+
+    <script>
+        var idtoken = "tom_bot"; // Default token
+        var idsub = "auth0|57a309c8d8b4745e4381c6e"; // Default sub
+         
+        // Simulate Auth after LPTag loads
+        lpTag.identities.push(identityFn);
+        console.log("User identified!");
+        function identityFn(callback) {
+            callback({
+                iss: "https://something.someplace.com/",
+                acr: "loa1",
+                sub: idsub
+            });
+        }
+
+        // Authentication JSMethod for LiveEngage
+        var lpGetAuthenticationToken = function (callback) {
+            console.log("inside lpGetAuthenticationToken!");
+            var token = idtoken;
+            if (token) {
+                console.log("got token! " + token);
+                console.log("calling callback with token...");
+                callback(token);
+            }
+        };
+    </script>
+
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <span>&#x1F48E;&#x1F9E1;</span> <!-- Diamond + Orange Heart Emojis -->
+            <span class="brand-name">Diamond Bets</span>
+        </div>
+        <div class="user-account">
+            <div class="user-info">
+                <div class="username">Tom Durbin</div>
+                <div class="balance">Balance: £125.50</div>
+            </div>
+            <div class="avatar">TD</div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="#">In-Play</a></li>
+            <li><a href="#">Football</a></li>
+            <li><a href="#">Horse Racing</a></li>
+            <li><a href="#">Promotions</a></li>
+            <li><a href="#">Safer Gambling</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-layout container">
+        <aside class="left-sidebar">
+            <h3 class="sidebar-title">Popular Sports</h3>
+            <nav class="sports-menu">
+                <ul>
+                    <li><a href="#" class="active">⚽ Football</a></li>
+                    <li><a href="#">🏇 Horse Racing</a></li>
+                    <li><a href="#">🎾 Tennis</a></li>
+                    <li><a href="#">🏏 Cricket</a></li>
+                    <li><a href="#">🎯 Darts</a></li>
+                    <li><a href="#">🥊 Boxing</a></li>
+                    <li><a href="#">🏀 Basketball</a></li>
+                    <li><a href="#">⛳ Golf</a></li>
+                    <li><a href="#">🏈 American Football</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-card">
+                <div class="card-header">Live In-Play: Premier League</div>
+                <div class="match">
+                    <div class="team-info">Manchester United vs Liverpool</div>
+                    <div class="odds-buttons">
+                        <button class="btn-odd">2/1</button>
+                        <button class="btn-odd">3/1</button>
+                        <button class="btn-odd">11/8</button>
+                    </div>
+                </div>
+                 <div class="match">
+                    <div class="team-info">Arsenal vs Chelsea</div>
+                    <div class="odds-buttons">
+                        <button class="btn-odd">5/4</button>
+                        <button class="btn-odd">5/2</button>
+                        <button class="btn-odd">2/1</button>
+                    </div>
+                </div>
+                <div class="match">
+                    <div class="team-info">Tottenham Hotspur vs Manchester City</div>
+                    <div class="odds-buttons">
+                        <button class="btn-odd">4/1</button>
+                        <button class="btn-odd">3/1</button>
+                        <button class="btn-odd">8/13</button>
+                    </div>
+                </div>
+                 <div class="match">
+                    <div class="team-info">Everton vs Nottingham Forest</div>
+                    <div class="odds-buttons">
+                        <button class="btn-odd">1/1</button>
+                        <button class="btn-odd">12/5</button>
+                        <button class="btn-odd">14/5</button>
+                    </div>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-header">Next Horse Races</div>
+                <div class="match">
+                    <div class="team-info">15:30 Ascot</div>
+                    <div class="odds-buttons">
+                        <button class="btn-odd">View Race</button>
+                    </div>
+                </div>
+                 <div class="match">
+                    <div class="team-info">16:00 Newmarket</div>
+                    <div class="odds-buttons">
+                        <button class="btn-odd">View Race</button>
+                    </div>
+                </div>
+                 <div class="match">
+                    <div class="team-info">16:15 York</div>
+                    <div class="odds-buttons">
+                        <button class="btn-odd">View Race</button>
+                    </div>
+                </div>
+                 <div class="match">
+                    <div class="team-info">16:45 Chester</div>
+                    <div class="odds-buttons">
+                        <button class="btn-odd">View Race</button>
+                    </div>
+                </div>
+            </div>
+            <div class="content-card">
+                <div class="card-header">Live Tennis Matches: ATP Finals</div>
+                <div class="match">
+                    <div class="team-info">J. Sinner vs N. Djokovic</div>
+                    <div class="odds-buttons">
+                        <button class="btn-odd">6/4</button>
+                        <button class="btn-odd">8/15</button>
+                    </div>
+                </div>
+                 <div class="match">
+                    <div class="team-info">C. Alcaraz vs D. Medvedev</div>
+                    <div class="odds-buttons">
+                        <button class="btn-odd">4/6</button>
+                        <button class="btn-odd">11/10</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="right-sidebar">
+             <div class="bet-slip">
+                <h3 class="sidebar-title">Bet Slip</h3>
+                <div class="empty-state">
+                    Your bet slip is currently empty.
+                    <br><br>
+                    Click on the odds to add a selection.
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>
+            <a href="#">Help & Contact</a> |
+            <a href="#">Terms & Conditions</a> |
+            <a href="#">Privacy Policy</a> |
+            <a href="#">Safer Gambling</a>
+        </p>
+        <p>&copy; 2026 Diamond Bets. All rights reserved. Please gamble responsibly.</p>
+    </footer>
+    
+</body>
+</html>
