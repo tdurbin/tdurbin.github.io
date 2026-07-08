@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LivePerson | SoundHound AI Demo Launchpad</title>
+    <style>
+        :root {
+            --lp-color: #1a1a1a;
+            --lp-orange: #F9812A;
+            --lp-navy: #14163A;
+            --sh-plum: #8E1362;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #202124;
+            --text-muted: #5f6368;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 4px solid;
+            border-image: linear-gradient(to right, var(--lp-navy), var(--lp-orange), var(--sh-plum)) 1;
+        }
+
+        .header-logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .lp-logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .sh-logo {
+            height: 32px;
+            width: auto;
+        }
+
+        .logo-separator {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            flex-grow: 1;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--lp-color);
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid #e0e0e0;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            border-color: var(--sh-plum);
+        }
+
+        .card h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.4rem;
+            color: var(--lp-orange);
+        }
+
+        .card p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+        }
+
+        .qr-image {
+            max-width: 200px;
+            height: auto;
+            margin-top: 1rem;
+            border: 10px solid white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .password-hint {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            background-color: #f1f3f4;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--sh-plum);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--lp-navy);
+            color: white;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-logo-container">
+            <img src="lp-logo.png" alt="LivePerson Logo" class="lp-logo">
+            <span class="logo-separator">×</span>
+            <img src="soundhound-logo.svg" alt="SoundHound AI Logo" class="sh-logo">
+        </div>
+        <div class="subtitle">Interactive Demo Launchpad • LivePerson Conversational Cloud Demo Account</div>
+    </header>
+
+    <div class="container">
+
+        <h2 class="section-title">LivePerson Demo Platforms</h2>
+        <div class="grid">
+            <a href="https://authentication.liveperson.net/" target="_blank" class="card">
+                <h3>Conversational Cloud</h3>
+                <p>Launch the core LivePerson Conversational Cloud platform — with Conversation Builder, aiStudio, Agent Escalation, Agent &amp; Manager Workspace, CoPilot, and more.</p>
+                <div><span class="password-hint">Site ID: 41485330</span></div>
+            </a>
+        </div>
+
+        <h2 class="section-title">Messaging Entry Points</h2>
+        <div class="grid">
+            <a href="https://tdurbin.github.io/yorokobi_sh/" target="_blank" class="card">
+                <h3>YOROKOBI Bank 🏦</h3>
+                <p>Unauthenticated Web Messaging conversations via a dummy YOROKOBI Bank web page.</p>
+            </a>
+
+            <a href="https://api.whatsapp.com/send?phone=13412140168&text=Hi%20YORi%21" target="_blank" class="card">
+                <h3>YOROKOBI WhatsApp 💬</h3>
+                <p>Start a WhatsApp Business Messaging conversation directly from: +1 (341) 214-0168</p>
+            </a>
+        </div>
+
+        <h2 class="section-title">Mobile Engagement</h2>
+        <div class="qr-section">
+            <h3>YOROKOBI WhatsApp</h3>
+            <p style="color: var(--text-muted); text-align: center;">Scan the QR code to launch the YOROKOBI WhatsApp entry point.</p>
+            <img src="yorokobi_qr.png" alt="YOROKOBI WhatsApp QR Code" class="qr-image">
+        </div>
+
+    </div>
+
+    <footer>
+        © 2026 LivePerson. Internal Demo Environment.
+    </footer>
+
+</body>
+</html>
