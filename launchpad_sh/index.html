@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LivePerson | SoundHound AI Demo Launchpad</title>
+    <title>LivePerson EMEA SC Demo Launchpad</title>
     <style>
         :root {
             --lp-color: #1a1a1a;
             --lp-orange: #F9812A;
-            --lp-navy: #14163A;
-            --sh-plum: #8E1362;
+            --google-blue: #4285F4;
+            --google-red: #EA4335;
+            --google-yellow: #FBBC05;
+            --google-green: #34A853;
             --bg-color: #f8f9fa;
             --card-bg: #ffffff;
             --text-main: #202124;
@@ -32,7 +34,7 @@
             padding: 1.5rem 2rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             border-bottom: 4px solid;
-            border-image: linear-gradient(to right, var(--lp-navy), var(--lp-orange), var(--sh-plum)) 1;
+            border-image: linear-gradient(to right, var(--google-blue), var(--google-red), var(--google-yellow), var(--google-green)) 1;
         }
 
         .header-logo-container {
@@ -44,13 +46,13 @@
         }
 
         .lp-logo {
-            height: 50px;
-            width: auto;
+            height: auto;
+            width: 400px;
         }
 
         .sh-logo {
-            height: 32px;
-            width: auto;
+            height: auto;
+            width: 300px;
         }
 
         .logo-separator {
@@ -106,7 +108,7 @@
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-            border-color: var(--sh-plum);
+            border-color: var(--google-blue);
         }
 
         .card h3 {
@@ -149,13 +151,13 @@
             border-radius: 4px;
             font-family: monospace;
             font-size: 0.85rem;
-            color: var(--sh-plum);
+            color: var(--google-red);
         }
 
         footer {
             text-align: center;
             padding: 1.5rem;
-            background: var(--lp-navy);
+            background: var(--lp-color);
             color: white;
             font-size: 0.9rem;
         }
@@ -165,48 +167,79 @@
 
     <header>
         <div class="header-logo-container">
-            <img src="lp-logo.png" alt="LivePerson Logo" class="lp-logo">
-            <span class="logo-separator">×</span>
-            <img src="soundhound-logo.svg" alt="SoundHound AI Logo" class="sh-logo">
+            <img src="lp_sh.png" alt="LivePerson x SoundHound AI Logo" class="lp-logo">
         </div>
-        <div class="subtitle">Interactive Demo Launchpad • LivePerson Conversational Cloud Demo Account</div>
     </header>
 
     <div class="container">
-
-        <h2 class="section-title">LivePerson Demo Platform</h2>
+        
+        <h2 class="section-title">Demo Platforms</h2>
         <div class="grid">
             <a href="https://authentication.liveperson.net/" target="_blank" class="card">
                 <h3>Conversational Cloud</h3>
-                <p>Launch the core LivePerson Conversational Cloud platform — with Conversation Builder, aiStudio, Agent Escalation, Agent &amp; Manager Workspace, CoPilot, and more.</p>
-                <div><span class="password-hint">Site ID: 41485330</span></div>
+                <p>Launch the core LivePerson platform environment.</p>
+                <div><span class="password-hint">Site ID: 49812767</span></div>
             </a>
+            
+            <a href="https://staging.syntrixplatform.com/login" target="_blank" class="card">
+                <h3>Syntrix</h3>
+                <p>Launch the Syntrix Staging environment.</p>
+                <div><span class="password-hint">Org: Solutions Consulting EMEA 2</span></div>
+            </a>
+            
+            <a href="https://euwe1.syntrixplatform.com/login" target="_blank" class="card">
+                <h3>Syntrix</h3>
+                <p>Launch the Syntrix EMEA GA environment.</p>
+            </a>
+
+            <a href="https://lpextend.net/login" target="_blank" class="card">
+                <h3>LP Extend</h3>
+                <p>Launch the LivePerson Extend environment.</p>
+            </a>
+
+            <a href="https://up-demo.soundhound.com/app/home" target="_blank" class="card">
+                <h3>OASYS</h3>
+                <p>Launch the SoundHound AI OASYS environment.</p>
+            </a>
+
+            <a href="https://login.salesforce.com/" target="_blank" class="card">
+                <h3>Salesforce</h3>
+                <p>Login to the Salesforce demo environment.</p>
+            </a>
+
         </div>
 
         <h2 class="section-title">Messaging Entry Points</h2>
-        <div class="grid">
-            <a href="https://tdurbin.github.io/yorokobi_sh/" target="_blank" class="card">
+        <div class="grid">            
+            <a href="https://eudemo.lpcloud.io/ccw2026/index.html" target="_blank" class="card">
                 <h3>YOROKOBI Bank 🏦</h3>
-                <p>Unauthenticated Web Messaging conversations via a dummy YOROKOBI Bank web page.</p>
-            </a>
-
-            <a href="https://api.whatsapp.com/send?phone=13412140168&text=Hi%20YORi%21" target="_blank" class="card">
-                <h3>YOROKOBI WhatsApp 💬</h3>
-                <p>Start a WhatsApp Business Messaging conversation directly from: +1 (341) 214-0168</p>
+                <p>Banking demonstration - Profile: Tom</p>
             </a>
         </div>
 
-        <h2 class="section-title">Mobile Engagement</h2>
+        <h2 class="section-title">Mobile Entry Points</h2>
+<!--
+        <div class="qr-section">
+            <h3>EMEA Demo RCS</h3>
+            <p style="color: var(--text-muted); text-align: center;">Scan the QR code to launch the RCS entry point.</p>
+            <a href="sms:liveperson_emea_demo_2_pqoixjic_agent%40rbm.goog">
+                <img src="rcs_qr.png" alt="LivePerson EMEA Demo RCS QR Code" class="qr-image">
+            </a>
+        </div>
+-->
+        <br>
         <div class="qr-section">
             <h3>YOROKOBI WhatsApp</h3>
             <p style="color: var(--text-muted); text-align: center;">Scan the QR code to launch the YOROKOBI WhatsApp entry point.</p>
-            <img src="yorokobi_qr.png" alt="YOROKOBI WhatsApp QR Code" class="qr-image">
+            <a href="https://api.whatsapp.com/send?phone=13412140168&text=Get%20started...">
+                <img src="yorokobi_qr.png" alt="YOROKOBI WhatsApp QR Code" class="qr-image">
+            </a>
         </div>
 
     </div>
 
     <footer>
-        © 2026 LivePerson. Internal Demo Environment.
+        © 2026 LivePerson and SoundHound AI. Internal Demo Environment.
     </footer>
 
 </body>
