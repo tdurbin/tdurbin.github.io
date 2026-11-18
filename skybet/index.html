@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Search - sky bet sign up</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f2f2f2;
+            color: #202124;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* Responsive Mobile Container */
+        .mobile-viewport {
+            width: 100%;
+            max-width: 480px;
+            background-color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        /* Google Header & Search Section */
+        header {
+            padding: 12px 16px 4px 16px;
+            border-bottom: 1px border #ebebeb;
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .logo span:nth-child(1) { color: #4285F4; }
+        .logo span:nth-child(2) { color: #EA4335; }
+        .logo span:nth-child(3) { color: #FBBC05; }
+        .logo span:nth-child(4) { color: #4285F4; }
+        .logo span:nth-child(5) { color: #34A853; }
+        .logo span:nth-child(6) { color: #EA4335; }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #f1f3f4;
+            border-radius: 24px;
+            padding: 10px 16px;
+            width: 100%;
+            border: 1px solid transparent;
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            font-size: 15px;
+            flex-grow: 1;
+            margin-left: 8px;
+            outline: none;
+            color: #1f1f1f;
+        }
+
+        /* Nav Tabs */
+        .search-tabs {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            font-size: 13px;
+            color: #5f6368;
+            padding-bottom: 4px;
+        }
+        .search-tabs span.active {
+            color: #1a73e8;
+            font-weight: 500;
+            border-bottom: 2px solid #1a73e8;
+            padding-bottom: 6px;
+        }
+
+        /* Sponsored & Organic Content */
+        .content-area {
+            padding: 12px 16px;
+            background-color: #f2f2f2;
+            flex-grow: 1;
+        }
+
+        .label-sponsored {
+            font-size: 11px;
+            font-weight: 700;
+            color: #202124;
+            margin-bottom: 6px;
+            display: inline-block;
+        }
+
+        /* Sponsored Ad Card */
+        .ad-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border: 1px solid #e0e0e0;
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .brand-identity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #001A4E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 8px;
+            border: 1px solid #002D85;
+            text-align: center;
+            line-height: 28px;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .brand-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #202124;
+        }
+        .brand-domain {
+            font-size: 10px;
+            color: #5f6368;
+        }
+
+        .more-options {
+            font-size: 16px;
+            color: #70757a;
+            cursor: pointer;
+        }
+
+        .ad-title {
+            color: #1a0dab;
+            font-size: 17px;
+            font-weight: 500;
+            line-height: 1.3;
+            text-decoration: none;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .ad-title:hover {
+            text-decoration: underline;
+        }
+
+        .ad-desc {
+            font-size: 13px;
+            color: #4d5156;
+            line-height: 1.4;
+            margin-bottom: 14px;
+        }
+
+        /* CTA Rich Messaging Buttons */
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #002D85;
+            color: white !important;
+            padding: 12px 20px;
+            border-radius: 24px;
+            text-decoration: none !important;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            gap: 8px;
+            transition: background 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 12px;
+        }
+        .cta-btn:hover {
+            background-color: #001e5c;
+        }
+
+        /* 2x2 Grid-Based SiteLinks */
+        .grid-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid #f1f3f4;
+        }
+
+        .sitelink {
+            background-color: #f8f9fa;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            padding: 12px;
+            text-decoration: none;
+            color: #1a0dab;
+            font-size: 13px;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: background 0.15s;
+        }
+        .sitelink:hover {
+            background-color: #f1f3f4;
+        }
+
+        .sitelink span.highlight {
+            font-weight: bold;
+            color: #1a0dab;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .sitelink p {
+            color: #4d5156;
+            font-size: 11px;
+            font-weight: normal;
+            line-height: 1.3;
+        }
+
+        /* Demo Trigger Modal Overlay */
+        .demo-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1000;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .demo-modal {
+            background: #fff;
+            width: 100%;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            padding: 24px 20px;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.15);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+
+        .modal-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .modal-brand-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #001A4E;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 10px;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #001A4E;
+        }
+
+        .modal-desc {
+            font-size: 14px;
+            color: #4a4a4a;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .modal-action-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-cancel {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #dadce0;
+            border-radius: 24px;
+            background: #fff;
+            color: #5f6368;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn-confirm {
+            flex: 2;
+            padding: 12px;
+            background-color: #002D85;
+            color: white;
+            border: none;
+            border-radius: 24px;
+            font-weight: bold;
+            font-size: 14px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="mobile-viewport">
+        <!-- Google Navigation Header -->
+        <header>
+            <div class="header-top">
+                <div class="logo">
+                    <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+                </div>
+            </div>
+            <div class="search-bar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="#70757A"/>
+                </svg>
+                <input type="text" value="sky bet sign up" readonly>
+            </div>
+            <div class="search-tabs">
+                <span class="active">All</span>
+                <span>Images</span>
+                <span>Videos</span>
+                <span>News</span>
+                <span>Shopping</span>
+            </div>
+        </header>
+
+        <!-- Search Results Panel -->
+        <div class="content-area">
+            <span class="label-sponsored">Sponsored</span>
+
+            <!-- Primary Sponsored Ad Card -->
+            <div class="ad-card">
+                <div class="brand-header">
+                    <div class="brand-identity">
+                        <div class="brand-logo">SKY BET</div>
+                        <div class="brand-info">
+                            <span class="brand-name">Sky Bet®</span>
+                            <span class="brand-domain">www.skybet.com</span>
+                        </div>
+                    </div>
+                    <div class="more-options">⋮</div>
+                </div>
+
+                <a href="#" class="ad-title" onclick="triggerRCS('claim'); return false;">Sky Bet® Official Site - Bet £10 Get £40 in Free Bets</a>
+                <p class="ad-desc">
+                    Get £40 in Free Bets on the Chelsea vs Arsenal match. Complete registration in under 2 minutes through Google RCS Messages.
+                </p>
+
+                <!-- CTA Message Ad -->
+                <a href="#" class="cta-btn" onclick="triggerRCS('claim'); return false;">
+                    💬 Message Us - Get £40 Free Bets
+                </a>
+
+                <!-- Custom 2x2 Grid Extensions -->
+                <div class="grid-links">
+                    <a href="#" class="sitelink" onclick="triggerRCS('registration'); return false;">
+                        <span class="highlight">💬 Fast Sign Up (RCS)</span>
+                        <p>Begin verification & create your user profile instantly via Messaging.</p>
+                    </a>
+                    <a href="#" class="sitelink" onclick="triggerRCS('betbuilder'); return false;">
+                        <span class="highlight">⚽ Bet Builder</span>
+                        <p>Generate Chelsea vs Arsenal boosted Bet Builders via RCS.</p>
+                    </a>
+                    <a href="#" class="sitelink">
+                        <span>Offers & Promo Deals</span>
+                        <p>Browse other football and horse racing events.</p>
+                    </a>
+                    <a href="#" class="sitelink">
+                        <span>Safe Gambling</span>
+                        <p>Learn more about Deposit Limits & Play Well tracking.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Custom Interactive Mock Transition -->
+        <div class="demo-overlay" id="overlay">
+            <div class="demo-modal">
+                <div class="modal-brand">
+                    <div class="modal-brand-logo">SKY BET</div>
+                    <span class="modal-title" id="modalTitle">Launch Live RCS Agent</span>
+                </div>
+                <p class="modal-desc" id="modalDesc">
+                    Would you like to initiate a conversation with Sky Bet’s verified Messaging Agent? Clicking connect will launch your device’s messaging application with a draft message.
+                </p>
+                <div class="modal-action-row">
+                    <button class="btn-cancel" onclick="dismissRCS()">Cancel</button>
+                    <a href="#" class="btn-confirm" id="modalLink" onclick="dismissRCS()">Send Message</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const fallbackURI = "sms:liveperson_emea_demo_2_pqoixjic_agent%40rbm.goog";
+
+        function triggerRCS(intent) {
+            let bodyText = "Hello Sky Bet";
+            let actionLabel = "Claim Your £40 Bonus";
+            
+            if (intent === 'claim') {
+                bodyText = "Claim £40 Free Bets";
+                actionLabel = "Send message: 'Claim £40 Free Bets'";
+            } else if (intent === 'registration') {
+                bodyText = "Start Account Registration";
+                actionLabel = "Send message: 'Start Registration'";
+            } else if (intent === 'betbuilder') {
+                bodyText = "Construct a Bet Builder";
+                actionLabel = "Send message: 'Build a Bet'";
+            }
+
+            const targetURL = `${fallbackURI}?body=${encodeURIComponent(bodyText)}`;
+            
+            document.getElementById('modalTitle').innerText = "Initiate Secure RCS Session";
+            document.getElementById('modalDesc').innerText = `You are about to be redirected to Sky Bet’s RCS messaging agent. Tapping confirm will compose the phrase "${bodyText}" directly inside your messages.`;
+            
+            const btnConfirm = document.getElementById('modalLink');
+            btnConfirm.innerText = actionLabel;
+            btnConfirm.href = targetURL;
+
+            document.getElementById('overlay').style.display = 'flex';
+        }
+
+        function dismissRCS() {
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
